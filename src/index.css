@@ -1303,57 +1303,56 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Left Column: Two Playbuttons side-by-side */
+/* Left Column: Two Playbuttons side-by-side (natural aspect ratio, never cropped) */
 .story-mosaic-playbuttons {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0;
-  height: 100%;
+  align-items: start;
   overflow: visible;
 }
 
-/* Right Column: Top screenshot + Bottom subrow */
+/* Right Column: Top screenshot + Bottom subrow (natural aspect ratio, never cropped) */
 .story-mosaic-channel {
   display: flex;
   flex-direction: column;
   gap: 0;
-  height: 100%;
   overflow: visible;
 }
 
 .story-mosaic-top {
-  flex: 1.15;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  display: block;
 }
 
 .story-mosaic-subrow {
-  flex: 0.85;
   display: grid;
   grid-template-columns: 1fr 1.6fr;
   gap: 0;
   width: 100%;
+  align-items: stretch;
   overflow: visible;
 }
 
 .story-mosaic-badge {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  display: block;
   background-color: #FFFFFF;
 }
 
 .story-mosaic-viral {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  display: block;
 }
 
-/* Photo Styling: Sharp Corners, Thin White Border, Controlled Half-Zoom on Hover (1.25x) */
+/* Photo Styling: Sharp Corners, Thin White Border, Never Cropped or Squeezed */
 .story-mosaic-img {
   width: 100%;
-  height: 100%;
+  height: auto;
+  max-width: 100%;
   display: block;
   border-radius: 0 !important;
   border: 1.5px solid #FFFFFF;
@@ -1361,20 +1360,19 @@ h1, h2, h3, h4, h5, h6 {
   cursor: pointer;
   position: relative;
   image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
-  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s ease, z-index 0.01s;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, z-index 0.01s;
 }
 
-/* Half of previous 2x zoom -> 1.25x scale (smooth, focused zoom) */
+/* Controlled gentle hover zoom (1.18x) */
 .story-mosaic-img:hover {
-  transform: scale(1.25);
+  transform: scale(1.18);
   z-index: 50;
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
 }
 
 @media (max-width: 768px) {
   .story-mosaic-img:hover {
-    transform: scale(1.15);
+    transform: scale(1.10);
   }
 }
 
