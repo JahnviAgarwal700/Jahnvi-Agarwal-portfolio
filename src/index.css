@@ -1282,77 +1282,83 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
-   SEAMLESS RECTANGLE MOSAIC (NO GAPS, THIN WHITE FRAMES)
+   CANVA MOSAIC SHOWCASE (EXACT 5-PHOTO SEAMLESS RECTANGLE)
+   Row 1: 3 Photos (pb1: 25.974%, pb2: 30.844%, channel: 43.182%)
+   Row 2: 2 Photos (viral: 56.818%, badge: 43.182%)
+   Zero gaps, thin white border, sharp corners, hover zoom 1.18x
    ========================================================================== */
-.story-rectangle-mosaic {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0;
-  border: 3px solid #FFFFFF;
-  background-color: #FFFFFF;
-  box-shadow: 0 14px 44px rgba(0, 0, 0, 0.16);
-  position: relative;
-  overflow: visible;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-@media (max-width: 860px) {
-  .story-rectangle-mosaic {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Left Column: Two Playbuttons side-by-side (natural aspect ratio, never cropped) */
-.story-mosaic-playbuttons {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0;
-  align-items: start;
-  overflow: visible;
-}
-
-/* Right Column: Top screenshot + Bottom subrow (natural aspect ratio, never cropped) */
-.story-mosaic-channel {
+.story-canva-mosaic {
   display: flex;
   flex-direction: column;
   gap: 0;
-  overflow: visible;
-}
-
-.story-mosaic-top {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.story-mosaic-subrow {
-  display: grid;
-  grid-template-columns: 1fr 1.6fr;
-  gap: 0;
-  width: 100%;
-  align-items: stretch;
-  overflow: visible;
-}
-
-.story-mosaic-badge {
-  width: 100%;
-  height: auto;
-  display: block;
+  border: 3px solid #FFFFFF;
   background-color: #FFFFFF;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.16);
+  position: relative;
+  overflow: visible;
+  max-width: 1060px;
+  width: 100%;
+  margin: 0 auto;
 }
 
-.story-mosaic-viral {
+.story-canva-row-top {
+  display: flex;
+  flex-direction: row;
   width: 100%;
-  height: auto;
-  display: block;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  align-items: stretch;
 }
 
-/* Photo Styling: Sharp Corners, Thin White Border, Never Cropped or Squeezed */
-.story-mosaic-img {
+.story-canva-row-bottom {
+  display: flex;
+  flex-direction: row;
   width: 100%;
-  height: auto;
-  max-width: 100%;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  align-items: stretch;
+}
+
+/* Exact proportional widths derived from pixel geometry so heights match naturally */
+.story-canva-pb1 {
+  flex: 0 0 25.974%;
+  width: 25.974%;
+}
+
+.story-canva-pb2 {
+  flex: 0 0 30.844%;
+  width: 30.844%;
+}
+
+.story-canva-channel {
+  flex: 0 0 43.182%;
+  width: 43.182%;
+}
+
+.story-canva-viral {
+  flex: 0 0 56.818%;
+  width: 56.818%;
+}
+
+.story-canva-badge {
+  flex: 0 0 43.182%;
+  width: 43.182%;
+}
+
+.story-canva-item {
+  position: relative;
+  overflow: visible;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.story-canva-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
   border-radius: 0 !important;
   border: 1.5px solid #FFFFFF;
@@ -1364,15 +1370,27 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Controlled gentle hover zoom (1.18x) */
-.story-mosaic-img:hover {
+.story-canva-img:hover {
   transform: scale(1.18);
   z-index: 50;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
 }
 
 @media (max-width: 768px) {
-  .story-mosaic-img:hover {
-    transform: scale(1.10);
+  .story-canva-row-top,
+  .story-canva-row-bottom {
+    flex-direction: column;
+  }
+  .story-canva-pb1,
+  .story-canva-pb2,
+  .story-canva-channel,
+  .story-canva-viral,
+  .story-canva-badge {
+    flex: 0 0 100%;
+    width: 100%;
+  }
+  .story-canva-img:hover {
+    transform: scale(1.08);
   }
 }
 

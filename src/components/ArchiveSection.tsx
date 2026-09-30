@@ -736,43 +736,51 @@ export const ArchiveSection: React.FC = () => {
                     900K+ Subscribers in One Year
                   </h1>
 
-                  {/* Clean Photos: Attached into a seamless rectangle with thin white frames and NO GAPS */}
-                  <div className="story-rectangle-mosaic">
-                    {/* Left Column: Side-by-side Playbutton Photos (NO GAP) */}
-                    <div className="story-mosaic-playbuttons">
-                      <img
-                        src={getAssetUrl('images/geeky-gamer-playbutton.jpg')}
-                        alt="Official YouTube Creator Award Silver Play Button"
-                        className="story-mosaic-img"
-                        loading="eager"
-                      />
-                      <img
-                        src={getAssetUrl('images/jahnvi-playbutton.jpg')}
-                        alt="Jahnvi holding the YouTube Silver Play Button at her workstation"
-                        className="story-mosaic-img"
-                        loading="eager"
-                      />
-                    </div>
-
-                    {/* Right Column: Full Channel SS on top, badge & viral row below (NO GAP) */}
-                    <div className="story-mosaic-channel">
-                      <img
-                        src={getAssetUrl('images/geeky-gamer-channel-full.png')}
-                        alt="GeekyGamer YouTube Channel proof"
-                        className="story-mosaic-img story-mosaic-top"
-                        loading="eager"
-                      />
-                      <div className="story-mosaic-subrow">
+                  {/* Clean Photos: Attached into the exact Canva seamless rectangle (Top 3, Bottom 2) with NO GAPS */}
+                  <div className="story-canva-mosaic">
+                    {/* Top Row: Playbutton 1, Playbutton 2, Full Channel Overview */}
+                    <div className="story-canva-row-top">
+                      <div className="story-canva-item story-canva-pb1">
                         <img
-                          src={getAssetUrl('images/geeky-gamer-header-badge.png')}
-                          alt="GeekyGamer verified channel badge"
-                          className="story-mosaic-img story-mosaic-badge"
+                          src={getAssetUrl('images/story-part1-ultra.jpg')}
+                          alt="Official YouTube Creator Award Silver Play Button"
+                          className="story-canva-img"
                           loading="eager"
                         />
+                      </div>
+                      <div className="story-canva-item story-canva-pb2">
                         <img
-                          src={getAssetUrl('images/geeky-gamer-viral-views.png')}
+                          src={getAssetUrl('images/story-part2-ultra.jpg')}
+                          alt="Jahnvi holding YouTube Silver Play Button at workstation"
+                          className="story-canva-img"
+                          loading="eager"
+                        />
+                      </div>
+                      <div className="story-canva-item story-canva-channel">
+                        <img
+                          src={getAssetUrl('images/story-part3-ultra.png')}
+                          alt="GeekyGamer YouTube Channel proof"
+                          className="story-canva-img"
+                          loading="eager"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Bottom Row: Viral Views, Channel Header Badge */}
+                    <div className="story-canva-row-bottom">
+                      <div className="story-canva-item story-canva-viral">
+                        <img
+                          src={getAssetUrl('images/story-part4-ultra-cover.png')}
                           alt="GeekyGamer Most Popular Videos proof showing 28M views"
-                          className="story-mosaic-img story-mosaic-viral"
+                          className="story-canva-img"
+                          loading="eager"
+                        />
+                      </div>
+                      <div className="story-canva-item story-canva-badge">
+                        <img
+                          src={getAssetUrl('images/story-part5-ultra.png')}
+                          alt="GeekyGamer verified channel badge and 975K subscribers"
+                          className="story-canva-img"
                           loading="eager"
                         />
                       </div>
