@@ -118,7 +118,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
   const currentDescription = activePlaylistItem?.description || project.description || '';
   const isEmbed = isEmbeddableVideo(currentVideoUrl);
   const embedUrl = isEmbed ? getEmbedUrl(currentVideoUrl) : '';
-  const isVertical = project.aspectRatio === '9:16' || !!(currentVideoUrl && (currentVideoUrl.includes('Varun') || currentVideoUrl.includes('Reel')));
+  const isVertical = project.aspectRatio === '9:16' || !!(currentVideoUrl && (currentVideoUrl.toLowerCase().includes('varun') || currentVideoUrl.toLowerCase().includes('reel')));
   const isWide = Boolean(project.dualVideos || hasPlaylist);
 
   return (

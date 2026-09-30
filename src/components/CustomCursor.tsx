@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { getAssetUrl } from '../data/portfolioData';
 
 /**
  * CustomCursor Component
@@ -79,7 +80,7 @@ export const CustomCursor: React.FC = () => {
         if (AudioContextClass) {
           audioCtx = new AudioContextClass();
           // Load click.wav asset asynchronously
-          fetch('/sounds/click.wav')
+          fetch(getAssetUrl('sounds/click.wav'))
             .then((res) => {
               if (res.ok) return res.arrayBuffer();
               throw new Error('Sound not found');
@@ -332,7 +333,7 @@ export const CustomCursor: React.FC = () => {
         {/* Inner graphic: handles scale, click compression, rotation & idle hover */}
         <div ref={cursorGraphicRef} className="custom-cursor-graphic">
           <img
-            src="/images/custom-cursor.png"
+            src={getAssetUrl('images/custom-cursor.png')}
             alt=""
             className="custom-cursor-img"
             width={CURSOR_WIDTH}

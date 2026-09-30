@@ -135,7 +135,17 @@ export const PROFILE_DATA = {
   }
 };
 
-export const PROJECTS: Project[] = [
+export const getAssetUrl = (path: string): string => {
+  if (!path) return '';
+  if (path.startsWith('http://') || path.startsWith('https://') || path.startsWith('data:')) {
+    return path;
+  }
+  const cleanPath = path.replace(/^\.?\//, '');
+  const base = ((import.meta as any).env?.BASE_URL as string) || '/';
+  return base.endsWith('/') ? `${base}${cleanPath}` : `${base}/${cleanPath}`;
+};
+
+const RAW_PROJECTS: Project[] = [
   // ─── ROW 1 — BLOCK 01. Talking Head Videos ────────────────────────────────
   {
     id: "talking-head-videos",
@@ -145,7 +155,7 @@ export const PROJECTS: Project[] = [
     aspectRatio: "16:9",
     duration: "Full + Short",
     thumbnail: "/images/work-talking-head.png",
-    videoUrl: "./videos/Varun%20Mayya%20Intro%20Edited_1.mp4",
+    videoUrl: "./videos/varun-mayya-intro.mp4",
     shortDescription: "Varun & Maya (Dual Formats) & 16 Things Every Woman Should Know How To Do ALONE.",
     dualVideos: {
       fullLength: {
@@ -153,7 +163,7 @@ export const PROJECTS: Project[] = [
         label: "FULL-LENGTH",
         format: "16:9 · Long-form",
         aspectRatio: "16:9",
-        videoUrl: "./videos/Varun%20Mayya%20Intro%20Edited_1.mp4",
+        videoUrl: "./videos/varun-mayya-intro.mp4",
         badge: "16:9 Long-Form",
         poster: "/images/work-talking-head.png"
       },
@@ -162,7 +172,7 @@ export const PROJECTS: Project[] = [
         label: "SHORT-FORM",
         format: "9:16 · Short-form / Social",
         aspectRatio: "9:16",
-        videoUrl: "./videos/Varun%20Mayya%20Reel%20Edited.mp4",
+        videoUrl: "./videos/varun-mayya-reel.mp4",
         badge: "9:16 Viral Reel",
         poster: "/images/talking-head-thumb.png"
       },
@@ -417,4 +427,40 @@ export const PROJECTS: Project[] = [
     year: "2024"
   }
 ];
+
+export const PROJECTS: Project[] = RAW_PROJECTS.map((p) => ({
+  ...p,
+  thumbnail: getAssetUrl(p.thumbnail),
+  videoUrl: p.videoUrl ? getAssetUrl(p.videoUrl) : '',
+  dualVideos: p.dualVideos
+    ? {
+        ...p.dualVideos,
+        fullLength: {
+          ...p.dualVideos.fullLength,
+          videoUrl: p.dualVideos.fullLength.videoUrl ? getAssetUrl(p.dualVideos.fullLength.videoUrl) : '',
+          poster: p.dualVideos.fullLength.poster ? getAssetUrl(p.dualVideos.fullLength.poster) : ''
+        },
+        shortForm: {
+          ...p.dualVideos.shortForm,
+          videoUrl: p.dualVideos.shortForm.videoUrl ? getAssetUrl(p.dualVideos.shortForm.videoUrl) : '',
+          poster: p.dualVideos.shortForm.poster ? getAssetUrl(p.dualVideos.shortForm.poster) : ''
+        }
+      }
+    : undefined,
+  extraVideo: p.extraVideo
+    ? {
+        ...p.extraVideo,
+        videoUrl: p.extraVideo.videoUrl ? getAssetUrl(p.extraVideo.videoUrl) : '',
+        thumbnail: p.extraVideo.thumbnail ? getAssetUrl(p.extraVideo.thumbnail) : ''
+      }
+    : undefined,
+  playlist: p.playlist
+    ? p.playlist.map((item) => ({
+        ...item,
+        videoUrl: item.videoUrl ? getAssetUrl(item.videoUrl) : '',
+        thumbnail: item.thumbnail ? getAssetUrl(item.thumbnail) : ''
+      }))
+    : undefined
+}));
+
 

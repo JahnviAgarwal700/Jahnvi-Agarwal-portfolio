@@ -1,5 +1,5 @@
 import React from 'react';
-import { PROFILE_DATA } from '../data/portfolioData';
+import { PROFILE_DATA, getAssetUrl } from '../data/portfolioData';
 
 export const About: React.FC = () => {
   return (
@@ -32,7 +32,7 @@ export const About: React.FC = () => {
           >
             <div className="about-photo-frame">
               <img
-                src="/images/about-workspace.svg"
+                src={getAssetUrl('images/about-workspace.svg')}
                 alt="Jahnvi Agarwal — Editor Desk & Workspace Media Placeholder"
                 className="about-photo-asset"
                 loading="lazy"

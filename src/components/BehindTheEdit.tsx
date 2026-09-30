@@ -1,5 +1,5 @@
 import React from 'react';
-import { PROFILE_DATA } from '../data/portfolioData';
+import { PROFILE_DATA, getAssetUrl } from '../data/portfolioData';
 
 export const BehindTheEdit: React.FC = () => {
   const { behindTheEdit } = PROFILE_DATA;
@@ -28,7 +28,7 @@ export const BehindTheEdit: React.FC = () => {
               style={{ '--stagger-index': 1 } as React.CSSProperties}
             >
               <img
-                src="/images/hero-preview.svg"
+                src={getAssetUrl('images/hero-preview.svg')}
                 alt="Jahnvi Agarwal — Editing Rig & Setup"
                 className="setup-media-img"
                 loading="lazy"

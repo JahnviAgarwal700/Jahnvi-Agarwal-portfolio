@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { getAssetUrl } from '../data/portfolioData';
 
 interface HangingIDCardProps {
   mouseX: number;
@@ -177,7 +178,7 @@ export const HangingIDCard: React.FC<HangingIDCardProps> = ({
         <div className="badge-strap-ext badge-strap-ext-right" aria-hidden="true" />
 
         <img
-          src="/images/id-badge-current.png"
+          src={getAssetUrl('images/id-badge-current.png')}
           alt="Jahnvi Agarwal — Video Editor ID Card Badge"
           className="hanging-badge-img"
           loading="eager"
