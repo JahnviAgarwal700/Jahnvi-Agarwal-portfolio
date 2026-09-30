@@ -68,7 +68,7 @@ const EditorSticker: React.FC = () => (
     {/* Thick white sticker circle */}
     <circle cx="34" cy="34" r="27" fill="#FFFFFF" />
     {/* Character face */}
-    <circle cx="34" cy="34" r="22" fill="#FFC800" />
+    <circle cx="34" cy="34" r="22" fill="#FF7AA2" />
     {/* Headphone arch */}
     <path d="M18 33 C18 21 25 14 34 14 C43 14 50 21 50 33" stroke="#111111" strokeWidth="4.8" strokeLinecap="round" />
     {/* Ear Cups */}
@@ -151,9 +151,9 @@ const ARCHIVE_FOLDERS: FolderItem[] = [
     id: 'about-me',
     title: 'MORE ABOUT ME',
     shoulderTag: 'Curiosity · AI · Making',
-    theme: 'amber',
+    theme: 'pink',
     bgColor: '#FFFFFF',
-    hoverColor: '#FFAE33',
+    hoverColor: '#FF7AA2',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#111111" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="7" r="4.2" />
