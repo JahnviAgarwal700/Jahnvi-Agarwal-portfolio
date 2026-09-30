@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { getAssetUrl } from '../data/portfolioData';
 
 interface FolderItem {
@@ -576,6 +576,7 @@ const ARCHIVE_FOLDERS: FolderItem[] = [
 export const ArchiveSection: React.FC = () => {
   const [expandedFolderId, setExpandedFolderId] = useState<string | null>(null);
   const [isExiting, setIsExiting] = useState(false);
+  const hasPushedHistoryRef = useRef(false);
 
   // Lock background scroll when full-screen dossier is active
   useEffect(() => {
@@ -589,28 +590,67 @@ export const ArchiveSection: React.FC = () => {
     };
   }, [expandedFolderId]);
 
+  const handleCloseExpandedFolder = useCallback((triggeredByPopState: boolean | unknown = false) => {
+    const isPopState = triggeredByPopState === true;
+    if (isExiting) return;
+    setIsExiting(true);
+
+    // If closed via UI (BACK button, X, or ESC), pop the history entry we pushed
+    if (!isPopState && hasPushedHistoryRef.current) {
+      hasPushedHistoryRef.current = false;
+      window.history.back();
+    }
+
+    setTimeout(() => {
+      setExpandedFolderId(null);
+      setIsExiting(false);
+      // Clean up hash if any remains without adding extra history
+      if (window.location.hash.startsWith('#archive-')) {
+        window.history.replaceState(null, '', window.location.pathname + window.location.search);
+      }
+    }, 380); // Exact match to exit spring animation
+  }, [isExiting]);
+
+  // Handle browser Back / Forward buttons (popstate)
+  useEffect(() => {
+    const handlePopState = () => {
+      if (expandedFolderId) {
+        hasPushedHistoryRef.current = false;
+        handleCloseExpandedFolder(true);
+      }
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [expandedFolderId, handleCloseExpandedFolder]);
+
   // Handle ESC key to smoothly close expanded dossier
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && expandedFolderId && !isExiting) {
-        handleCloseExpandedFolder();
+        handleCloseExpandedFolder(false);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [expandedFolderId, isExiting]);
+  }, [expandedFolderId, isExiting, handleCloseExpandedFolder]);
+
+  // Open folder if URL has #archive-{id} on load
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash && hash.startsWith('#archive-')) {
+      const folderId = hash.replace('#archive-', '');
+      if (ARCHIVE_FOLDERS.some(f => f.id === folderId)) {
+        setExpandedFolderId(folderId);
+        hasPushedHistoryRef.current = true;
+      }
+    }
+  }, []);
 
   const handleOpenFolder = (folderId: string) => {
     setIsExiting(false);
     setExpandedFolderId(folderId);
-  };
-
-  const handleCloseExpandedFolder = () => {
-    setIsExiting(true);
-    setTimeout(() => {
-      setExpandedFolderId(null);
-      setIsExiting(false);
-    }, 380); // Exact match to exit spring animation
+    hasPushedHistoryRef.current = true;
+    window.history.pushState({ archiveFolder: folderId }, '', `#archive-${folderId}`);
   };
 
   const activeFolder = ARCHIVE_FOLDERS.find(f => f.id === expandedFolderId);
@@ -618,12 +658,18 @@ export const ArchiveSection: React.FC = () => {
 
   const handlePrevFolder = () => {
     const prevIdx = (currentIdx - 1 + ARCHIVE_FOLDERS.length) % ARCHIVE_FOLDERS.length;
-    handleOpenFolder(ARCHIVE_FOLDERS[prevIdx].id);
+    const nextFolderId = ARCHIVE_FOLDERS[prevIdx].id;
+    setIsExiting(false);
+    setExpandedFolderId(nextFolderId);
+    window.history.replaceState({ archiveFolder: nextFolderId }, '', `#archive-${nextFolderId}`);
   };
 
   const handleNextFolder = () => {
     const nextIdx = (currentIdx + 1) % ARCHIVE_FOLDERS.length;
-    handleOpenFolder(ARCHIVE_FOLDERS[nextIdx].id);
+    const nextFolderId = ARCHIVE_FOLDERS[nextIdx].id;
+    setIsExiting(false);
+    setExpandedFolderId(nextFolderId);
+    window.history.replaceState({ archiveFolder: nextFolderId }, '', `#archive-${nextFolderId}`);
   };
 
   return (
@@ -714,7 +760,7 @@ export const ArchiveSection: React.FC = () => {
                 <button
                   type="button"
                   className="editorial-back-pill"
-                  onClick={handleCloseExpandedFolder}
+                  onClick={() => handleCloseExpandedFolder(false)}
                   aria-label="Back to Archive Folder Stack"
                 >
                   <span className="back-chevron">←</span>
@@ -759,7 +805,7 @@ export const ArchiveSection: React.FC = () => {
                 <button
                   type="button"
                   className="editorial-close-btn"
-                  onClick={handleCloseExpandedFolder}
+                  onClick={() => handleCloseExpandedFolder(false)}
                   aria-label="Close Folder"
                 >
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
