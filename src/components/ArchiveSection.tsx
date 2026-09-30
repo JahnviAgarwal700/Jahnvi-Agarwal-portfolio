@@ -631,7 +631,7 @@ export const ArchiveSection: React.FC = () => {
                   {/* Text in white box */}
                   <div className="story-text-white-box about-text-box">
                     <p className="story-thin-body-text">
-                      Outside of editing, I’m naturally curious about technology, AI, and anything that lets me create or build something new. I like experimenting, learning by doing, and figuring out how things work. I’m always exploring new tools and ideas that can make the creative process faster, smarter, or simply more interesting. I’m based in Agra, India, proficient in English and Hindi and  I absolutely love what I do. :)
+                      Outside of editing, I’m naturally curious about technology, AI, and anything that lets me create or build something new. I like experimenting, learning by doing, and figuring out how things work. I’m always exploring new tools and ideas that can make the creative process faster, smarter, or simply more interesting. I’m based in India, proficient in English and Hindi and I absolutely love what I do. :)
                     </p>
                   </div>
                 </div>
