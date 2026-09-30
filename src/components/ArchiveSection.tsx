@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { getAssetUrl } from '../data/portfolioData';
 
 interface FolderItem {
   id: string;
@@ -10,14 +11,15 @@ interface FolderItem {
   icon?: React.ReactNode;
   sticker: React.ReactNode;
   content: {
-    categoryBadge: string;
-    headline: string;
-    subtext: string;
+    categoryBadge?: string;
+    headline?: string;
+    subtext?: string;
+    storyProof?: boolean;
     metrics?: Array<{
       value: string;
       label: string;
     }>;
-    columns: Array<{
+    columns?: Array<{
       heading: string;
       items: Array<{
         title: string;
@@ -166,8 +168,8 @@ const ScissorsSticker: React.FC = () => (
 const ARCHIVE_FOLDERS: FolderItem[] = [
   {
     id: 'youtube-900k-story',
-    title: 'YOUTUBE : 900K STORY',
-    shoulderTag: '180+ Videos · 900K+ Subs',
+    title: '900K+ SUBSCRIBERS',
+    shoulderTag: '900K+ in One Year',
     theme: 'yellow',
     bgColor: '#FFFFFF',
     hoverColor: '#FFD026',
@@ -179,65 +181,11 @@ const ARCHIVE_FOLDERS: FolderItem[] = [
     ),
     sticker: <ClapperboardSticker />,
     content: {
-      categoryBadge: 'YOUTUBE 900K CASE STUDY & PRODUCTION LOGS',
-      headline: 'Scaling Geeky Gamer from 0 to 900,000+ YouTube Subscribers',
-      subtext: 'The full production playbook of how rigorous script-to-screen pacing, multi-track audio foley, and kinetic visual hooks co-built one of the most engaged gaming channels in the ecosystem.',
-      metrics: [
-        { value: '900K+', label: 'Subscriber Milestones' },
-        { value: '180+', label: 'Long-Form Masters' },
-        { value: '45M+', label: 'Total Channel Views' },
-        { value: '1 Year', label: 'Scaling Velocity' }
-      ],
-      columns: [
-        {
-          heading: 'THE 900K EDITING PLAYBOOK',
-          items: [
-            {
-              title: 'Script-to-Screen Pacing Architecture',
-              desc: 'Restructuring narrative arcs, eliminating dead air, and introducing fast-paced kinetic zoom punch-ins synced tightly with audio accents.',
-              pill: 'Pacing Engine · Long-Form',
-              highlight: true
-            },
-            {
-              title: 'Multi-Track Foley & Meme Audio Anchors',
-              desc: 'Layering custom sound effects, risers, whooshes, and pop-culture sound bites to create subconscious dopamine loops and keep attention locked.',
-              pill: 'Layered SFX · High Energy',
-              highlight: true
-            },
-            {
-              title: 'Thumbnail-to-Intro Continuity Hooks',
-              desc: 'Ensuring the first 5 seconds immediately fulfill the curiosity gap promised by the thumbnail and title, cutting drop-offs by over 35%.',
-              pill: 'Retention Defense'
-            },
-            {
-              title: 'Creator Voice & Cadence Elevation',
-              desc: 'Preserving the authentic personality and comedic timing of the host while trimming filler words and accelerating punchlines.',
-              pill: 'Creator Chemistry'
-            }
-          ]
-        },
-        {
-          heading: 'KEY PRODUCTION DELIVERABLES',
-          items: [
-            {
-              title: 'YouTube Long-Form Masters',
-              desc: '15–35 minute deep-dive narrative videos with multi-cam sync, layered B-roll archives, and retention-optimized chapters.',
-              pill: '180+ Delivered'
-            },
-            {
-              title: 'Viral Shorts Cutdowns',
-              desc: 'High-impact 30–60 second vertical cutdowns engineered with word-by-word kinetic captions, animated emojis, and sound-designed beat drops.',
-              pill: '120+ Viral Shorts'
-            },
-            {
-              title: 'High-Paced Sizzle Teasers',
-              desc: 'Dynamic 15s–30s trailer sizzles used across community posts and Instagram to drive immediate viewer migration to the main video.',
-              pill: 'Audience Traffic'
-            }
-          ]
-        }
-      ],
-      pills: ['YouTube Long-Form', '900K Subscribers', 'Retention First', 'Multi-Track Foley', 'Kinetic Zooms', 'Curiosity Hooks']
+      categoryBadge: 'YOUTUBE CASE STUDY',
+      headline: '900K+ Subscribers in One Year',
+      subtext: '',
+      storyProof: true,
+      columns: []
     }
   },
   {
@@ -773,27 +721,35 @@ export const ArchiveSection: React.FC = () => {
                   <span className="back-text">BACK TO ARCHIVE</span>
                 </button>
 
-                {/* Floating Ana Cuna Outline Nav Pills (Recording 00:07 & 00:15) */}
-                <div className="topbar-floating-pills">
-                  <a href="#dossier-summary" className="topbar-nav-pill">
-                    <span className="pill-dot">○</span>
-                    <span>SUMMARY</span>
-                  </a>
-                  <a href="#dossier-metrics" className="topbar-nav-pill">
-                    <span className="pill-dot">○</span>
-                    <span>TELEMETRY</span>
-                  </a>
-                  <a href="#dossier-columns" className="topbar-nav-pill">
-                    <span className="pill-dot">○</span>
-                    <span>DELIVERABLES</span>
-                  </a>
-                </div>
+                {/* Floating Ana Cuna Outline Nav Pills */}
+                {activeFolder.id !== 'youtube-900k-story' && (
+                  <div className="topbar-floating-pills">
+                    <a href="#dossier-summary" className="topbar-nav-pill">
+                      <span className="pill-dot">○</span>
+                      <span>SUMMARY</span>
+                    </a>
+                    {activeFolder.content.metrics && (
+                      <a href="#dossier-metrics" className="topbar-nav-pill">
+                        <span className="pill-dot">○</span>
+                        <span>TELEMETRY</span>
+                      </a>
+                    )}
+                    {activeFolder.content.columns && activeFolder.content.columns.length > 0 && (
+                      <a href="#dossier-columns" className="topbar-nav-pill">
+                        <span className="pill-dot">○</span>
+                        <span>DELIVERABLES</span>
+                      </a>
+                    )}
+                  </div>
+                )}
               </div>
 
               <div className="topbar-right-group">
                 <div className="topbar-context-badge">
                   <span className="context-dot" />
-                  <span className="context-name">{activeFolder.title}</span>
+                  <span className="context-name">
+                    {activeFolder.id === 'youtube-900k-story' ? '900K+ Subscribers in One Year' : activeFolder.title}
+                  </span>
                 </div>
                 <span className="topbar-code-tag">CAT // 2023–2026</span>
                 <button
@@ -814,91 +770,161 @@ export const ArchiveSection: React.FC = () => {
           {/* Full-Screen Editorial Dossier Canvas */}
           <main className="fullscreen-main-canvas">
             <div className="fullscreen-content-container">
-              {/* Massive Editorial Header (Ana Cuna Style with Instrument Serif) */}
-              <div className="fullscreen-hero-row" id="dossier-summary">
-                <div className="hero-category-meta">
-                  <span className="category-pill-tag">
-                    {activeFolder.content.categoryBadge}
-                  </span>
-                </div>
-
-                <div className="hero-title-with-pill">
-                  <div className="hero-icon-title">
-                    <span className="fullscreen-folder-icon" aria-hidden="true">
-                      {activeFolder.icon}
-                    </span>
-                    <h1 className="fullscreen-folder-title">
-                      {activeFolder.title}
-                    </h1>
+              {activeFolder.id === 'youtube-900k-story' || activeFolder.content.storyProof ? (
+                <div className="story-proof-dossier">
+                  {/* Clean Editorial Title: Exactly 900K+ Subscribers in One Year */}
+                  <div className="fullscreen-hero-row" id="dossier-summary">
+                    <div className="hero-title-with-pill">
+                      <div className="hero-icon-title">
+                        <span className="fullscreen-folder-icon" aria-hidden="true">
+                          {activeFolder.icon}
+                        </span>
+                        <h1 className="fullscreen-folder-title">
+                          900K+ Subscribers in One Year
+                        </h1>
+                      </div>
+                    </div>
                   </div>
 
-                  <span className="floating-ana-pill">
-                    {activeFolder.shoulderTag}
-                  </span>
-                </div>
-
-                <h2 className="fullscreen-headline">
-                  {activeFolder.content.headline}
-                </h2>
-
-                <p className="fullscreen-subtext">
-                  {activeFolder.content.subtext}
-                </p>
-              </div>
-
-              {/* Big Metrics Telemetry Bar */}
-              {activeFolder.content.metrics && (
-                <div className="fullscreen-metrics-grid" id="dossier-metrics">
-                  {activeFolder.content.metrics.map((m, idx) => (
-                    <div key={idx} className="fullscreen-metric-card">
-                      <span className="fullscreen-metric-value">{m.value}</span>
-                      <span className="fullscreen-metric-label">{m.label}</span>
+                  {/* Side-by-side Photo Gallery */}
+                  <div className="story-proof-grid">
+                    {/* Left: YouTube Channel Screenshot */}
+                    <div className="story-proof-card">
+                      <div className="story-proof-media-wrap">
+                        <img
+                          src={getAssetUrl('images/geeky-gamer-channel-full.png')}
+                          alt="GeekyGamer YouTube Channel proof showing 975K subscribers"
+                          className="story-proof-img"
+                          loading="eager"
+                        />
+                      </div>
+                      <div className="story-proof-caption">
+                        <strong>GeekyGamer YouTube Channel</strong>
+                        <span>975K+ Subscribers · 328 Videos · Millions of Views</span>
+                      </div>
                     </div>
-                  ))}
-                </div>
-              )}
 
-              {/* 2-Column Editorial Dossier Grid */}
-              <div className="fullscreen-columns-grid" id="dossier-columns">
-                {activeFolder.content.columns.map((col, cIdx) => (
-                  <div key={cIdx} className="fullscreen-column">
-                    <h3 className="column-heading">
-                      {col.heading}
-                    </h3>
-                    <div className="column-items-list">
-                      {col.items.map((item, iIdx) => (
-                        <div
-                          key={iIdx}
-                          className={`fullscreen-item-card ${item.highlight ? 'is-highlight' : ''}`}
-                        >
-                          <div className="card-top-row">
-                            <h4 className="card-item-title">{item.title}</h4>
-                            {item.pill && (
-                              <span className="card-item-pill">{item.pill}</span>
-                            )}
-                          </div>
-                          {item.desc && (
-                            <p className="card-item-desc">{item.desc}</p>
-                          )}
+                    {/* Right: Silver Play Button Plaque */}
+                    <div className="story-proof-card">
+                      <div className="story-proof-media-wrap">
+                        <img
+                          src={getAssetUrl('images/geeky-gamer-playbutton.jpg')}
+                          alt="Official YouTube Creator Award Silver Play Button presented to GeekyGamer"
+                          className="story-proof-img story-proof-img-playbutton"
+                          loading="eager"
+                        />
+                      </div>
+                      <div className="story-proof-caption">
+                        <strong>Official YouTube Creator Award</strong>
+                        <span>Silver Play Button Plaque Presented to GeekyGamer</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Exact text underneath */}
+                  <div className="story-proof-text-container">
+                    <p className="story-proof-paragraph">
+                      I co-built this YouTube channel with my brother and worked as its video editor. In just one year, we grew the channel to 900K+ subscribers, with multiple videos reaching millions of views, including one that surpassed 27M views. We recently sold the channel, so the original content is no longer publicly available.
+                    </p>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  {/* Massive Editorial Header (Ana Cuna Style with Instrument Serif) */}
+                  <div className="fullscreen-hero-row" id="dossier-summary">
+                    {activeFolder.content.categoryBadge && (
+                      <div className="hero-category-meta">
+                        <span className="category-pill-tag">
+                          {activeFolder.content.categoryBadge}
+                        </span>
+                      </div>
+                    )}
+
+                    <div className="hero-title-with-pill">
+                      <div className="hero-icon-title">
+                        <span className="fullscreen-folder-icon" aria-hidden="true">
+                          {activeFolder.icon}
+                        </span>
+                        <h1 className="fullscreen-folder-title">
+                          {activeFolder.title}
+                        </h1>
+                      </div>
+
+                      <span className="floating-ana-pill">
+                        {activeFolder.shoulderTag}
+                      </span>
+                    </div>
+
+                    {activeFolder.content.headline && (
+                      <h2 className="fullscreen-headline">
+                        {activeFolder.content.headline}
+                      </h2>
+                    )}
+
+                    {activeFolder.content.subtext && (
+                      <p className="fullscreen-subtext">
+                        {activeFolder.content.subtext}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Big Metrics Telemetry Bar */}
+                  {activeFolder.content.metrics && (
+                    <div className="fullscreen-metrics-grid" id="dossier-metrics">
+                      {activeFolder.content.metrics.map((m, idx) => (
+                        <div key={idx} className="fullscreen-metric-card">
+                          <span className="fullscreen-metric-value">{m.value}</span>
+                          <span className="fullscreen-metric-label">{m.label}</span>
                         </div>
                       ))}
                     </div>
-                  </div>
-                ))}
-              </div>
+                  )}
 
-              {/* Editorial Pill Tags Row */}
-              {activeFolder.content.pills && (
-                <div className="fullscreen-tags-section">
-                  <span className="tags-label">PRODUCTION TAGS:</span>
-                  <div className="tags-pill-list">
-                    {activeFolder.content.pills.map((pill, pIdx) => (
-                      <span key={pIdx} className="fullscreen-ana-tag">
-                        {pill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+                  {/* 2-Column Editorial Dossier Grid */}
+                  {activeFolder.content.columns && activeFolder.content.columns.length > 0 && (
+                    <div className="fullscreen-columns-grid" id="dossier-columns">
+                      {activeFolder.content.columns.map((col, cIdx) => (
+                        <div key={cIdx} className="fullscreen-column">
+                          <h3 className="column-heading">
+                            {col.heading}
+                          </h3>
+                          <div className="column-items-list">
+                            {col.items.map((item, iIdx) => (
+                              <div
+                                key={iIdx}
+                                className={`fullscreen-item-card ${item.highlight ? 'is-highlight' : ''}`}
+                              >
+                                <div className="card-top-row">
+                                  <h4 className="card-item-title">{item.title}</h4>
+                                  {item.pill && (
+                                    <span className="card-item-pill">{item.pill}</span>
+                                  )}
+                                </div>
+                                {item.desc && (
+                                  <p className="card-item-desc">{item.desc}</p>
+                                )}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Editorial Pill Tags Row */}
+                  {activeFolder.content.pills && (
+                    <div className="fullscreen-tags-section">
+                      <span className="tags-label">PRODUCTION TAGS:</span>
+                      <div className="tags-pill-list">
+                        {activeFolder.content.pills.map((pill, pIdx) => (
+                          <span key={pIdx} className="fullscreen-ana-tag">
+                            {pill}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </>
               )}
 
               {/* Bottom "OTHER ARCHIVE FOLDERS" Switcher with Prev/Next Controls (Ref: Recording 00:20) */}
