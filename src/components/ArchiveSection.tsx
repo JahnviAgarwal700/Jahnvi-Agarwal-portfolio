@@ -149,8 +149,8 @@ const ARCHIVE_FOLDERS: FolderItem[] = [
 
   {
     id: 'about-me',
-    title: 'ABOUT ME',
-    shoulderTag: 'Philosophy · 4+ Yrs',
+    title: 'MORE ABOUT ME',
+    shoulderTag: 'Curiosity · AI · Making',
     theme: 'amber',
     bgColor: '#FFFFFF',
     hoverColor: '#FFAE33',
@@ -162,53 +162,10 @@ const ARCHIVE_FOLDERS: FolderItem[] = [
     ),
     sticker: <EditorSticker />,
     content: {
-      categoryBadge: 'EDITOR PROFILE & METHODOLOGY',
-      headline: 'Storytelling Through Rhythm, Restraint, and Precision',
-      subtext: 'A behind-the-scenes look at the creative mindset of Jahnvi Agarwal—blending technical command of non-linear editing software with deep empathy for the viewer.',
-      metrics: [
-        { value: '3+ Years', label: 'Full-Time Experience' },
-        { value: '100%', label: 'Deadline Reliability' },
-        { value: '24h', label: 'Average Response Time' },
-        { value: 'Top 1%', label: 'YouTube Pacing Discipline' }
-      ],
-      columns: [
-        {
-          heading: 'THE CREATIVE PHILOSOPHY',
-          items: [
-            {
-              title: 'Editing is Invisible Psychology',
-              desc: 'The best cuts are the ones the viewer never consciously notices. When sound, emotion, and motion align, the viewer forgets they are watching a timeline and simply experiences the story.',
-              highlight: true
-            },
-            {
-              title: 'Respecting the Creator Cadence',
-              desc: 'Every creator has a distinct voice. My job is never to paste a generic template onto their work, but to elevate their natural cadence, humor, and intellectual rhythm.',
-              highlight: false
-            },
-            {
-              title: 'Relentless Timeline Hygiene',
-              desc: 'Color-coded timeline tracks, synchronized multi-track audio labeling, and non-destructive adjustment layers ensure lightning-fast revisions and stress-free handoffs.',
-              highlight: false
-            }
-          ]
-        },
-        {
-          heading: 'PROFESSIONAL CONDUCT & CULTURE',
-          items: [
-            {
-              title: 'Timezone Agnostic Collaboration',
-              desc: 'Seamlessly collaborating with international teams and creators across India, the US, and Europe via structured Frame.io timestamped review cycles.',
-              pill: 'Global Workflows'
-            },
-            {
-              title: 'Publishing Calendar Discipline',
-              desc: 'In creator media, consistency is survival. In over 3 years of production, zero scheduled publishing deadlines have ever been missed.',
-              pill: '100% Reliability'
-            }
-          ]
-        }
-      ],
-      pills: ['Invisible Psychology', 'Timeline Discipline', 'Frame.io Sync', 'Global Remote Work', 'Creative Ownership', 'Story Pacing']
+      categoryBadge: 'PERSONAL ESSAY & MINDSET',
+      headline: 'More About Me',
+      subtext: '',
+      columns: []
     }
   },
   {
@@ -560,7 +517,7 @@ export const ArchiveSection: React.FC = () => {
                 </button>
 
                 {/* Floating Ana Cuna Outline Nav Pills */}
-                {activeFolder.id !== 'youtube-900k-story' && (
+                {!['youtube-900k-story', 'skills-tools', 'about-me'].includes(activeFolder.id) && (
                   <div className="topbar-floating-pills">
                     <a href="#dossier-summary" className="topbar-nav-pill">
                       <span className="pill-dot">○</span>
@@ -715,6 +672,20 @@ export const ArchiveSection: React.FC = () => {
                   <div className="story-text-white-box skills-text-box">
                     <p className="story-thin-body-text">
                       I use Premiere Pro at an advanced level for editing, storytelling, pacing, and retention, with basic After Effects for motion graphics and visual effects. I also use ElevenLabs, Claude, and other AI tools to speed up my workflow, create AI-assisted content and even build websites. I can also handle a project end-to-end — from script and voice to editing and final delivery.
+                    </p>
+                  </div>
+                </div>
+              ) : activeFolder.id === 'about-me' ? (
+                <div className="story-clean-page about-clean-page">
+                  {/* Clean Page Title: More About Me */}
+                  <h1 className="story-clean-title">
+                    More About Me
+                  </h1>
+
+                  {/* Clean narrative without any block / card */}
+                  <div className="about-noblock-wrap">
+                    <p className="about-noblock-text">
+                      Outside of editing, I’m naturally curious about technology, AI, and anything that lets me create or build something new. I like experimenting, learning by doing, and figuring out how things work. I’m always exploring new tools and ideas that can make the creative process faster, smarter, or simply more interesting. And honestly, I absolutely love what I do. :)
                     </p>
                   </div>
                 </div>
