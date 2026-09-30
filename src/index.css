@@ -433,16 +433,25 @@ h1, h2, h3, h4, h5, h6 {
   animation: heroElementFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
 }
 
-/* DESCRIPTION: Max-width ~620px */
+/* DESCRIPTION: in Video Editor font (Instrument Serif italic) */
 .hero-desc {
-  font-family: var(--font-primary, 'Google Sans Flex', -apple-system, sans-serif);
-  font-size: clamp(15px, 1.15vw, 17.5px);
-  line-height: 1.62;
+  font-family: var(--font-headline);
+  font-style: italic;
+  font-size: clamp(21px, 2.1vw, 29px);
+  line-height: 1.34;
+  letter-spacing: -0.012em;
   color: var(--black);
-  max-width: 620px;
+  max-width: 660px;
   margin-bottom: clamp(28px, 3.4vh, 36px);
   font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
   animation: heroElementFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.38s both;
+}
+
+.hero-desc-line {
+  display: block;
 }
 
 /* LOCATION */
@@ -3249,10 +3258,11 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .hero-desc {
-    font-size: 16px;
-    line-height: 1.58;
+    font-size: clamp(19px, 4.8vw, 23px);
+    line-height: 1.32;
     margin-bottom: 22px;
     max-width: 100%;
+    gap: 4px;
   }
 
   .hero-cta-wrap {
