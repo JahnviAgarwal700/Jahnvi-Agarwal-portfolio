@@ -829,8 +829,9 @@ export const ArchiveSection: React.FC = () => {
 
                   {/* Clean Photos: Simple presentation with NO boxes or frames */}
                   <div className="story-clean-gallery">
-                    <div className="story-layout-grid">
-                      {/* Side-by-side Playbutton Photos: Plaque + Jahnvi at Workstation (NO GAP) */}
+                    {/* Top Row: Playbuttons pair on left, Channel overview on right */}
+                    <div className="story-top-row">
+                      {/* Left: Side-by-side Playbutton Photos (NO GAP) */}
                       <div className="story-playbuttons-pair">
                         <img
                           src={getAssetUrl('images/geeky-gamer-playbutton.jpg')}
@@ -846,35 +847,37 @@ export const ArchiveSection: React.FC = () => {
                         />
                       </div>
 
-                      {/* Right Column: Full Channel SS placed UP, two above placed down left and right */}
-                      <div className="story-references-col">
+                      {/* Right: Full Channel Overview Screenshot placed UP */}
+                      <div className="story-channel-overview-col">
                         <img
                           src={getAssetUrl('images/geeky-gamer-channel-full.png')}
                           alt="GeekyGamer YouTube Channel proof"
                           className="story-clean-img story-channel-main-img"
                           loading="eager"
                         />
-                        <div className="story-references-subrow">
-                          <img
-                            src={getAssetUrl('images/geeky-gamer-header-badge.jpg')}
-                            alt="GeekyGamer verified channel badge"
-                            className="story-clean-img story-sub-img"
-                            loading="eager"
-                          />
-                          <img
-                            src={getAssetUrl('images/geeky-gamer-viral-views.png')}
-                            alt="GeekyGamer Most Popular Videos proof showing 28M views"
-                            className="story-clean-img story-sub-img"
-                            loading="eager"
-                          />
-                        </div>
                       </div>
+                    </div>
+
+                    {/* Bottom Row: Spans full width across as marked, bigger */}
+                    <div className="story-bottom-full-row">
+                      <img
+                        src={getAssetUrl('images/geeky-gamer-header-badge.jpg')}
+                        alt="GeekyGamer verified channel badge"
+                        className="story-clean-img story-bottom-badge-img"
+                        loading="eager"
+                      />
+                      <img
+                        src={getAssetUrl('images/geeky-gamer-viral-views.png')}
+                        alt="GeekyGamer Most Popular Videos proof showing 28M views"
+                        className="story-clean-img story-bottom-viral-img"
+                        loading="eager"
+                      />
                     </div>
                   </div>
 
-                  {/* Text in white box like before, but in the font of heading */}
+                  {/* Text in white box: restored earlier font but thinner */}
                   <div className="story-text-white-box">
-                    <p className="story-heading-font-text">
+                    <p className="story-thin-body-text">
                       I co-built this YouTube channel with my brother and worked as its video editor. In just one year, we grew the channel to 900K+ subscribers, with multiple videos reaching millions of views, including one that surpassed 27M views. We recently sold the channel, so the original content is no longer publicly available.
                     </p>
                   </div>
