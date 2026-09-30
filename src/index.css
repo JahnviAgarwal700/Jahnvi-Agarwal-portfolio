@@ -1283,7 +1283,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .story-layout-grid {
   display: grid;
-  grid-template-columns: 1.15fr 1fr;
+  grid-template-columns: 1fr 1.05fr;
   gap: clamp(20px, 3vw, 36px);
   align-items: start;
 }
@@ -1295,32 +1295,54 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* Playbuttons Pair: Side-by-side with NO GAP */
 .story-playbuttons-pair {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(12px, 1.6vw, 20px);
+  gap: 0;
   align-items: start;
 }
 
+/* Right Column: Main channel ss on top, two above placed down left & right */
 .story-references-col {
   display: flex;
   flex-direction: column;
-  gap: clamp(14px, 1.8vw, 22px);
-  align-items: flex-start;
+  gap: 14px;
+  align-items: stretch;
 }
 
+.story-references-subrow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  align-items: center;
+}
+
+@media (max-width: 540px) {
+  .story-references-subrow {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Photo Styling: NO CORNERS, THIN WHITE FRAME, HOVER EXPANSION */
 .story-clean-img {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 12px;
-  background: transparent;
-  border: none;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+  border-radius: 0 !important;
+  border: 3px solid #FFFFFF;
+  box-sizing: border-box;
+  background-color: #FFFFFF;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s ease, z-index 0.05s;
 }
 
-.story-badge-img {
-  max-width: 360px;
+.story-clean-img:hover {
+  transform: scale(1.06);
+  z-index: 25;
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.28);
 }
 
 .story-playbutton-img {
@@ -1328,21 +1350,37 @@ h1, h2, h3, h4, h5, h6 {
   height: auto;
   aspect-ratio: 3 / 4;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 0 !important;
 }
 
-.story-clean-paragraph {
-  font-family: var(--font-body);
-  font-size: clamp(18px, 1.6vw, 23px);
-  line-height: 1.65;
+.story-channel-main-img {
+  width: 100%;
+  height: auto;
+}
+
+.story-sub-img {
+  width: 100%;
+  height: auto;
+}
+
+/* White Box for Text with Heading Font */
+.story-text-white-box {
+  background-color: #FFFFFF;
+  border: 1.5px solid rgba(17, 17, 17, 0.12);
+  border-radius: 16px;
+  padding: clamp(24px, 4vw, 44px);
+  box-shadow: 0 6px 26px rgba(0, 0, 0, 0.04);
+  margin-top: 4px;
+}
+
+.story-heading-font-text {
+  font-family: var(--font-headline);
+  font-size: clamp(24px, 2.4vw, 36px);
+  line-height: 1.38;
   color: var(--near-black);
-  font-weight: 450;
+  font-weight: 400;
+  letter-spacing: -0.01em;
   margin: 0;
-  max-width: 900px;
-  background: transparent;
-  border: none;
-  box-shadow: none;
-  padding: 0;
 }
 
 .hero-title-with-pill {

@@ -830,7 +830,7 @@ export const ArchiveSection: React.FC = () => {
                   {/* Clean Photos: Simple presentation with NO boxes or frames */}
                   <div className="story-clean-gallery">
                     <div className="story-layout-grid">
-                      {/* Side-by-side Playbutton Photos: Plaque + Jahnvi at Workstation */}
+                      {/* Side-by-side Playbutton Photos: Plaque + Jahnvi at Workstation (NO GAP) */}
                       <div className="story-playbuttons-pair">
                         <img
                           src={getAssetUrl('images/geeky-gamer-playbutton.jpg')}
@@ -846,34 +846,38 @@ export const ArchiveSection: React.FC = () => {
                         />
                       </div>
 
-                      {/* Beside that: All Channel References */}
+                      {/* Right Column: Full Channel SS placed UP, two above placed down left and right */}
                       <div className="story-references-col">
-                        <img
-                          src={getAssetUrl('images/geeky-gamer-header-badge.jpg')}
-                          alt="GeekyGamer verified channel badge"
-                          className="story-clean-img story-badge-img"
-                          loading="eager"
-                        />
-                        <img
-                          src={getAssetUrl('images/geeky-gamer-viral-views.png')}
-                          alt="GeekyGamer Most Popular Videos proof showing 28M views"
-                          className="story-clean-img"
-                          loading="eager"
-                        />
                         <img
                           src={getAssetUrl('images/geeky-gamer-channel-full.png')}
                           alt="GeekyGamer YouTube Channel proof"
-                          className="story-clean-img"
+                          className="story-clean-img story-channel-main-img"
                           loading="eager"
                         />
+                        <div className="story-references-subrow">
+                          <img
+                            src={getAssetUrl('images/geeky-gamer-header-badge.jpg')}
+                            alt="GeekyGamer verified channel badge"
+                            className="story-clean-img story-sub-img"
+                            loading="eager"
+                          />
+                          <img
+                            src={getAssetUrl('images/geeky-gamer-viral-views.png')}
+                            alt="GeekyGamer Most Popular Videos proof showing 28M views"
+                            className="story-clean-img story-sub-img"
+                            loading="eager"
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
 
-                  {/* Exact text written cleanly underneath with NO box */}
-                  <p className="story-clean-paragraph">
-                    I co-built this YouTube channel with my brother and worked as its video editor. In just one year, we grew the channel to 900K+ subscribers, with multiple videos reaching millions of views, including one that surpassed 27M views. We recently sold the channel, so the original content is no longer publicly available.
-                  </p>
+                  {/* Text in white box like before, but in the font of heading */}
+                  <div className="story-text-white-box">
+                    <p className="story-heading-font-text">
+                      I co-built this YouTube channel with my brother and worked as its video editor. In just one year, we grew the channel to 900K+ subscribers, with multiple videos reaching millions of views, including one that surpassed 27M views. We recently sold the channel, so the original content is no longer publicly available.
+                    </p>
+                  </div>
                 </div>
               ) : (
                 <>
