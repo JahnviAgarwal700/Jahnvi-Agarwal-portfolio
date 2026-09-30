@@ -786,10 +786,18 @@ export const ArchiveSection: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Side-by-side Photo Gallery */}
+                  {/* Side-by-side Photo Gallery: Channel & Playbutton */}
                   <div className="story-proof-grid">
-                    {/* Left: YouTube Channel Screenshot */}
+                    {/* Left: YouTube Channel Screenshot & Verified Badge */}
                     <div className="story-proof-card">
+                      <div className="story-proof-header-badge-wrap">
+                        <img
+                          src={getAssetUrl('images/geeky-gamer-header-badge.jpg')}
+                          alt="GeekyGamer verified channel badge"
+                          className="story-proof-badge-img"
+                          loading="eager"
+                        />
+                      </div>
                       <div className="story-proof-media-wrap">
                         <img
                           src={getAssetUrl('images/geeky-gamer-channel-full.png')}
@@ -800,13 +808,13 @@ export const ArchiveSection: React.FC = () => {
                       </div>
                       <div className="story-proof-caption">
                         <strong>GeekyGamer YouTube Channel</strong>
-                        <span>975K+ Subscribers · 328 Videos · Millions of Views</span>
+                        <span>Verified Channel · 975K+ Subscribers · 328 Videos</span>
                       </div>
                     </div>
 
                     {/* Right: Silver Play Button Plaque */}
                     <div className="story-proof-card">
-                      <div className="story-proof-media-wrap">
+                      <div className="story-proof-media-wrap story-proof-playbutton-wrap">
                         <img
                           src={getAssetUrl('images/geeky-gamer-playbutton.jpg')}
                           alt="Official YouTube Creator Award Silver Play Button presented to GeekyGamer"
@@ -818,6 +826,22 @@ export const ArchiveSection: React.FC = () => {
                         <strong>Official YouTube Creator Award</strong>
                         <span>Silver Play Button Plaque Presented to GeekyGamer</span>
                       </div>
+                    </div>
+                  </div>
+
+                  {/* Viral Videos & Millions of Views Proof */}
+                  <div className="story-proof-viral-card">
+                    <div className="story-proof-media-wrap story-proof-viral-wrap">
+                      <img
+                        src={getAssetUrl('images/geeky-gamer-viral-views.png')}
+                        alt="GeekyGamer Most Popular Videos proof showing 28M views, 12M views, 8.8M views"
+                        className="story-proof-img story-proof-viral-img"
+                        loading="eager"
+                      />
+                    </div>
+                    <div className="story-proof-caption">
+                      <strong>Viral Video Reach & Milestone Views</strong>
+                      <span>Multiple videos with millions of views — peak video reaching 28M+ views</span>
                     </div>
                   </div>
 
