@@ -1281,118 +1281,101 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0;
 }
 
-.story-top-row {
-  display: grid;
-  grid-template-columns: 1fr 1.08fr;
-  gap: clamp(16px, 2.5vw, 32px);
-  align-items: start;
-  overflow: visible;
-}
-
-@media (max-width: 900px) {
-  .story-top-row {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-}
-
-/* Playbuttons Pair: Side-by-side with NO GAP */
-.story-playbuttons-pair {
+/* ==========================================================================
+   SEAMLESS RECTANGLE MOSAIC (NO GAPS, THIN WHITE FRAMES)
+   ========================================================================== */
+.story-rectangle-mosaic {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0;
-  align-items: start;
+  border: 3px solid #FFFFFF;
+  background-color: #FFFFFF;
+  box-shadow: 0 14px 44px rgba(0, 0, 0, 0.16);
+  position: relative;
   overflow: visible;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
-.story-channel-overview-col {
-  width: 100%;
-  overflow: visible;
-}
-
-/* Bottom Row: Spans full width across covering space as marked, bigger */
-.story-bottom-full-row {
-  display: grid;
-  grid-template-columns: 1fr 1.6fr;
-  gap: clamp(16px, 2.5vw, 28px);
-  align-items: center;
-  margin-top: clamp(16px, 2.5vw, 28px);
-  overflow: visible;
-}
-
-@media (max-width: 680px) {
-  .story-bottom-full-row {
+@media (max-width: 860px) {
+  .story-rectangle-mosaic {
     grid-template-columns: 1fr;
-    gap: 16px;
   }
 }
 
-/* Photo Styling: NO CORNERS, THIN WHITE FRAME, AT LEAST 2X HOVER EXPANSION */
-.story-clean-img {
+/* Left Column: Two Playbuttons side-by-side */
+.story-mosaic-playbuttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Right Column: Top screenshot + Bottom subrow */
+.story-mosaic-channel {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  height: 100%;
+  overflow: visible;
+}
+
+.story-mosaic-top {
+  flex: 1.15;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+}
+
+.story-mosaic-subrow {
+  flex: 0.85;
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 0;
+  width: 100%;
+  overflow: visible;
+}
+
+.story-mosaic-badge {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-color: #FFFFFF;
+}
+
+.story-mosaic-viral {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Photo Styling: Sharp Corners, Thin White Border, Controlled Half-Zoom on Hover (1.25x) */
+.story-mosaic-img {
+  width: 100%;
+  height: 100%;
   display: block;
   border-radius: 0 !important;
-  border: 3px solid #FFFFFF;
+  border: 1.5px solid #FFFFFF;
   box-sizing: border-box;
-  background-color: #FFFFFF;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
   cursor: pointer;
   position: relative;
-  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.32s ease, z-index 0.01s;
-  transform-origin: center center;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s ease, z-index 0.01s;
 }
 
-.story-clean-img:hover {
-  transform: scale(2.05);
-  z-index: 1000;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.50);
-}
-
-/* Smart transform origins so 2x zoom doesn't clip off viewport edges */
-.story-playbuttons-pair img:first-child:hover {
-  transform-origin: left center;
-}
-.story-playbuttons-pair img:last-child:hover {
-  transform-origin: center center;
-}
-.story-channel-overview-col img:hover {
-  transform-origin: right center;
-}
-.story-bottom-badge-img:hover {
-  transform-origin: left center;
-}
-.story-bottom-viral-img:hover {
-  transform-origin: right center;
+/* Half of previous 2x zoom -> 1.25x scale (smooth, focused zoom) */
+.story-mosaic-img:hover {
+  transform: scale(1.25);
+  z-index: 50;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.45);
 }
 
 @media (max-width: 768px) {
-  .story-clean-img:hover {
-    transform: scale(1.6);
+  .story-mosaic-img:hover {
+    transform: scale(1.15);
   }
-}
-
-.story-playbutton-img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-  border-radius: 0 !important;
-}
-
-.story-channel-main-img {
-  width: 100%;
-  height: auto;
-}
-
-.story-bottom-badge-img {
-  width: 100%;
-  height: auto;
-}
-
-.story-bottom-viral-img {
-  width: 100%;
-  height: auto;
 }
 
 /* White Box for Text with Restored Earlier Font (Thinner) */

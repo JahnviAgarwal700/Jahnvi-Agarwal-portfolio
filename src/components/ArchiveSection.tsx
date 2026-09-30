@@ -82,27 +82,6 @@ const FilmReelSticker: React.FC = () => (
   </svg>
 );
 
-// 3. Views & Results: Viral Attention Rocket Launching with 45M+ Spark
-const RocketSticker: React.FC = () => (
-  <svg width="68" height="68" viewBox="0 0 68 68" fill="none" className="sticker-svg" aria-hidden="true">
-    {/* Thick white die-cut sticker contour */}
-    <path d="M34 3 C45 3 55 18 53 34 L60 47 L47 45 L41 57 L34 48 L27 57 L21 45 L8 47 L15 34 C13 18 23 3 34 3 Z" fill="#FFFFFF" />
-    {/* Rocket Body */}
-    <path d="M34 7 C42 7 49 19 48 34 L34 42 L20 34 C19 19 26 7 34 7 Z" fill="#111111" />
-    {/* Rocket Wings */}
-    <path d="M20 34 L12 43 L22 41 Z" fill="#FFC800" />
-    <path d="M48 34 L56 43 L46 41 Z" fill="#FFC800" />
-    {/* Porthole */}
-    <circle cx="34" cy="22" r="6.5" fill="#FFC800" />
-    <circle cx="34" cy="22" r="3.2" fill="#FFFFFF" />
-    {/* Exhaust Fire */}
-    <polygon points="29,42 34,57 39,42" fill="#FF4400" />
-    <polygon points="31,42 34,51 37,42" fill="#FFC800" />
-    {/* Sparkles */}
-    <circle cx="56" cy="18" r="2.8" fill="#111111" />
-    <circle cx="12" cy="22" r="2.2" fill="#111111" />
-  </svg>
-);
 
 // 3. About Me: Video Editor with Studio Headphones & Retro Glasses
 const EditorSticker: React.FC = () => (
@@ -283,76 +262,6 @@ const ARCHIVE_FOLDERS: FolderItem[] = [
         'Social Content',
         'Other Creative Content'
       ]
-    }
-  },
-  {
-    id: 'views-results',
-    title: 'VIEWS & RESULTS',
-    shoulderTag: '45M+ Views · Analytics',
-    theme: 'coral',
-    bgColor: '#FFFFFF',
-    hoverColor: '#FF6B8B',
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="#111111">
-        <rect x="3" y="14" width="4.2" height="7" rx="1.6" />
-        <rect x="9.9" y="8" width="4.2" height="13" rx="1.6" />
-        <rect x="16.8" y="3" width="4.2" height="18" rx="1.6" />
-      </svg>
-    ),
-    sticker: <RocketSticker />,
-    content: {
-      categoryBadge: 'AUDIENCE RETENTION & TELEMETRY LOGS',
-      headline: '45,000,000+ Views Engineered Across Scaled Audiences',
-      subtext: 'Video editing is not just aesthetic assembly—it is the applied science of human attention spans, dopamine reward pacing, and algorithmic session completion.',
-      metrics: [
-        { value: '45M+', label: 'Total Views Generated' },
-        { value: '900K+', label: 'Subscriber Footprint' },
-        { value: '+38%', label: 'Average Retention Lift' },
-        { value: '62.4%', label: 'Shorts Completion' }
-      ],
-      columns: [
-        {
-          heading: 'RETENTION ARCHITECTURE PLAYBOOK',
-          items: [
-            {
-              title: 'The 3-Second Sensory Hook',
-              desc: 'Eliminating introductory logos and filler. Opening directly with high-tempo visual contrast, a contextual sound cue (riser/impact), and immediate narrative stakes.',
-              highlight: true
-            },
-            {
-              title: 'The 4-Second Micro-Shift Rule',
-              desc: 'Ensuring that every 4 to 6 seconds the visual stimulus shifts: angle toggles, sound-designed B-roll inserts, animated punch-ins, or text callouts to prevent cognitive disengagement.',
-              highlight: true
-            },
-            {
-              title: 'Audio-Driven Pacing & Sound Anchors',
-              desc: 'Layering whooshes, tape stops, subtle sub-bass drops, and riser swells to subconsciously signal narrative transitions before they register visually.',
-              highlight: false
-            }
-          ]
-        },
-        {
-          heading: 'QUANTIFIABLE AUDIENCE TELEMETRY',
-          items: [
-            {
-              title: '+38% First-30s Retention Lift',
-              desc: 'Across dozens of long-form videos, restructuring the hook and pruning early timeline pauses raised initial 30-second retention from 46% to an average of 64%.',
-              pill: 'Benchmark vs. Channel Avg'
-            },
-            {
-              title: '62.4% Short-Form Completion Rate',
-              desc: 'Vertical cutdowns engineered with loop transitions routinely achieve 60%+ completion rates on YouTube Shorts, unlocking viral browse page distribution.',
-              pill: 'Short-Form Telemetry'
-            },
-            {
-              title: '900,000+ Subscriber Community',
-              desc: 'Direct editing stewardship helping Geeky Gamer scale from early milestones into one of the largest niche gaming channels in the ecosystem.',
-              pill: 'Scale Metric'
-            }
-          ]
-        }
-      ],
-      pills: ['Hook Architecture', 'Micro-Pacing', 'Audio Anchors', 'Watch-Time Multiplication', 'YouTube Analytics', 'CTR Engineering']
     }
   },
   {
@@ -827,51 +736,46 @@ export const ArchiveSection: React.FC = () => {
                     900K+ Subscribers in One Year
                   </h1>
 
-                  {/* Clean Photos: Simple presentation with NO boxes or frames */}
-                  <div className="story-clean-gallery">
-                    {/* Top Row: Playbuttons pair on left, Channel overview on right */}
-                    <div className="story-top-row">
-                      {/* Left: Side-by-side Playbutton Photos (NO GAP) */}
-                      <div className="story-playbuttons-pair">
-                        <img
-                          src={getAssetUrl('images/geeky-gamer-playbutton.jpg')}
-                          alt="Official YouTube Creator Award Silver Play Button"
-                          className="story-clean-img story-playbutton-img"
-                          loading="eager"
-                        />
-                        <img
-                          src={getAssetUrl('images/jahnvi-playbutton.jpg')}
-                          alt="Jahnvi holding the YouTube Silver Play Button at her workstation"
-                          className="story-clean-img story-playbutton-img"
-                          loading="eager"
-                        />
-                      </div>
-
-                      {/* Right: Full Channel Overview Screenshot placed UP */}
-                      <div className="story-channel-overview-col">
-                        <img
-                          src={getAssetUrl('images/geeky-gamer-channel-full.png')}
-                          alt="GeekyGamer YouTube Channel proof"
-                          className="story-clean-img story-channel-main-img"
-                          loading="eager"
-                        />
-                      </div>
+                  {/* Clean Photos: Attached into a seamless rectangle with thin white frames and NO GAPS */}
+                  <div className="story-rectangle-mosaic">
+                    {/* Left Column: Side-by-side Playbutton Photos (NO GAP) */}
+                    <div className="story-mosaic-playbuttons">
+                      <img
+                        src={getAssetUrl('images/geeky-gamer-playbutton.jpg')}
+                        alt="Official YouTube Creator Award Silver Play Button"
+                        className="story-mosaic-img"
+                        loading="eager"
+                      />
+                      <img
+                        src={getAssetUrl('images/jahnvi-playbutton.jpg')}
+                        alt="Jahnvi holding the YouTube Silver Play Button at her workstation"
+                        className="story-mosaic-img"
+                        loading="eager"
+                      />
                     </div>
 
-                    {/* Bottom Row: Spans full width across as marked, bigger */}
-                    <div className="story-bottom-full-row">
+                    {/* Right Column: Full Channel SS on top, badge & viral row below (NO GAP) */}
+                    <div className="story-mosaic-channel">
                       <img
-                        src={getAssetUrl('images/geeky-gamer-header-badge.jpg')}
-                        alt="GeekyGamer verified channel badge"
-                        className="story-clean-img story-bottom-badge-img"
+                        src={getAssetUrl('images/geeky-gamer-channel-full.png')}
+                        alt="GeekyGamer YouTube Channel proof"
+                        className="story-mosaic-img story-mosaic-top"
                         loading="eager"
                       />
-                      <img
-                        src={getAssetUrl('images/geeky-gamer-viral-views.png')}
-                        alt="GeekyGamer Most Popular Videos proof showing 28M views"
-                        className="story-clean-img story-bottom-viral-img"
-                        loading="eager"
-                      />
+                      <div className="story-mosaic-subrow">
+                        <img
+                          src={getAssetUrl('images/geeky-gamer-header-badge.png')}
+                          alt="GeekyGamer verified channel badge"
+                          className="story-mosaic-img story-mosaic-badge"
+                          loading="eager"
+                        />
+                        <img
+                          src={getAssetUrl('images/geeky-gamer-viral-views.png')}
+                          alt="GeekyGamer Most Popular Videos proof showing 28M views"
+                          className="story-mosaic-img story-mosaic-viral"
+                          loading="eager"
+                        />
+                      </div>
                     </div>
                   </div>
 
