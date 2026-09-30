@@ -223,7 +223,7 @@ function renderPortfolio() {
                 </div>
 
                 <p class="hero-desc">
-                  Hi there :) I am a video editor and have edited 1,000+ videos across all genres. I’ve created content that generated millions of views across various countries and co-built a YouTube channel to 900K+ subscribers in one year. I’ve worked across YouTube long, short-form, advertising, corporate, and branded content. I specialize in Premiere Pro, After Effects, and AI-powered workflows to have a fast turnaround.
+                  Hi there :) I am a video editor with 5 years of experience and have edited 1,000+ videos across all genres. I’ve created content that generated millions of views across various countries and co-built a YouTube channel to 900K+ subscribers in one year. I’ve worked across YouTube long, short-form, advertising, corporate, and branded content. I can also handle projects end-to-end — from script to editing and final delivery. I specialize in Premiere Pro, After Effects, and AI-powered workflows to have a fast turnaround.
                 </p>
 
                 <div class="hero-cta-wrap">
