@@ -783,13 +783,35 @@ export const ArchiveSection: React.FC = () => {
 
                   {/* Clean Photos: Simple presentation with NO boxes or frames */}
                   <div className="story-clean-gallery">
-                    {/* Side-by-side: Channel proof & Play Button */}
-                    <div className="story-clean-row">
-                      <div className="story-clean-col">
+                    <div className="story-layout-grid">
+                      {/* Side-by-side Playbutton Photos: Plaque + Jahnvi at Workstation */}
+                      <div className="story-playbuttons-pair">
+                        <img
+                          src={getAssetUrl('images/geeky-gamer-playbutton.jpg')}
+                          alt="Official YouTube Creator Award Silver Play Button"
+                          className="story-clean-img story-playbutton-img"
+                          loading="eager"
+                        />
+                        <img
+                          src={getAssetUrl('images/jahnvi-playbutton.jpg')}
+                          alt="Jahnvi holding the YouTube Silver Play Button at her workstation"
+                          className="story-clean-img story-playbutton-img"
+                          loading="eager"
+                        />
+                      </div>
+
+                      {/* Beside that: All Channel References */}
+                      <div className="story-references-col">
                         <img
                           src={getAssetUrl('images/geeky-gamer-header-badge.jpg')}
                           alt="GeekyGamer verified channel badge"
                           className="story-clean-img story-badge-img"
+                          loading="eager"
+                        />
+                        <img
+                          src={getAssetUrl('images/geeky-gamer-viral-views.png')}
+                          alt="GeekyGamer Most Popular Videos proof showing 28M views"
+                          className="story-clean-img"
                           loading="eager"
                         />
                         <img
@@ -799,24 +821,6 @@ export const ArchiveSection: React.FC = () => {
                           loading="eager"
                         />
                       </div>
-                      <div className="story-clean-col">
-                        <img
-                          src={getAssetUrl('images/geeky-gamer-playbutton.jpg')}
-                          alt="Official YouTube Creator Award Silver Play Button"
-                          className="story-clean-img story-playbutton-img"
-                          loading="eager"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Viral Videos & Millions of Views Proof */}
-                    <div className="story-clean-viral">
-                      <img
-                        src={getAssetUrl('images/geeky-gamer-viral-views.png')}
-                        alt="GeekyGamer Most Popular Videos proof showing 28M views"
-                        className="story-clean-img story-viral-img"
-                        loading="eager"
-                      />
                     </div>
                   </div>
 
