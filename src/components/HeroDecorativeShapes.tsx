@@ -1,33 +1,23 @@
 import React from 'react';
 
 interface HeroDecorativeShapesProps {
-  mouseX: number;
-  mouseY: number;
+  mouseX?: number;
+  mouseY?: number;
 }
 
 /**
  * HeroDecorativeShapes Component
  * 
- * Only large, elegant, organic dark yellow background shape (#D99F00)
+ * Elegant, organic dark yellow background shape (#D99F00)
  * placed strictly on the right side, deep behind the hanging ID card & cords.
- * All left-side shapes removed for clean typography on the left.
+ * High-performance, zero re-renders.
  */
-export const HeroDecorativeShapes: React.FC<HeroDecorativeShapesProps> = ({
-  mouseX,
-  mouseY
-}) => {
-  // Parallax offsets (dx and dy normalized roughly between -1 and 1)
-  const p1X = mouseX * 8;
-  const p1Y = mouseY * 6;
-
+export const HeroDecorativeShapes: React.FC<HeroDecorativeShapesProps> = () => {
   return (
     <div className="hero-shapes-container" aria-hidden="true">
       {/* Big Organic Wave Blob (Right Side: Strictly behind ID Card & Cords) */}
       <svg
         className="hero-shape hero-big-blob-right"
-        style={{
-          transform: `translate3d(${p1X * 0.45}px, ${p1Y * 0.45}px, 0)`,
-        }}
         width="760"
         height="720"
         viewBox="0 0 760 720"
@@ -44,3 +34,4 @@ export const HeroDecorativeShapes: React.FC<HeroDecorativeShapesProps> = ({
 };
 
 export default HeroDecorativeShapes;
+

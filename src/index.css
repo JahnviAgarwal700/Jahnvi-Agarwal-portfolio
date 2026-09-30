@@ -209,8 +209,6 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 100;
   padding: 22px 0;
   background-color: #FFF4D6; /* Warm Cream Color Header */
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   transition: padding var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
   border-bottom: 1px solid rgba(17, 17, 17, 0.08);
   box-shadow: 0 2px 14px rgba(17, 17, 17, 0.04);
@@ -218,7 +216,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .site-header.is-scrolled {
   padding: 15px 0;
-  background-color: rgba(255, 244, 214, 0.96); /* Warm Cream Color */
+  background-color: #FFF4D6; /* Warm Cream Color */
   border-bottom-color: rgba(17, 17, 17, 0.12);
   box-shadow: 0 4px 20px rgba(17, 17, 17, 0.08);
 }
@@ -724,9 +722,7 @@ h1, h2, h3, h4, h5, h6 {
 .card-hover-overlay {
   position: absolute;
   inset: 0;
-  background-color: rgba(17, 17, 17, 0.25);
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
+  background-color: rgba(17, 17, 17, 0.32);
   opacity: 0;
   display: flex;
   align-items: center;
@@ -1066,9 +1062,7 @@ h1, h2, h3, h4, h5, h6 {
   position: sticky;
   top: 0;
   z-index: 100;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  background-color: rgba(255, 255, 255, 0.35);
+  background-color: #FFFFFF;
   border-bottom: 1px solid rgba(17, 17, 17, 0.12);
   padding: 16px clamp(20px, 4vw, 56px);
 }
@@ -1249,6 +1243,12 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: var(--radius-full);
 }
 
+.sticker-svg {
+  display: block;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.20));
+  transform: translateZ(0);
+}
+
 .hero-title-with-pill {
   display: flex;
   align-items: center;
@@ -1321,9 +1321,7 @@ h1, h2, h3, h4, h5, h6 {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: clamp(14px, 2.5vw, 28px);
-  background-color: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background-color: #FFFFFF;
   border: 1px solid rgba(17, 17, 17, 0.12);
   border-radius: 16px;
   padding: clamp(24px, 3.5vw, 36px);
@@ -3181,7 +3179,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
-   LIVE ORGANIC CELLULOID FILM GRAIN OVERLAY
+   LIVE ORGANIC CELLULOID FILM GRAIN OVERLAY (High-Performance GPU Composited)
    ========================================================================== */
 .film-grain-overlay {
   position: fixed;
@@ -3191,23 +3189,26 @@ h1, h2, h3, h4, h5, h6 {
   height: 100vh;
   pointer-events: none !important;
   z-index: 99990;
-  opacity: 0.042;
-  mix-blend-mode: overlay;
+  opacity: 0.045;
   background-repeat: repeat;
   background-size: 160px 160px;
-  will-change: background-image;
+  transform: translateZ(0);
 }
 
 /* ==========================================================================
    CUSTOM INTERACTIVE CURSOR SYSTEM
    ========================================================================== */
 
-/* Hide default system cursor on mouse/pointer devices when custom cursor is active */
+/* Hide default system cursor efficiently on mouse/pointer devices without universal * selector */
 @media (hover: hover) and (pointer: fine) {
   html.custom-cursor-enabled,
-  html.custom-cursor-enabled *,
-  html.custom-cursor-enabled *::before,
-  html.custom-cursor-enabled *::after {
+  html.custom-cursor-enabled body,
+  html.custom-cursor-enabled a,
+  html.custom-cursor-enabled button,
+  html.custom-cursor-enabled [role="button"],
+  html.custom-cursor-enabled input,
+  html.custom-cursor-enabled select,
+  html.custom-cursor-enabled textarea {
     cursor: none !important;
   }
 
@@ -3241,20 +3242,17 @@ h1, h2, h3, h4, h5, h6 {
   height: 56px;
   /* Transform origin aligned with the sharp tip of the arrow (11.05px, 3.50px) */
   transform-origin: 11.05px 3.50px;
-  transform: rotate(var(--cursor-tilt, 0deg)) scale(1);
-  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1), filter 180ms ease;
+  transition: filter 180ms ease;
   will-change: transform;
 }
 
-/* Hovering links/buttons: slightly scale up with subtle elastic pop */
+/* Hovering links/buttons: subtle glow */
 .custom-cursor-graphic.is-hovering {
-  transform: rotate(var(--cursor-tilt, 0deg)) scale(1.15);
   filter: drop-shadow(0 4px 14px rgba(255, 42, 109, 0.60));
 }
 
-/* Clicking: fast 15-20% compression + slight tilt */
+/* Clicking */
 .custom-cursor-graphic.is-clicking {
-  transform: rotate(calc(var(--cursor-tilt, 0deg) - 5deg)) scale(0.83) !important;
   transition: transform 70ms cubic-bezier(0.1, 0.9, 0.2, 1) !important;
 }
 

@@ -10,7 +10,6 @@ interface HeroProps {
 export const Hero: React.FC<HeroProps> = () => {
   const [typedName, setTypedName] = useState('');
   const [isTypingComplete, setIsTypingComplete] = useState(false);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const fullName = 'Jahnvi Agarwal.';
@@ -33,32 +32,14 @@ export const Hero: React.FC<HeroProps> = () => {
     return () => clearTimeout(startTimeout);
   }, []);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 2 - 1; // -1 to 1
-    const y = ((e.clientY - rect.top) / rect.height) * 2 - 1; // -1 to 1
-    setMousePos({ x, y });
-  };
-
-  const handleMouseLeave = () => {
-    setMousePos({ x: 0, y: 0 });
-  };
-
   return (
     <section
       id="hero"
       className="hero-section"
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
       aria-label="Jahnvi Agarwal — Video Editor"
     >
-      {/* 
-        Abstract Decorative Video-Editor Workspace Shapes
-        - Palette: Dark Golden Yellow #D99F00 and Secondary Gold #E8B400 at 10-30% opacity
-        - Elements: Playheads, framing crosshairs, keyframes, bezier squiggles, dots, arcs
-        - Interactive subtle parallax response to mouse movements
-      */}
-      <HeroDecorativeShapes mouseX={mousePos.x} mouseY={mousePos.y} />
+      {/* Abstract Decorative Video-Editor Workspace Shape */}
+      <HeroDecorativeShapes />
 
       <div className="site-container hero-container">
         <div className="hero-layout">
@@ -105,10 +86,13 @@ export const Hero: React.FC<HeroProps> = () => {
 
           {/* Right Column: Realistic Hanging Physical ID-Card Photo Badge */}
           <div className="hero-visual-col">
-            <HangingIDCard mouseX={mousePos.x} mouseY={mousePos.y} />
+            <HangingIDCard />
           </div>
         </div>
       </div>
     </section>
   );
 };
+
+export default Hero;
+

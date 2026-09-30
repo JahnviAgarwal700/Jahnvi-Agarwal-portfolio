@@ -54,8 +54,6 @@ export const CustomCursor: React.FC = () => {
     let cursorY = -100;
     let prevCursorX = -100;
     let currentTilt = 0;
-    let magnetOffsetX = 0;
-    let magnetOffsetY = 0;
 
     let isHovering = false;
     let isClicking = false;
@@ -150,7 +148,52 @@ export const CustomCursor: React.FC = () => {
       } catch (_) {}
     };
 
-    // 3. Pointer Tracking & Magnetism
+    // Pointer Tracking
+    let lastTarget: EventTarget | null = null;
+    let lastHoverState = false;
+    let lastOpenMode = false;
+
+    const updateTargetState = (target: HTMLElement | null) => {
+      if (!target) return;
+
+      // Check if mouse is over an openable video card in selected work
+      const openTarget = Boolean(
+        target.closest('[data-cursor-open="true"], .card-media-box, .work-card')
+      );
+      if (openTarget !== lastOpenMode) {
+        isOpenMode = openTarget;
+        lastOpenMode = openTarget;
+        if (openTarget) {
+          wrapper.classList.add('is-open-mode');
+        } else {
+          wrapper.classList.remove('is-open-mode');
+        }
+      }
+
+      // Check if mouse is over a playing video player or modal container
+      const overVideo = Boolean(
+        target.closest('video, .video-player-container, .video-wrapper, iframe, .allow-system-cursor')
+      );
+      isOverVideo = overVideo && !isOpenMode;
+
+      // Check if hovering an interactive link/button
+      const isInteractive = Boolean(
+        target.closest(
+          'a, button, [role="button"], input, select, textarea, .project-card, .btn-hero-work, .btn-hero-connect, .nav-link, .modal-close-btn, .playlist-track, .portfolio-card'
+        )
+      );
+      isHovering = isInteractive && !isOverVideo && !isOpenMode;
+
+      if (isHovering !== lastHoverState) {
+        lastHoverState = isHovering;
+        if (isHovering) {
+          graphic.classList.add('is-hovering');
+        } else {
+          graphic.classList.remove('is-hovering');
+        }
+      }
+    };
+
     const handlePointerMove = (e: PointerEvent) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
@@ -162,51 +205,10 @@ export const CustomCursor: React.FC = () => {
         prevCursorX = cursorX;
       }
 
-      const target = e.target as HTMLElement | null;
-      if (!target) return;
-
-      // Check if mouse is over an openable video card in selected work
-      const openTarget = Boolean(
-        target.closest('[data-cursor-open="true"], .card-media-box, .work-card')
-      );
-      isOpenMode = openTarget;
-
-      if (isOpenMode) {
-        wrapper.classList.add('is-open-mode');
-      } else {
-        wrapper.classList.remove('is-open-mode');
-      }
-
-      // Check if mouse is over a playing video player or modal container
-      const overVideo = Boolean(
-        target.closest('video, .video-player-container, .video-wrapper, iframe, .allow-system-cursor')
-      );
-      isOverVideo = overVideo && !isOpenMode;
-
-      // Check if hovering an interactive link/button
-      const interactiveEl = target.closest(
-        'a, button, [role="button"], input, select, textarea, .project-card, .btn-hero-work, .btn-hero-connect, .nav-link, .modal-close-btn, .playlist-track, .portfolio-card'
-      ) as HTMLElement | null;
-
-      if (interactiveEl && !isOverVideo && !isOpenMode) {
-        isHovering = true;
-        // Calculate gentle magnetic attraction (max 5px)
-        const rect = interactiveEl.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        const dx = centerX - mouseX;
-        const dy = centerY - mouseY;
-        const dist = Math.hypot(dx, dy);
-
-        if (dist > 0) {
-          const pull = Math.min(5, dist * 0.08);
-          magnetOffsetX = (dx / dist) * pull;
-          magnetOffsetY = (dy / dist) * pull;
-        }
-      } else {
-        isHovering = false;
-        magnetOffsetX = 0;
-        magnetOffsetY = 0;
+      // Only evaluate element hierarchy when crossing element boundaries (prevents 120Hz-1000Hz layout thrashing)
+      if (e.target !== lastTarget) {
+        lastTarget = e.target;
+        updateTargetState(e.target as HTMLElement | null);
       }
     };
 
@@ -254,8 +256,8 @@ export const CustomCursor: React.FC = () => {
     // 4. Ultra-Smooth 60/120fps Animation Loop
     const renderLoop = () => {
       if (!isOutside) {
-        const targetX = mouseX + magnetOffsetX;
-        const targetY = mouseY + magnetOffsetY;
+        const targetX = mouseX;
+        const targetY = mouseY;
 
         // Fluid, ultra-creamy adaptive lerp:
         const dist = Math.hypot(targetX - cursorX, targetY - cursorY);
@@ -277,17 +279,10 @@ export const CustomCursor: React.FC = () => {
         // Always position wrapper at precise pointer hotspot so cursor remains visible
         const renderX = cursorX - HOTSPOT_X;
         const renderY = cursorY - HOTSPOT_Y + idleFloatY;
-        wrapper.style.transform = `translate3d(${renderX.toFixed(2)}px, ${renderY.toFixed(2)}px, 0)`;
+        wrapper.style.transform = `translate3d(${renderX.toFixed(1)}px, ${renderY.toFixed(1)}px, 0)`;
 
-        // Apply directional inertia tilt to inner graphic
-        graphic.style.setProperty('--cursor-tilt', `${currentTilt.toFixed(2)}deg`);
-
-        // Handle hover state class for scale & elastic response
-        if (isHovering || isOpenMode) {
-          graphic.classList.add('is-hovering');
-        } else {
-          graphic.classList.remove('is-hovering');
-        }
+        // Apply directional inertia tilt directly without CSS variable re-resolution
+        graphic.style.transform = `rotate(${currentTilt.toFixed(1)}deg)${isClicking ? ' scale(0.85)' : isHovering ? ' scale(1.15)' : ''}`;
 
         // Handle visibility (hide over video or outside window)
         const shouldHide = isOutside || isOverVideo;

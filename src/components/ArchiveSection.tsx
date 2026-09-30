@@ -38,158 +38,128 @@ interface FolderItem {
 // 1. YouTube: 900K Story: Classic Director's Clapperboard with Action Chevrons
 const ClapperboardSticker: React.FC = () => (
   <svg width="68" height="68" viewBox="0 0 68 68" fill="none" className="sticker-svg" aria-hidden="true">
-    <filter id="sticker-shadow-1" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="5" stdDeviation="4.5" floodColor="#000000" floodOpacity="0.25" />
-    </filter>
-    <g filter="url(#sticker-shadow-1)">
-      {/* Thick white die-cut sticker silhouette */}
-      <rect x="7" y="16" width="48" height="42" rx="10" fill="#FFFFFF" />
-      <path d="M5 22 L49 10 L55 24 L11 36 Z" fill="#FFFFFF" />
-      {/* Clapperboard Body */}
-      <rect x="10" y="25" width="42" height="30" rx="7" fill="#111111" />
-      {/* Angled Clapper Arm with Yellow/Black Stripes */}
-      <g transform="rotate(-13 12 25)">
-        <rect x="9" y="11" width="44" height="12" rx="4" fill="#111111" />
-        <polygon points="14,11 20,11 16,23 10,23" fill="#FFC800" />
-        <polygon points="25,11 31,11 27,23 21,23" fill="#FFC800" />
-        <polygon points="36,11 42,11 38,23 32,23" fill="#FFC800" />
-        <polygon points="47,11 51,11 49,23 43,23" fill="#FFC800" />
-      </g>
-      {/* REC Dot & Slate Info */}
-      <circle cx="22" cy="40" r="5" fill="#FFC800" />
-      <circle cx="22" cy="40" r="2.2" fill="#111111" />
-      <rect x="32" y="36" width="14" height="3.2" rx="1.6" fill="#FFFFFF" opacity="0.9" />
-      <rect x="32" y="42" width="9" height="3" rx="1.5" fill="#FFFFFF" opacity="0.6" />
+    {/* Thick white die-cut sticker silhouette */}
+    <rect x="7" y="16" width="48" height="42" rx="10" fill="#FFFFFF" />
+    <path d="M5 22 L49 10 L55 24 L11 36 Z" fill="#FFFFFF" />
+    {/* Clapperboard Body */}
+    <rect x="10" y="25" width="42" height="30" rx="7" fill="#111111" />
+    {/* Angled Clapper Arm with Yellow/Black Stripes */}
+    <g transform="rotate(-13 12 25)">
+      <rect x="9" y="11" width="44" height="12" rx="4" fill="#111111" />
+      <polygon points="14,11 20,11 16,23 10,23" fill="#FFC800" />
+      <polygon points="25,11 31,11 27,23 21,23" fill="#FFC800" />
+      <polygon points="36,11 42,11 38,23 32,23" fill="#FFC800" />
+      <polygon points="47,11 51,11 49,23 43,23" fill="#FFC800" />
     </g>
+    {/* REC Dot & Slate Info */}
+    <circle cx="22" cy="40" r="5" fill="#FFC800" />
+    <circle cx="22" cy="40" r="2.2" fill="#111111" />
+    <rect x="32" y="36" width="14" height="3.2" rx="1.6" fill="#FFFFFF" opacity="0.9" />
+    <rect x="32" y="42" width="9" height="3" rx="1.5" fill="#FFFFFF" opacity="0.6" />
   </svg>
 );
 
 // 2. What I Edit: 35mm Cinema Reel & Multi-Format Playback Canister
 const FilmReelSticker: React.FC = () => (
   <svg width="68" height="68" viewBox="0 0 68 68" fill="none" className="sticker-svg" aria-hidden="true">
-    <filter id="sticker-shadow-reel" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="5" stdDeviation="4.5" floodColor="#000000" floodOpacity="0.25" />
-    </filter>
-    <g filter="url(#sticker-shadow-reel)">
-      {/* Thick white die-cut contour */}
-      <circle cx="34" cy="34" r="27" fill="#FFFFFF" />
-      {/* Outer Reel Ring */}
-      <circle cx="34" cy="34" r="23" fill="#111111" />
-      <circle cx="34" cy="34" r="20" fill="#FFFFFF" />
-      <circle cx="34" cy="34" r="18" fill="#111111" />
-      {/* Film Spool Holes with Colorful Format Accents */}
-      <circle cx="34" cy="23" r="3.8" fill="#4FD1C5" />
-      <circle cx="43" cy="29" r="3.8" fill="#FFD026" />
-      <circle cx="40" cy="41" r="3.8" fill="#FF6B8B" />
-      <circle cx="28" cy="41" r="3.8" fill="#72D8BE" />
-      <circle cx="25" cy="29" r="3.8" fill="#FFAE33" />
-      {/* Center Spindle & Play Triangle */}
-      <circle cx="34" cy="34" r="6.5" fill="#FFFFFF" />
-      <polygon points="32.5,30.5 37.5,34 32.5,37.5" fill="#111111" />
-    </g>
+    {/* Thick white die-cut contour */}
+    <circle cx="34" cy="34" r="27" fill="#FFFFFF" />
+    {/* Outer Reel Ring */}
+    <circle cx="34" cy="34" r="23" fill="#111111" />
+    <circle cx="34" cy="34" r="20" fill="#FFFFFF" />
+    <circle cx="34" cy="34" r="18" fill="#111111" />
+    {/* Film Spool Holes with Colorful Format Accents */}
+    <circle cx="34" cy="23" r="3.8" fill="#4FD1C5" />
+    <circle cx="43" cy="29" r="3.8" fill="#FFD026" />
+    <circle cx="40" cy="41" r="3.8" fill="#FF6B8B" />
+    <circle cx="28" cy="41" r="3.8" fill="#72D8BE" />
+    <circle cx="25" cy="29" r="3.8" fill="#FFAE33" />
+    {/* Center Spindle & Play Triangle */}
+    <circle cx="34" cy="34" r="6.5" fill="#FFFFFF" />
+    <polygon points="32.5,30.5 37.5,34 32.5,37.5" fill="#111111" />
   </svg>
 );
 
 // 3. Views & Results: Viral Attention Rocket Launching with 45M+ Spark
 const RocketSticker: React.FC = () => (
   <svg width="68" height="68" viewBox="0 0 68 68" fill="none" className="sticker-svg" aria-hidden="true">
-    <filter id="sticker-shadow-2" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="5" stdDeviation="4.5" floodColor="#000000" floodOpacity="0.25" />
-    </filter>
-    <g filter="url(#sticker-shadow-2)">
-      {/* Thick white die-cut sticker contour */}
-      <path d="M34 3 C45 3 55 18 53 34 L60 47 L47 45 L41 57 L34 48 L27 57 L21 45 L8 47 L15 34 C13 18 23 3 34 3 Z" fill="#FFFFFF" />
-      {/* Rocket Body */}
-      <path d="M34 7 C42 7 49 19 48 34 L34 42 L20 34 C19 19 26 7 34 7 Z" fill="#111111" />
-      {/* Rocket Wings */}
-      <path d="M20 34 L12 43 L22 41 Z" fill="#FFC800" />
-      <path d="M48 34 L56 43 L46 41 Z" fill="#FFC800" />
-      {/* Porthole */}
-      <circle cx="34" cy="22" r="6.5" fill="#FFC800" />
-      <circle cx="34" cy="22" r="3.2" fill="#FFFFFF" />
-      {/* Exhaust Fire */}
-      <polygon points="29,42 34,57 39,42" fill="#FF4400" />
-      <polygon points="31,42 34,51 37,42" fill="#FFC800" />
-      {/* Sparkles */}
-      <circle cx="56" cy="18" r="2.8" fill="#111111" />
-      <circle cx="12" cy="22" r="2.2" fill="#111111" />
-    </g>
+    {/* Thick white die-cut sticker contour */}
+    <path d="M34 3 C45 3 55 18 53 34 L60 47 L47 45 L41 57 L34 48 L27 57 L21 45 L8 47 L15 34 C13 18 23 3 34 3 Z" fill="#FFFFFF" />
+    {/* Rocket Body */}
+    <path d="M34 7 C42 7 49 19 48 34 L34 42 L20 34 C19 19 26 7 34 7 Z" fill="#111111" />
+    {/* Rocket Wings */}
+    <path d="M20 34 L12 43 L22 41 Z" fill="#FFC800" />
+    <path d="M48 34 L56 43 L46 41 Z" fill="#FFC800" />
+    {/* Porthole */}
+    <circle cx="34" cy="22" r="6.5" fill="#FFC800" />
+    <circle cx="34" cy="22" r="3.2" fill="#FFFFFF" />
+    {/* Exhaust Fire */}
+    <polygon points="29,42 34,57 39,42" fill="#FF4400" />
+    <polygon points="31,42 34,51 37,42" fill="#FFC800" />
+    {/* Sparkles */}
+    <circle cx="56" cy="18" r="2.8" fill="#111111" />
+    <circle cx="12" cy="22" r="2.2" fill="#111111" />
   </svg>
 );
 
 // 3. About Me: Video Editor with Studio Headphones & Retro Glasses
 const EditorSticker: React.FC = () => (
   <svg width="68" height="68" viewBox="0 0 68 68" fill="none" className="sticker-svg" aria-hidden="true">
-    <filter id="sticker-shadow-3" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="5" stdDeviation="4.5" floodColor="#000000" floodOpacity="0.25" />
-    </filter>
-    <g filter="url(#sticker-shadow-3)">
-      {/* Thick white sticker circle */}
-      <circle cx="34" cy="34" r="27" fill="#FFFFFF" />
-      {/* Character face */}
-      <circle cx="34" cy="34" r="22" fill="#FFC800" />
-      {/* Headphone arch */}
-      <path d="M18 33 C18 21 25 14 34 14 C43 14 50 21 50 33" stroke="#111111" strokeWidth="4.8" strokeLinecap="round" />
-      {/* Ear Cups */}
-      <rect x="14" y="28" width="7.5" height="14" rx="3.75" fill="#111111" />
-      <rect x="46.5" y="28" width="7.5" height="14" rx="3.75" fill="#111111" />
-      {/* Cool Glasses */}
-      <rect x="23" y="30" width="9" height="6.5" rx="2.2" fill="#111111" />
-      <rect x="36" y="30" width="9" height="6.5" rx="2.2" fill="#111111" />
-      <line x1="32" y1="33" x2="36" y2="33" stroke="#111111" strokeWidth="2.4" />
-      {/* Confident Smile */}
-      <path d="M29 41 Q34 46 39 41" stroke="#111111" strokeWidth="2.8" strokeLinecap="round" />
-    </g>
+    {/* Thick white sticker circle */}
+    <circle cx="34" cy="34" r="27" fill="#FFFFFF" />
+    {/* Character face */}
+    <circle cx="34" cy="34" r="22" fill="#FFC800" />
+    {/* Headphone arch */}
+    <path d="M18 33 C18 21 25 14 34 14 C43 14 50 21 50 33" stroke="#111111" strokeWidth="4.8" strokeLinecap="round" />
+    {/* Ear Cups */}
+    <rect x="14" y="28" width="7.5" height="14" rx="3.75" fill="#111111" />
+    <rect x="46.5" y="28" width="7.5" height="14" rx="3.75" fill="#111111" />
+    {/* Cool Glasses */}
+    <rect x="23" y="30" width="9" height="6.5" rx="2.2" fill="#111111" />
+    <rect x="36" y="30" width="9" height="6.5" rx="2.2" fill="#111111" />
+    <line x1="32" y1="33" x2="36" y2="33" stroke="#111111" strokeWidth="2.4" />
+    {/* Confident Smile */}
+    <path d="M29 41 Q34 46 39 41" stroke="#111111" strokeWidth="2.8" strokeLinecap="round" />
   </svg>
 );
 
 // 4. Desk Tour: Dual 4K Workstation Displays & Real-Time NLE Timeline
 const WorkstationSticker: React.FC = () => (
   <svg width="68" height="68" viewBox="0 0 68 68" fill="none" className="sticker-svg" aria-hidden="true">
-    <filter id="sticker-shadow-4" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="5" stdDeviation="4.5" floodColor="#000000" floodOpacity="0.25" />
-    </filter>
-    <g filter="url(#sticker-shadow-4)">
-      {/* White sticker silhouette */}
-      <rect x="6" y="13" width="56" height="44" rx="10" fill="#FFFFFF" />
-      {/* Main Wide Display */}
-      <rect x="10" y="17" width="32" height="23" rx="3.5" fill="#111111" />
-      <rect x="12.5" y="19.5" width="27" height="18" rx="2" fill="#FFF4D6" />
-      {/* Timeline track & playhead */}
-      <line x1="15" y1="31" x2="37" y2="31" stroke="#111111" strokeWidth="2" />
-      <line x1="24" y1="22" x2="24" y2="35" stroke="#FF4400" strokeWidth="2.2" />
-      {/* Side Color-grading Screen */}
-      <rect x="44" y="15" width="14" height="26" rx="3" fill="#111111" />
-      <rect x="46" y="17" width="10" height="22" rx="1.5" fill="#FFC800" />
-      {/* Ergonomic Stand */}
-      <rect x="23" y="40" width="6" height="7" fill="#111111" />
-      <rect x="15" y="47" width="22" height="3" rx="1.5" fill="#111111" />
-    </g>
+    {/* White sticker silhouette */}
+    <rect x="6" y="13" width="56" height="44" rx="10" fill="#FFFFFF" />
+    {/* Main Wide Display */}
+    <rect x="10" y="17" width="32" height="23" rx="3.5" fill="#111111" />
+    <rect x="12.5" y="19.5" width="27" height="18" rx="2" fill="#FFF4D6" />
+    {/* Timeline track & playhead */}
+    <line x1="15" y1="31" x2="37" y2="31" stroke="#111111" strokeWidth="2" />
+    <line x1="24" y1="22" x2="24" y2="35" stroke="#FF4400" strokeWidth="2.2" />
+    {/* Side Color-grading Screen */}
+    <rect x="44" y="15" width="14" height="26" rx="3" fill="#111111" />
+    <rect x="46" y="17" width="10" height="22" rx="1.5" fill="#FFC800" />
+    {/* Ergonomic Stand */}
+    <rect x="23" y="40" width="6" height="7" fill="#111111" />
+    <rect x="15" y="47" width="22" height="3" rx="1.5" fill="#111111" />
   </svg>
 );
 
 // 5. Skills & Tools: Razor Blade / Scissors Cutting 35mm Celluloid
 const ScissorsSticker: React.FC = () => (
   <svg width="68" height="68" viewBox="0 0 68 68" fill="none" className="sticker-svg" aria-hidden="true">
-    <filter id="sticker-shadow-5" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="5" stdDeviation="4.5" floodColor="#000000" floodOpacity="0.25" />
-    </filter>
-    <g filter="url(#sticker-shadow-5)">
-      {/* White sticker silhouette */}
-      <path d="M12 45 C7 39 11 28 19 28 C26 28 30 32 34 36 L49 13 C52 8 59 11 56 17 L43 38 C47 41 49 47 46 53 C42 59 32 59 28 53 C25 48 26 44 28 40 L24 37 C18 42 14 47 12 45 Z" fill="#FFFFFF" />
-      {/* Upper Blade */}
-      <path d="M22 36 L53 14 C55 12 57 14 55 17 L36 40 Z" fill="#111111" />
-      {/* Lower Blade */}
-      <path d="M32 32 L50 49 C52 51 50 53 47 52 L26 38 Z" fill="#FFC800" />
-      {/* Pivot screw */}
-      <circle cx="31" cy="37" r="3.6" fill="#FFFFFF" />
-      <circle cx="31" cy="37" r="1.8" fill="#111111" />
-      {/* Finger Rings */}
-      <circle cx="18" cy="47" r="6.5" fill="#111111" />
-      <circle cx="18" cy="47" r="3.4" fill="#FFFFFF" />
-      <circle cx="39" cy="51" r="6.5" fill="#111111" />
-      <circle cx="39" cy="51" r="3.4" fill="#FFFFFF" />
-    </g>
+    {/* White sticker silhouette */}
+    <path d="M12 45 C7 39 11 28 19 28 C26 28 30 32 34 36 L49 13 C52 8 59 11 56 17 L43 38 C47 41 49 47 46 53 C42 59 32 59 28 53 C25 48 26 44 28 40 L24 37 C18 42 14 47 12 45 Z" fill="#FFFFFF" />
+    {/* Upper Blade */}
+    <path d="M22 36 L53 14 C55 12 57 14 55 17 L36 40 Z" fill="#111111" />
+    {/* Lower Blade */}
+    <path d="M32 32 L50 49 C52 51 50 53 47 52 L26 38 Z" fill="#FFC800" />
+    {/* Pivot screw */}
+    <circle cx="31" cy="37" r="3.6" fill="#FFFFFF" />
+    <circle cx="31" cy="37" r="1.8" fill="#111111" />
+    {/* Finger Rings */}
+    <circle cx="18" cy="47" r="6.5" fill="#111111" />
+    <circle cx="18" cy="47" r="3.4" fill="#FFFFFF" />
+    <circle cx="39" cy="51" r="6.5" fill="#111111" />
+    <circle cx="39" cy="51" r="3.4" fill="#FFFFFF" />
   </svg>
 );
 

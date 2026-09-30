@@ -45,10 +45,10 @@ export const useScrollReveal = () => {
     const processBatch = () => {
       if (pendingEntries.length === 0) return;
 
-      // Sort pending entries primarily by vertical document position, then horizontal
+      // Sort pending entries primarily by vertical document position, then horizontal, using native cached rects
       const entriesToProcess = [...pendingEntries].sort((a, b) => {
-        const rectA = a.target.getBoundingClientRect();
-        const rectB = b.target.getBoundingClientRect();
+        const rectA = a.boundingClientRect;
+        const rectB = b.boundingClientRect;
         if (Math.abs(rectA.top - rectB.top) > 20) {
           return rectA.top - rectB.top;
         }
