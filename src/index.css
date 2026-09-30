@@ -1507,7 +1507,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .skills-text-box {
-  margin-top: 4px !important;
+  margin-top: clamp(14px, 2vw, 24px) !important;
 }
 
 @media (max-width: 600px) {

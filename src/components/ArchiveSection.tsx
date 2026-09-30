@@ -602,9 +602,9 @@ export const ArchiveSection: React.FC = () => {
                     />
                   </div>
 
-                  {/* Skills Narrative Text */}
-                  <div className="skills-noblock-wrap">
-                    <p className="skills-noblock-text">
+                  {/* Skills Narrative Text in White Block */}
+                  <div className="story-text-white-box skills-text-box">
+                    <p className="story-thin-body-text">
                       I use Premiere Pro at an advanced level for editing, storytelling, pacing, and retention, with basic After Effects for motion graphics and visual effects. I also use tools like ElevenLabs and Claude to streamline parts of my workflow and explore new ways of creating. I can handle a project end-to-end — from script and voice to editing and final delivery.
                     </p>
                   </div>
