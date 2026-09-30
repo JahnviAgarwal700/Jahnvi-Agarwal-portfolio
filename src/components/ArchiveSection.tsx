@@ -641,38 +641,20 @@ export const ArchiveSection: React.FC = () => {
                     Skills & Tools
                   </h1>
 
-                  {/* Logos of Premiere Pro and After Effects on top */}
-                  <div className="skills-logos-top">
-                    <div className="skill-logo-card">
-                      <img
-                        src={getAssetUrl('images/adobe-premiere-pro-logo.svg')}
-                        alt="Adobe Premiere Pro"
-                        className="skill-software-logo"
-                      />
-                      <div className="skill-logo-meta">
-                        <span className="skill-logo-name">Premiere Pro</span>
-                        <span className="skill-logo-badge">Advanced Level</span>
-                      </div>
-                    </div>
-
-                    <div className="skill-logo-card">
-                      <img
-                        src={getAssetUrl('images/adobe-after-effects-logo.svg')}
-                        alt="Adobe After Effects"
-                        className="skill-software-logo"
-                      />
-                      <div className="skill-logo-meta">
-                        <span className="skill-logo-name">After Effects</span>
-                        <span className="skill-logo-badge">Motion Graphics & VFX</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Text in white box: restored earlier font but thinner */}
-                  <div className="story-text-white-box skills-text-box">
-                    <p className="story-thin-body-text">
-                      I use Premiere Pro at an advanced level for editing, storytelling, pacing, and retention, with basic After Effects for motion graphics and visual effects. I also use ElevenLabs, Claude, and other AI tools to speed up my workflow, create AI-assisted content and even build websites. I can also handle a project end-to-end — from script and voice to editing and final delivery.
-                    </p>
+                  {/* Keep only logo of PP and AE, nothing below them */}
+                  <div className="skills-logos-only-wrap">
+                    <img
+                      src={getAssetUrl('images/adobe-premiere-pro-logo.svg')}
+                      alt="Adobe Premiere Pro"
+                      title="Adobe Premiere Pro"
+                      className="skill-solo-logo"
+                    />
+                    <img
+                      src={getAssetUrl('images/adobe-after-effects-logo.svg')}
+                      alt="Adobe After Effects"
+                      title="Adobe After Effects"
+                      className="skill-solo-logo"
+                    />
                   </div>
                 </div>
               ) : activeFolder.id === 'about-me' ? (
