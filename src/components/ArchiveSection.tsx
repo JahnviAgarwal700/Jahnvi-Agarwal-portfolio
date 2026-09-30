@@ -745,13 +745,17 @@ export const ArchiveSection: React.FC = () => {
               </div>
 
               <div className="topbar-right-group">
-                <div className="topbar-context-badge">
-                  <span className="context-dot" />
-                  <span className="context-name">
-                    {activeFolder.id === 'youtube-900k-story' ? '900K+ Subscribers in One Year' : activeFolder.title}
-                  </span>
-                </div>
-                <span className="topbar-code-tag">CAT // 2023–2026</span>
+                {activeFolder.id !== 'youtube-900k-story' && (
+                  <>
+                    <div className="topbar-context-badge">
+                      <span className="context-dot" />
+                      <span className="context-name">
+                        {activeFolder.title}
+                      </span>
+                    </div>
+                    <span className="topbar-code-tag">CAT // 2023–2026</span>
+                  </>
+                )}
                 <button
                   type="button"
                   className="editorial-close-btn"
@@ -771,86 +775,55 @@ export const ArchiveSection: React.FC = () => {
           <main className="fullscreen-main-canvas">
             <div className="fullscreen-content-container">
               {activeFolder.id === 'youtube-900k-story' || activeFolder.content.storyProof ? (
-                <div className="story-proof-dossier">
-                  {/* Clean Editorial Title: Exactly 900K+ Subscribers in One Year */}
-                  <div className="fullscreen-hero-row" id="dossier-summary">
-                    <div className="hero-title-with-pill">
-                      <div className="hero-icon-title">
-                        <span className="fullscreen-folder-icon" aria-hidden="true">
-                          {activeFolder.icon}
-                        </span>
-                        <h1 className="fullscreen-folder-title">
-                          900K+ Subscribers in One Year
-                        </h1>
-                      </div>
-                    </div>
-                  </div>
+                <div className="story-clean-page">
+                  {/* Clean Page Title: Exactly 900K+ Subscribers in One Year */}
+                  <h1 className="story-clean-title">
+                    900K+ Subscribers in One Year
+                  </h1>
 
-                  {/* Side-by-side Photo Gallery: Channel & Playbutton */}
-                  <div className="story-proof-grid">
-                    {/* Left: YouTube Channel Screenshot & Verified Badge */}
-                    <div className="story-proof-card">
-                      <div className="story-proof-header-badge-wrap">
+                  {/* Clean Photos: Simple presentation with NO boxes or frames */}
+                  <div className="story-clean-gallery">
+                    {/* Side-by-side: Channel proof & Play Button */}
+                    <div className="story-clean-row">
+                      <div className="story-clean-col">
                         <img
                           src={getAssetUrl('images/geeky-gamer-header-badge.jpg')}
                           alt="GeekyGamer verified channel badge"
-                          className="story-proof-badge-img"
+                          className="story-clean-img story-badge-img"
                           loading="eager"
                         />
-                      </div>
-                      <div className="story-proof-media-wrap">
                         <img
                           src={getAssetUrl('images/geeky-gamer-channel-full.png')}
-                          alt="GeekyGamer YouTube Channel proof showing 975K subscribers"
-                          className="story-proof-img"
+                          alt="GeekyGamer YouTube Channel proof"
+                          className="story-clean-img"
                           loading="eager"
                         />
                       </div>
-                      <div className="story-proof-caption">
-                        <strong>GeekyGamer YouTube Channel</strong>
-                        <span>Verified Channel · 975K+ Subscribers · 328 Videos</span>
-                      </div>
-                    </div>
-
-                    {/* Right: Silver Play Button Plaque */}
-                    <div className="story-proof-card">
-                      <div className="story-proof-media-wrap story-proof-playbutton-wrap">
+                      <div className="story-clean-col">
                         <img
                           src={getAssetUrl('images/geeky-gamer-playbutton.jpg')}
-                          alt="Official YouTube Creator Award Silver Play Button presented to GeekyGamer"
-                          className="story-proof-img story-proof-img-playbutton"
+                          alt="Official YouTube Creator Award Silver Play Button"
+                          className="story-clean-img story-playbutton-img"
                           loading="eager"
                         />
                       </div>
-                      <div className="story-proof-caption">
-                        <strong>Official YouTube Creator Award</strong>
-                        <span>Silver Play Button Plaque Presented to GeekyGamer</span>
-                      </div>
                     </div>
-                  </div>
 
-                  {/* Viral Videos & Millions of Views Proof */}
-                  <div className="story-proof-viral-card">
-                    <div className="story-proof-media-wrap story-proof-viral-wrap">
+                    {/* Viral Videos & Millions of Views Proof */}
+                    <div className="story-clean-viral">
                       <img
                         src={getAssetUrl('images/geeky-gamer-viral-views.png')}
-                        alt="GeekyGamer Most Popular Videos proof showing 28M views, 12M views, 8.8M views"
-                        className="story-proof-img story-proof-viral-img"
+                        alt="GeekyGamer Most Popular Videos proof showing 28M views"
+                        className="story-clean-img story-viral-img"
                         loading="eager"
                       />
                     </div>
-                    <div className="story-proof-caption">
-                      <strong>Viral Video Reach & Milestone Views</strong>
-                      <span>Multiple videos with millions of views — peak video reaching 28M+ views</span>
-                    </div>
                   </div>
 
-                  {/* Exact text underneath */}
-                  <div className="story-proof-text-container">
-                    <p className="story-proof-paragraph">
-                      I co-built this YouTube channel with my brother and worked as its video editor. In just one year, we grew the channel to 900K+ subscribers, with multiple videos reaching millions of views, including one that surpassed 27M views. We recently sold the channel, so the original content is no longer publicly available.
-                    </p>
-                  </div>
+                  {/* Exact text written cleanly underneath with NO box */}
+                  <p className="story-clean-paragraph">
+                    I co-built this YouTube channel with my brother and worked as its video editor. In just one year, we grew the channel to 900K+ subscribers, with multiple videos reaching millions of views, including one that surpassed 27M views. We recently sold the channel, so the original content is no longer publicly available.
+                  </p>
                 </div>
               ) : (
                 <>
