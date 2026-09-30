@@ -1549,6 +1549,25 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 860px;
 }
 
+.skills-noblock-wrap {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.skills-noblock-text {
+  font-family: var(--font-body);
+  font-size: clamp(20px, 1.85vw, 25px);
+  line-height: 1.8;
+  color: var(--near-black);
+  font-weight: 300;
+  letter-spacing: 0.012em;
+  margin: 0;
+  max-width: 860px;
+}
+
 .hero-title-with-pill {
   display: flex;
   align-items: center;

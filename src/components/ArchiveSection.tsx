@@ -259,65 +259,10 @@ const ARCHIVE_FOLDERS: FolderItem[] = [
     ),
     sticker: <ScissorsSticker />,
     content: {
-      categoryBadge: 'SOFTWARE MASTERY & TECHNICAL CAPABILITIES',
-      headline: 'Industry-Standard NLE Suites, Motion Graphics & AI Pipelines',
-      subtext: 'Deep technical fluency across the industry standard Adobe creative suite, Blackmagic color science, audio restoration modules, and modern AI acceleration tools.',
-      metrics: [
-        { value: '5+', label: 'Mastered Creative Apps' },
-        { value: '10K+', label: 'Sound FX Soundbank' },
-        { value: '-14 LUFS', label: 'Audio Loudness Standard' },
-        { value: '100%', label: 'Color Space Accurate' }
-      ],
-      columns: [
-        {
-          heading: 'CORE NLE & POST-PRODUCTION SOFTWARE',
-          items: [
-            {
-              title: 'Adobe Premiere Pro (Master Tier)',
-              desc: 'Deep mastery of non-linear timeline assembly, multicam grouping, nested sequence workflows, Lumetri color curves, dynamic audio ducking, and Dynamic Link integration.',
-              pill: 'Primary NLE Engine',
-              highlight: true
-            },
-            {
-              title: 'Adobe After Effects',
-              desc: 'Custom 2.5D camera animation, planar tracking with Mocha, kinetic title typography, animated motion graphics, rotoscoping, and seamless visual transitions.',
-              pill: 'Motion Graphics Suite',
-              highlight: true
-            },
-            {
-              title: 'DaVinci Resolve',
-              desc: 'Node-based color grading, Color Space Transforms (CST), ACES color workflows, shot matching, skin tone isolation, and film grain emulation.',
-              pill: 'Color Science & Finish'
-            },
-            {
-              title: 'Adobe Audition & iZotope RX',
-              desc: 'Dialogue spectral de-noising, room reverb suppression, sibilance reduction, dynamic multi-band compression, and broadcast loudness leveling (EBU R128 / -14 LUFS).',
-              pill: 'Surgical Audio Cleanup'
-            }
-          ]
-        },
-        {
-          heading: 'ADVANCED CAPABILITIES & WORKFLOWS',
-          items: [
-            {
-              title: 'AI Video & Audio Acceleration',
-              desc: 'Leveraging Topaz Video AI for archival footage upscaling and frame interpolation; ElevenLabs for voice sync; and Whisper for frame-accurate automated subtitles.',
-              pill: 'Next-Gen AI Stack'
-            },
-            {
-              title: 'Multi-Camera Synchronization',
-              desc: 'Handling 3 to 5 camera angles with multi-track lavalier audio, syncing via timecode and audio waveforms for fluid switching in talk-show and podcast formats.',
-              pill: 'Multi-Cam Workflows'
-            },
-            {
-              title: 'Custom Sound Design & Foley',
-              desc: 'Curated 10,000+ sound effect library including cinematic risers, whooshes, analog clicks, metallic hits, and custom ambiences built specifically for creator engagement.',
-              pill: 'Layered SFX Engineering'
-            }
-          ]
-        }
-      ],
-      pills: ['Premiere Pro', 'After Effects', 'DaVinci Resolve', 'iZotope RX', 'Topaz AI', 'Mocha Tracking', 'Sound Design']
+      categoryBadge: 'SOFTWARE MASTERY & AI WORKFLOWS',
+      headline: 'Skills & Tools',
+      subtext: '',
+      columns: []
     }
   }
 ];
@@ -641,7 +586,7 @@ export const ArchiveSection: React.FC = () => {
                     Skills & Tools
                   </h1>
 
-                  {/* Keep only logo of PP and AE, nothing below them */}
+                  {/* Logos of Premiere Pro and After Effects on top */}
                   <div className="skills-logos-only-wrap">
                     <img
                       src={getAssetUrl('images/adobe-premiere-pro-logo.svg')}
@@ -655,6 +600,13 @@ export const ArchiveSection: React.FC = () => {
                       title="Adobe After Effects"
                       className="skill-solo-logo"
                     />
+                  </div>
+
+                  {/* Skills Narrative Text */}
+                  <div className="skills-noblock-wrap">
+                    <p className="skills-noblock-text">
+                      I use Premiere Pro at an advanced level for editing, storytelling, pacing, and retention, with basic After Effects for motion graphics and visual effects. I also use tools like ElevenLabs and Claude to streamline parts of my workflow and explore new ways of creating. I can handle a project end-to-end — from script and voice to editing and final delivery.
+                    </p>
                   </div>
                 </div>
               ) : activeFolder.id === 'about-me' ? (
