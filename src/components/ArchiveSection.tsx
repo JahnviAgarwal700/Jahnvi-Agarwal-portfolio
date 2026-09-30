@@ -61,27 +61,6 @@ const ClapperboardSticker: React.FC = () => (
   </svg>
 );
 
-// 2. What I Edit: 35mm Cinema Reel & Multi-Format Playback Canister
-const FilmReelSticker: React.FC = () => (
-  <svg width="68" height="68" viewBox="0 0 68 68" fill="none" className="sticker-svg" aria-hidden="true">
-    {/* Thick white die-cut contour */}
-    <circle cx="34" cy="34" r="27" fill="#FFFFFF" />
-    {/* Outer Reel Ring */}
-    <circle cx="34" cy="34" r="23" fill="#111111" />
-    <circle cx="34" cy="34" r="20" fill="#FFFFFF" />
-    <circle cx="34" cy="34" r="18" fill="#111111" />
-    {/* Film Spool Holes with Colorful Format Accents */}
-    <circle cx="34" cy="23" r="3.8" fill="#4FD1C5" />
-    <circle cx="43" cy="29" r="3.8" fill="#FFD026" />
-    <circle cx="40" cy="41" r="3.8" fill="#FF6B8B" />
-    <circle cx="28" cy="41" r="3.8" fill="#72D8BE" />
-    <circle cx="25" cy="29" r="3.8" fill="#FFAE33" />
-    {/* Center Spindle & Play Triangle */}
-    <circle cx="34" cy="34" r="6.5" fill="#FFFFFF" />
-    <polygon points="32.5,30.5 37.5,34 32.5,37.5" fill="#111111" />
-  </svg>
-);
-
 
 // 3. About Me: Video Editor with Studio Headphones & Retro Glasses
 const EditorSticker: React.FC = () => (
@@ -167,103 +146,7 @@ const ARCHIVE_FOLDERS: FolderItem[] = [
       columns: []
     }
   },
-  {
-    id: 'what-i-edit',
-    title: 'WHAT I EDIT',
-    shoulderTag: '8 Formats · Scaled Video',
-    theme: 'teal',
-    bgColor: '#FFFFFF',
-    hoverColor: '#4FD1C5',
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#111111" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="2" y="4" width="20" height="16" rx="2" />
-        <path d="M7 4v16" />
-        <path d="M17 4v16" />
-        <path d="M2 12h20" />
-        <path d="M2 8h5" />
-        <path d="M2 16h5" />
-        <path d="M17 8h5" />
-        <path d="M17 16h5" />
-      </svg>
-    ),
-    sticker: <FilmReelSticker />,
-    content: {
-      categoryBadge: 'PRODUCTION REPERTOIRE & FORMAT DIRECTORY',
-      headline: '8 Specialized Editorial Formats Engineered for Viewer Retention',
-      subtext: 'From high-tempo retention-engineered YouTube long-form to 4K industrial manufacturing films and viral vertical short-form reels, every cut is structured with format-specific pacing rules.',
-      metrics: [
-        { value: '8 Formats', label: 'Core Specializations' },
-        { value: '1,000+', label: 'Videos Delivered' },
-        { value: '4K / 9:16', label: 'Multi-Aspect Delivery' },
-        { value: '100%', label: 'Audio & Color Finish' }
-      ],
-      columns: [
-        {
-          heading: 'LONG-FORM & COMMERCIAL PRODUCTIONS',
-          items: [
-            {
-              title: '01. Short Form Videos',
-              desc: 'High-impact 30–60 second vertical cutdowns engineered with word-by-word kinetic captions, animated emojis, and sound-designed beat drops.',
-              pill: '62%+ Completion Rate',
-              highlight: true
-            },
-            {
-              title: '02. YouTube Content',
-              desc: '10–35 minute deep-dive narrative videos with multi-cam sync, layered B-roll archives, and retention-optimized drop-off protection.',
-              pill: '900K+ Subs Scaled',
-              highlight: true
-            },
-            {
-              title: '03. Advertising & Commercials',
-              desc: 'High-conversion digital ad spots engineered with strong first-3-second scroll stoppers, dynamic pacing, and commercial audio grading.',
-              pill: 'High Conversion · Paid Ads'
-            },
-            {
-              title: '04. Manufacturing Ads',
-              desc: 'Cinematic corporate documentaries and factory facility showcases highlighting technical precision, heavy equipment, and brand heritage.',
-              pill: '4K Precision Master'
-            }
-          ]
-        },
-        {
-          heading: 'CORPORATE, AI & CREATIVE EXPERIMENTS',
-          items: [
-            {
-              title: '05. Corporate Films',
-              desc: 'Founder spotlights, investor presentations, and internal brand manifestos with clean dialogue leveling and bespoke cinematic LUTs.',
-              pill: 'Corporate · Executive Level'
-            },
-            {
-              title: '06. AI-Based Films',
-              desc: 'Pioneering workflows combining Topaz upscaling, ElevenLabs voice synthesis, and generative visual accents into polished narratives.',
-              pill: 'AI Acceleration Workflow',
-              highlight: true
-            },
-            {
-              title: '07. Social Content',
-              desc: 'Fast-paced talking head formats, community teasers, and educational breakdowns optimized for shareability and comment engagement.',
-              pill: 'Viral Reach & CTR'
-            },
-            {
-              title: '08. Other Creative Content',
-              desc: 'Rhythmic music cutdowns, stylized montage edits, and creative passion projects with custom speed-ramping and match cuts.',
-              pill: 'Stylized & Mixed Media'
-            }
-          ]
-        }
-      ],
-      pills: [
-        'Short Form',
-        'YouTube',
-        'Advertising',
-        'Manufacturing Ads',
-        'Corporate Films',
-        'AI-Based Films',
-        'Social Content',
-        'Other Creative Content'
-      ]
-    }
-  },
+
   {
     id: 'about-me',
     title: 'ABOUT ME',
