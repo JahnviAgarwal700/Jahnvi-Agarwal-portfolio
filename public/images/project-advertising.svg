@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" fill="none">
+  <rect width="1280" height="720" fill="#171515"/>
+  <rect x="0" y="0" width="1280" height="720" fill="#1C1818"/>
+  
+  <!-- Sleek advertising storyboard frames -->
+  <rect x="180" y="160" width="280" height="380" rx="16" fill="#262020" stroke="#3D3434" stroke-width="1"/>
+  <rect x="500" y="140" width="280" height="420" rx="16" fill="#2E2626" stroke="#FFC700" stroke-width="1.5"/>
+  <rect x="820" y="160" width="280" height="380" rx="16" fill="#262020" stroke="#3D3434" stroke-width="1"/>
+  
+  <circle cx="640" cy="350" r="45" fill="#1C1818" stroke="#FFC700" stroke-width="1.5"/>
+  <path d="M635 338L652 350L635 362V338Z" fill="#FFC700"/>
+  
+  <rect x="60" y="60" width="140" height="34" rx="17" fill="#2D2323" stroke="#463636" stroke-width="1"/>
+  <text x="130" y="82" text-anchor="middle" fill="#FFC700" font-family="'Inter', sans-serif" font-size="12" font-weight="600" letter-spacing="1">ADVERTISING</text>
+  
+  <rect x="1130" y="60" width="90" height="34" rx="17" fill="#2D2323" stroke="#463636" stroke-width="1"/>
+  <text x="1175" y="82" text-anchor="middle" fill="#EAEAEA" font-family="'Inter', sans-serif" font-size="12" font-weight="600">00:45</text>
+  
+  <text x="60" y="620" fill="#FFFFFF" font-family="'Inter', sans-serif" font-size="28" font-weight="600" letter-spacing="-0.5">Nijyo Online Services — Brand Campaign Ad</text>
+  <text x="60" y="655" fill="#9C8C8C" font-family="'Inter', sans-serif" font-size="16">Adobe Premiere Pro • Commercial Conversion &amp; Hook Retention</text>
+</svg>

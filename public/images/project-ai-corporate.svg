@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" fill="none">
+  <rect width="1280" height="720" fill="#141618"/>
+  <rect x="0" y="0" width="1280" height="720" fill="#181B1F"/>
+  
+  <!-- AI neural & data structure nodes -->
+  <line x1="300" y1="260" x2="640" y2="360" stroke="#2F363F" stroke-width="1.5"/>
+  <line x1="640" y1="360" x2="980" y2="260" stroke="#2F363F" stroke-width="1.5"/>
+  <line x1="450" y1="460" x2="640" y2="360" stroke="#2F363F" stroke-width="1.5"/>
+  <line x1="830" y1="460" x2="640" y2="360" stroke="#2F363F" stroke-width="1.5"/>
+  
+  <circle cx="300" cy="260" r="16" fill="#20252D" stroke="#3D4754" stroke-width="1"/>
+  <circle cx="980" cy="260" r="16" fill="#20252D" stroke="#3D4754" stroke-width="1"/>
+  <circle cx="450" cy="460" r="16" fill="#20252D" stroke="#3D4754" stroke-width="1"/>
+  <circle cx="830" cy="460" r="16" fill="#20252D" stroke="#3D4754" stroke-width="1"/>
+  
+  <circle cx="640" cy="360" r="75" fill="#15181C" stroke="#FFC700" stroke-width="2"/>
+  <path d="M632 342L655 360L632 378V342Z" fill="#FFC700"/>
+  
+  <rect x="60" y="60" width="180" height="34" rx="17" fill="#22272E" stroke="#353D49" stroke-width="1"/>
+  <text x="150" y="82" text-anchor="middle" fill="#FFC700" font-family="'Inter', sans-serif" font-size="12" font-weight="600" letter-spacing="1">CORPORATE / AI FILMS</text>
+  
+  <rect x="1130" y="60" width="90" height="34" rx="17" fill="#22272E" stroke="#353D49" stroke-width="1"/>
+  <text x="1175" y="82" text-anchor="middle" fill="#EAEAEA" font-family="'Inter', sans-serif" font-size="12" font-weight="600">03:10</text>
+  
+  <text x="60" y="620" fill="#FFFFFF" font-family="'Inter', sans-serif" font-size="28" font-weight="600" letter-spacing="-0.5">Next-Gen Corporate &amp; AI Workflow Narrative</text>
+  <text x="60" y="655" fill="#88919E" font-family="'Inter', sans-serif" font-size="16">Adobe Premiere Pro + AI Tools • Accelerated Production Pipeline</text>
+</svg>
