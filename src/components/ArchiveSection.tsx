@@ -616,10 +616,22 @@ export const ArchiveSection: React.FC = () => {
                     More About Me
                   </h1>
 
-                  {/* Clean narrative without any block / card */}
-                  <div className="about-noblock-wrap">
-                    <p className="about-noblock-text">
-                      Outside of editing, I’m naturally curious about technology, AI, and anything that lets me create or build something new. I like experimenting, learning by doing, and figuring out how things work. I’m always exploring new tools and ideas that can make the creative process faster, smarter, or simply more interesting. And honestly, I absolutely love what I do. :)
+                  {/* Block above box for photo */}
+                  <div className="about-photo-block" aria-label="Photo Block">
+                    <div className="about-photo-placeholder">
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#111111" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="photo-placeholder-icon" aria-hidden="true">
+                        <rect x="3" y="3" width="18" height="18" rx="3" />
+                        <circle cx="8.5" cy="8.5" r="1.5" />
+                        <polyline points="21 15 16 10 5 21" />
+                      </svg>
+                      <span className="photo-placeholder-label">PHOTO</span>
+                    </div>
+                  </div>
+
+                  {/* Text in white box */}
+                  <div className="story-text-white-box about-text-box">
+                    <p className="story-thin-body-text">
+                      Outside of editing, I’m naturally curious about technology, AI, and anything that lets me create or build something new. I like experimenting, learning by doing, and figuring out how things work. I’m always exploring new tools and ideas that can make the creative process faster, smarter, or simply more interesting. I’m based in Agra, India, proficient in English and Hindi and  I absolutely love what I do. :)
                     </p>
                   </div>
                 </div>

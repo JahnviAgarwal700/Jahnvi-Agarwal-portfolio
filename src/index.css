@@ -1549,6 +1549,61 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 860px;
 }
 
+.about-photo-block {
+  background-color: #FFFFFF;
+  border: 1.5px solid rgba(17, 17, 17, 0.12);
+  border-radius: 16px;
+  min-height: clamp(240px, 28vw, 380px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 26px rgba(0, 0, 0, 0.04);
+  padding: 16px;
+  margin-top: clamp(8px, 1.5vw, 16px);
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.about-photo-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: clamp(208px, 25vw, 348px);
+  border: 2px dashed rgba(17, 17, 17, 0.18);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background-color: rgba(255, 255, 255, 0.6);
+  color: var(--black-muted);
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+  box-sizing: border-box;
+}
+
+.about-photo-placeholder:hover {
+  border-color: rgba(17, 17, 17, 0.35);
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.photo-placeholder-icon {
+  opacity: 0.45;
+}
+
+.photo-placeholder-label {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  opacity: 0.55;
+  text-transform: uppercase;
+}
+
+.about-text-box {
+  margin-top: clamp(14px, 2vw, 24px) !important;
+}
+
 .skills-noblock-wrap {
   background: transparent !important;
   border: none !important;
