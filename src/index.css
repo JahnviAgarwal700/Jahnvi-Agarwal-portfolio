@@ -437,21 +437,14 @@ h1, h2, h3, h4, h5, h6 {
 .hero-desc {
   font-family: 'Inter', var(--font-body);
   font-style: normal;
-  font-size: clamp(16px, 1.25vw, 18.5px);
+  font-size: clamp(16px, 1.22vw, 18.5px);
   line-height: 1.62;
   letter-spacing: -0.01em;
   color: var(--black);
   max-width: 640px;
   margin-bottom: clamp(28px, 3.4vh, 36px);
   font-weight: 400;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
   animation: heroElementFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.38s both;
-}
-
-.hero-desc-line {
-  display: block;
 }
 
 /* LOCATION */
@@ -3262,7 +3255,6 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.58;
     margin-bottom: 22px;
     max-width: 100%;
-    gap: 6px;
   }
 
   .hero-cta-wrap {

@@ -222,12 +222,9 @@ function renderPortfolio() {
                   </div>
                 </div>
 
-                <div class="hero-desc">
-                  <span class="hero-desc-line">500+ videos edited.</span>
-                  <span class="hero-desc-line">Long-form, short-form, branded & commercial editing.</span>
-                  <span class="hero-desc-line">Co-built a 900K+ subscriber YouTube channel in one year.</span>
-                  <span class="hero-desc-line">Premiere Pro, After Effects & AI workflows.</span>
-                </div>
+                <p class="hero-desc">
+                  Hi there :) I am a video editor and have edited 1,000+ videos across all genres. I’ve created content that generated millions of views across various countries and co-built a YouTube channel to 900K+ subscribers in one year. I’ve worked across YouTube long, short-form, advertising, corporate, and branded content. I specialize in Premiere Pro, After Effects, and AI-powered workflows to have a fast turnaround.
+                </p>
 
                 <div class="hero-cta-wrap">
                   <a href="#work" class="btn-hero-work">

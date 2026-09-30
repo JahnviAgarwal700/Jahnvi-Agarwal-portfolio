@@ -68,14 +68,10 @@ export const Hero: React.FC<HeroProps> = () => {
               </div>
             </div>
 
-            {/* Bio Description: in Video Editor font */}
-            <div className="hero-desc">
-              {PROFILE_DATA.heroLines.map((line, idx) => (
-                <span key={idx} className="hero-desc-line">
-                  {line}
-                </span>
-              ))}
-            </div>
+            {/* Bio Description: in Inter font */}
+            <p className="hero-desc">
+              {PROFILE_DATA.heroStatement}
+            </p>
 
             {/* CTA Group: VIEW MY WORK & CONNECT */}
             <div className="hero-cta-wrap">
