@@ -418,18 +418,27 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* VIDEO EDITOR: Same font as Jahnvi Agarwal (Instrument Serif) but in italic */
+/* VIDEO EDITOR: In a small white box with font matching 'Hi there' (Inter) but a little bold */
 .hero-role {
-  font-family: var(--font-headline);
-  font-style: italic;
-  font-size: clamp(34px, 4vw, 56px);
-  font-weight: 400;
-  letter-spacing: -0.015em;
-  color: var(--black);
-  line-height: 1.04;
-  margin-top: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFFFFF;
+  color: #111111;
+  font-family: 'Inter', var(--font-body), -apple-system, BlinkMacSystemFont, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: clamp(14px, 1.1vw, 16px);
+  line-height: 1;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  margin-top: 14px;
   margin-bottom: clamp(20px, 2.4vh, 26px);
+  width: fit-content;
   text-transform: none;
+  letter-spacing: -0.01em;
   animation: heroElementFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
 }
 
@@ -3624,10 +3633,11 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .hero-role {
-    font-size: clamp(14px, 3.8vw, 17px);
-    letter-spacing: 0.08em;
-    margin-top: 6px;
-    margin-bottom: 0;
+    font-size: 13.5px;
+    padding: 7px 14px;
+    margin-top: 10px;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
   }
 
   /* Mobile White Circle Frame Avatar — Slightly Bigger (100px) & Shifted more Left */
