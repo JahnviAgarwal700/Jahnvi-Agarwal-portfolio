@@ -171,7 +171,7 @@ const ARCHIVE_FOLDERS: FolderItem[] = [
   {
     id: 'desk-tour',
     title: 'DESK TOUR',
-    shoulderTag: 'Dual 4K · RTX Rig',
+    shoulderTag: 'Dual 4K Workstations',
     theme: 'mint',
     bgColor: '#FFFFFF',
     hoverColor: '#72D8BE',
@@ -185,60 +185,10 @@ const ARCHIVE_FOLDERS: FolderItem[] = [
     ),
     sticker: <WorkstationSticker />,
     content: {
-      categoryBadge: 'HARDWARE WORKSTATION & MONITORING RIG',
-      headline: 'Precision Hardware Engineered for Uninterrupted Creative Flow',
-      subtext: 'A high-performance dual-display editing suite built to scrub 4K 10-bit 4:2:2 and 6K RAW footage in real-time with zero timeline lag or proxy render bottlenecks.',
-      metrics: [
-        { value: '4K/6K', label: 'Real-Time Playback' },
-        { value: '7000MB/s', label: 'NVMe Read Speeds' },
-        { value: '98%', label: 'DCI-P3 Color Accuracy' },
-        { value: '16TB', label: 'Secure Project Vault' }
-      ],
-      columns: [
-        {
-          heading: 'WORKSTATION RIG SPECIFICATIONS',
-          items: [
-            {
-              title: 'Custom Multi-Core Editing Workstation',
-              desc: 'High-frequency AMD / Apple Silicon architecture with 64GB high-speed DDR5 RAM and NVIDIA GeForce RTX 40-Series GPU with 16GB VRAM for instantaneous CUDA/Metal render acceleration.',
-              pill: '64GB RAM · RTX GPU',
-              highlight: true
-            },
-            {
-              title: 'Ultra-Fast NVMe Scratch Architecture',
-              desc: 'Dedicated Gen4 M.2 NVMe SSDs boasting 7,000 MB/s read/write speeds for instantaneous project loads, zero-drop timeline scrubbing, and frictionless cache playback.',
-              pill: '7,000 MB/s NVMe RAID'
-            },
-            {
-              title: 'Redundant Archival Storage Vault',
-              desc: 'Dual-drive mirrored RAID arrays paired with secure cold cloud backups to protect client raw footage, project files, and finished master exports forever.',
-              pill: '16TB Archival Vault'
-            }
-          ]
-        },
-        {
-          heading: 'DISPLAYS, MONITORING & TACTILE CONTROL',
-          items: [
-            {
-              title: 'Dual Color-Calibrated IPS Displays',
-              desc: 'Calibrated with X-Rite hardware probes to 100% sRGB and 98% DCI-P3 color gamuts, ensuring color grades translate faithfully across iPhone OLEDs, laptops, and televisions.',
-              pill: '100% sRGB · 98% DCI-P3',
-              highlight: true
-            },
-            {
-              title: 'Studio Nearfield & Headphone Monitoring',
-              desc: 'Audio-Technica ATH-M50x studio reference monitors and discrete high-headroom 24-bit audio interface for surgical dialogue EQ, plosive cleaning, and stereo width checks.',
-              pill: 'Flat-Response Audio'
-            },
-            {
-              title: 'Tactile Macro Control Surfaces',
-              desc: 'Custom-programmed Stream Deck and macro rotary dials for rapid ripple trims, slip-and-slide edits, audio gain toggles, and instant color adjustment shortcuts.',
-              pill: 'Stream Deck & Dials'
-            }
-          ]
-        }
-      ],
-      pills: ['RTX Acceleration', 'NVMe Scratch Array', 'Color-Calibrated IPS', 'ATH-M50x Reference', 'Stream Deck Automation']
+      categoryBadge: 'HARDWARE WORKSTATIONS',
+      headline: 'Desk Tour',
+      subtext: '',
+      columns: []
     }
   },
   {
@@ -270,6 +220,7 @@ const ARCHIVE_FOLDERS: FolderItem[] = [
 export const ArchiveSection: React.FC = () => {
   const [expandedFolderId, setExpandedFolderId] = useState<string | null>(null);
   const [isExiting, setIsExiting] = useState(false);
+  const [zoomedPhoto, setZoomedPhoto] = useState<string | null>(null);
   const hasPushedHistoryRef = useRef(false);
 
   // Lock background scroll when full-screen dossier is active
@@ -317,16 +268,22 @@ export const ArchiveSection: React.FC = () => {
     return () => window.removeEventListener('popstate', handlePopState);
   }, [expandedFolderId, handleCloseExpandedFolder]);
 
-  // Handle ESC key to smoothly close expanded dossier
+  // Handle ESC key to smoothly close expanded dossier or zoomed photo
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && expandedFolderId && !isExiting) {
-        handleCloseExpandedFolder(false);
+      if (e.key === 'Escape') {
+        if (zoomedPhoto) {
+          setZoomedPhoto(null);
+          return;
+        }
+        if (expandedFolderId && !isExiting) {
+          handleCloseExpandedFolder(false);
+        }
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [expandedFolderId, isExiting, handleCloseExpandedFolder]);
+  }, [expandedFolderId, isExiting, zoomedPhoto, handleCloseExpandedFolder]);
 
   // Open folder if URL has #archive-{id} on load
   useEffect(() => {
@@ -368,6 +325,7 @@ export const ArchiveSection: React.FC = () => {
 
   return (
     <section id="archive" className="section-archive" aria-label="Archive Folder Stack">
+      <div id="about" style={{ position: 'relative', top: '-80px', visibility: 'hidden' }} aria-hidden="true" />
       {/* Physical Stack of Layered Die-Cut Folders covering full page left to right */}
       <div className="archive-physical-stack archive-stack-fullwidth" data-reveal-group>
         {ARCHIVE_FOLDERS.map((folder, index) => {
@@ -616,123 +574,104 @@ export const ArchiveSection: React.FC = () => {
                     More About Me
                   </h1>
 
-                  {/* Block above box for photo */}
-                  <div className="about-photo-block" aria-label="Photo Block">
-                    <div className="about-photo-placeholder">
-                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#111111" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="photo-placeholder-icon" aria-hidden="true">
-                        <rect x="3" y="3" width="18" height="18" rx="3" />
-                        <circle cx="8.5" cy="8.5" r="1.5" />
-                        <polyline points="21 15 16 10 5 21" />
-                      </svg>
-                      <span className="photo-placeholder-label">PHOTO</span>
-                    </div>
+                  {/* Photo Block */}
+                  <div
+                    className="about-photo-block"
+                    aria-label="Photo Block"
+                    onClick={() => setZoomedPhoto(getAssetUrl('images/about-childhood-portrait.jpg'))}
+                    onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setZoomedPhoto(getAssetUrl('images/about-childhood-portrait.jpg'))}
+                    role="button"
+                    tabIndex={0}
+                    style={{ cursor: 'pointer' }}
+                    title="Click to zoom photo"
+                  >
+                    <img
+                      src={getAssetUrl('images/about-childhood-portrait.jpg')}
+                      alt="Jahnvi Agarwal — Childhood photo"
+                      className="about-photo-img"
+                      loading="lazy"
+                    />
                   </div>
 
                   {/* Text in white box */}
                   <div className="story-text-white-box about-text-box">
                     <p className="story-thin-body-text">
-                      Outside of editing, I’m naturally curious about technology, AI, and anything that lets me create or build something new. I like experimenting, learning by doing, and figuring out how things work. I’m always exploring new tools and ideas that can make the creative process faster, smarter, or simply more interesting. I’m based in India, proficient in English and Hindi and I absolutely love what I do. :)
+                      I am 21. Outside of editing, I’m naturally curious about technology, AI, and anything that lets me create or build something new. I like experimenting, learning by doing, and figuring out how things work. I’m always exploring new tools and ideas that can make the creative process faster, smarter, or simply more interesting. I’m based in India, proficient in English and Hindi and I absolutely love what I do :)
                     </p>
                   </div>
                 </div>
-              ) : (
-                <>
-                  {/* Massive Editorial Header (Ana Cuna Style with Instrument Serif) */}
-                  <div className="fullscreen-hero-row" id="dossier-summary">
-                    {activeFolder.content.categoryBadge && (
-                      <div className="hero-category-meta">
-                        <span className="category-pill-tag">
-                          {activeFolder.content.categoryBadge}
-                        </span>
-                      </div>
-                    )}
+              ) : activeFolder.id === 'desk-tour' ? (
+                <div className="story-clean-page desk-tour-clean-page">
+                  {/* Clean Page Title: Desk Tour */}
+                  <h1 className="story-clean-title">
+                    Desk Tour
+                  </h1>
 
-                    <div className="hero-title-with-pill">
-                      <div className="hero-icon-title">
-                        <span className="fullscreen-folder-icon" aria-hidden="true">
-                          {activeFolder.icon}
-                        </span>
-                        <h1 className="fullscreen-folder-title">
-                          {activeFolder.title}
-                        </h1>
+                  {/* Clean Workstations Photo Mosaic (Zero spaces, sharp corners, seamless like 900K story) */}
+                  <div className="desk-mosaic-showcase">
+                    {/* Top Row: Workstation 1 Angle (50%), Workstation 1 Front (50%) */}
+                    <div className="desk-mosaic-row desk-mosaic-row-top">
+                      <div
+                        className="desk-mosaic-item desk-mosaic-half"
+                        onClick={() => setZoomedPhoto(getAssetUrl('images/workstation-1-angle.jpg'))}
+                        tabIndex={0}
+                        role="button"
+                        aria-label="View Workstation 1 angle in full size"
+                        onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setZoomedPhoto(getAssetUrl('images/workstation-1-angle.jpg'))}
+                      >
+                        <img
+                          src={getAssetUrl('images/workstation-1-angle.jpg')}
+                          alt="Workstation 1 — 4K Editing Setup with Antec PC and Premiere Pro"
+                          className="desk-mosaic-img"
+                          loading="eager"
+                        />
                       </div>
 
-                      <span className="floating-ana-pill">
-                        {activeFolder.shoulderTag}
-                      </span>
+                      <div
+                        className="desk-mosaic-item desk-mosaic-half"
+                        onClick={() => setZoomedPhoto(getAssetUrl('images/workstation-1-front.jpg'))}
+                        tabIndex={0}
+                        role="button"
+                        aria-label="View Workstation 1 front view in full size"
+                        onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setZoomedPhoto(getAssetUrl('images/workstation-1-front.jpg'))}
+                      >
+                        <img
+                          src={getAssetUrl('images/workstation-1-front.jpg')}
+                          alt="Workstation 1 — Front Setup with RGB Antec Rig and Timeline Screen"
+                          className="desk-mosaic-img"
+                          loading="eager"
+                        />
+                      </div>
                     </div>
 
-                    {activeFolder.content.headline && (
-                      <h2 className="fullscreen-headline">
-                        {activeFolder.content.headline}
-                      </h2>
-                    )}
-
-                    {activeFolder.content.subtext && (
-                      <p className="fullscreen-subtext">
-                        {activeFolder.content.subtext}
-                      </p>
-                    )}
+                    {/* Bottom Row: Workstation 2 Dell (100% full width) */}
+                    <div className="desk-mosaic-row desk-mosaic-row-bottom">
+                      <div
+                        className="desk-mosaic-item desk-mosaic-full"
+                        onClick={() => setZoomedPhoto(getAssetUrl('images/workstation-2-dell.jpg'))}
+                        tabIndex={0}
+                        role="button"
+                        aria-label="View Workstation 2 in full size"
+                        onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setZoomedPhoto(getAssetUrl('images/workstation-2-dell.jpg'))}
+                      >
+                        <img
+                          src={getAssetUrl('images/workstation-2-dell.jpg')}
+                          alt="Workstation 2 — Dell Display with Dedicated Editing Shortcuts Setup"
+                          className="desk-mosaic-img"
+                          loading="eager"
+                        />
+                      </div>
+                    </div>
                   </div>
 
-                  {/* Big Metrics Telemetry Bar */}
-                  {activeFolder.content.metrics && (
-                    <div className="fullscreen-metrics-grid" id="dossier-metrics">
-                      {activeFolder.content.metrics.map((m, idx) => (
-                        <div key={idx} className="fullscreen-metric-card">
-                          <span className="fullscreen-metric-value">{m.value}</span>
-                          <span className="fullscreen-metric-label">{m.label}</span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* 2-Column Editorial Dossier Grid */}
-                  {activeFolder.content.columns && activeFolder.content.columns.length > 0 && (
-                    <div className="fullscreen-columns-grid" id="dossier-columns">
-                      {activeFolder.content.columns.map((col, cIdx) => (
-                        <div key={cIdx} className="fullscreen-column">
-                          <h3 className="column-heading">
-                            {col.heading}
-                          </h3>
-                          <div className="column-items-list">
-                            {col.items.map((item, iIdx) => (
-                              <div
-                                key={iIdx}
-                                className={`fullscreen-item-card ${item.highlight ? 'is-highlight' : ''}`}
-                              >
-                                <div className="card-top-row">
-                                  <h4 className="card-item-title">{item.title}</h4>
-                                  {item.pill && (
-                                    <span className="card-item-pill">{item.pill}</span>
-                                  )}
-                                </div>
-                                {item.desc && (
-                                  <p className="card-item-desc">{item.desc}</p>
-                                )}
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* Editorial Pill Tags Row */}
-                  {activeFolder.content.pills && (
-                    <div className="fullscreen-tags-section">
-                      <span className="tags-label">PRODUCTION TAGS:</span>
-                      <div className="tags-pill-list">
-                        {activeFolder.content.pills.map((pill, pIdx) => (
-                          <span key={pIdx} className="fullscreen-ana-tag">
-                            {pill}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </>
-              )}
+                  {/* Text in white box */}
+                  <div className="story-text-white-box desk-tour-text-box">
+                    <p className="story-thin-body-text">
+                      I have two workstations built for demanding editing work. Both can handle 4K editing and high-resolution projects smoothly, allowing me to work efficiently and deliver high-quality videos.
+                    </p>
+                  </div>
+                </div>
+              ) : null}
 
               {/* Bottom "OTHER ARCHIVE FOLDERS" Switcher with Prev/Next Controls (Ref: Recording 00:20) */}
               <div className="fullscreen-other-folders">
@@ -782,6 +721,33 @@ export const ArchiveSection: React.FC = () => {
               </div>
             </div>
           </main>
+        </div>
+      )}
+
+      {/* Lightbox / Zoom Modal for Desk Tour Photos */}
+      {zoomedPhoto && (
+        <div
+          className="desk-lightbox-overlay"
+          onClick={() => setZoomedPhoto(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Enlarged workstation preview"
+        >
+          <div className="desk-lightbox-content" onClick={(e) => e.stopPropagation()}>
+            <button
+              type="button"
+              className="desk-lightbox-close"
+              onClick={() => setZoomedPhoto(null)}
+              aria-label="Close enlarged preview"
+            >
+              ✕
+            </button>
+            <img
+              src={zoomedPhoto}
+              alt="Workstation setup enlarged"
+              className="desk-lightbox-img"
+            />
+          </div>
         </div>
       )}
     </section>

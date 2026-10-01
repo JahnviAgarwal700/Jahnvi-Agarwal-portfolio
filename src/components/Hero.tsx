@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { PROFILE_DATA } from '../data/portfolioData';
+import { PROFILE_DATA, getWhatsAppUrl } from '../data/portfolioData';
 import { HeroDecorativeShapes } from './HeroDecorativeShapes';
 import { HangingIDCard } from './HangingIDCard';
 
@@ -78,7 +78,13 @@ export const Hero: React.FC<HeroProps> = () => {
               <a href="#work" className="btn-hero-work">
                 VIEW MY WORK
               </a>
-              <a href="#contact" className="btn-hero-connect">
+              <a
+                href={getWhatsAppUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-hero-connect"
+                aria-label="Connect on WhatsApp"
+              >
                 CONNECT
               </a>
             </div>

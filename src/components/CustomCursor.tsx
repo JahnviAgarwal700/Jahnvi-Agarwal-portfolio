@@ -179,7 +179,7 @@ export const CustomCursor: React.FC = () => {
       // Check if hovering an interactive link/button
       const isInteractive = Boolean(
         target.closest(
-          'a, button, [role="button"], input, select, textarea, .project-card, .btn-hero-work, .btn-hero-connect, .nav-link, .modal-close-btn, .playlist-track, .portfolio-card'
+          'a, button, [role="button"], input, select, textarea, .project-card, .btn-hero-work, .btn-hero-connect, .nav-link, .modal-close-btn, .playlist-track, .portfolio-card, .desk-mosaic-item, .desk-mosaic-img, .desk-lightbox-close'
         )
       );
       isHovering = isInteractive && !isOverVideo && !isOpenMode;

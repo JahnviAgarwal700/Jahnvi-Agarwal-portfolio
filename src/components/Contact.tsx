@@ -1,5 +1,5 @@
 import React from 'react';
-import { PROFILE_DATA } from '../data/portfolioData';
+import { PROFILE_DATA, getWhatsAppUrl } from '../data/portfolioData';
 
 export const Contact: React.FC = () => {
   const { contact } = PROFILE_DATA;
@@ -51,7 +51,7 @@ export const Contact: React.FC = () => {
             </a>
 
             <a
-              href={`https://wa.me/${contact.whatsapp.replace(/[^0-9]/g, '')}`}
+              href={getWhatsAppUrl()}
               target="_blank"
               rel="noopener noreferrer"
               className="contact-channel-link reveal-on-scroll reveal-item"

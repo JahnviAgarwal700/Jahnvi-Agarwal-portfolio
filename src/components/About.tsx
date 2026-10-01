@@ -32,13 +32,13 @@ export const About: React.FC = () => {
           >
             <div className="about-photo-frame">
               <img
-                src={getAssetUrl('images/about-workspace.svg')}
-                alt="Jahnvi Agarwal — Editor Desk & Workspace Media Placeholder"
+                src={getAssetUrl('images/about-childhood-portrait.jpg')}
+                alt="Jahnvi Agarwal — Childhood photo"
                 className="about-photo-asset"
                 loading="lazy"
               />
               <div className="about-photo-caption">
-                Jahnvi Agarwal · Video Editor Workspace
+                Jahnvi Agarwal · Video Editor
               </div>
             </div>
           </div>

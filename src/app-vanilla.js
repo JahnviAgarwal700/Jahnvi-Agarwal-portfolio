@@ -27,7 +27,7 @@ const PROFILE = {
   contact: {
     email: "jahnvi.editor@example.com",
     whatsapp: "+91 98765 43210",
-    instagram: "https://instagram.com/jahnvi.edits",
+    instagram: "https://instagram.com/jahnviagarwall",
     linkedin: "https://linkedin.com/in/jahnvi-agarwal"
   }
 };
@@ -347,7 +347,7 @@ function renderPortfolio() {
                     </a>
                     <a href="${PROFILE.contact.instagram}" target="_blank" rel="noopener noreferrer" class="contact-channel-item">
                       <span class="contact-channel-label">Instagram</span>
-                      <span class="contact-channel-val">@jahnvi.edits</span>
+                      <span class="contact-channel-val">@jahnviagarwall</span>
                     </a>
                     <a href="${PROFILE.contact.linkedin}" target="_blank" rel="noopener noreferrer" class="contact-channel-item">
                       <span class="contact-channel-label">LinkedIn</span>

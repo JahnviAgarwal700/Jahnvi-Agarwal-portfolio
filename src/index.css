@@ -1257,7 +1257,7 @@ h1, h2, h3, h4, h5, h6 {
 .story-clean-page {
   display: flex;
   flex-direction: column;
-  gap: clamp(28px, 4vw, 44px);
+  gap: 0 !important;
   max-width: 1040px;
   margin: 0 auto;
   padding-bottom: clamp(48px, 6vw, 80px);
@@ -1271,6 +1271,7 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.02em;
   color: var(--near-black);
   margin: 0;
+  margin-bottom: clamp(16px, 2.2vw, 24px) !important;
 }
 
 .story-clean-gallery {
@@ -1403,7 +1404,7 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 16px;
   padding: clamp(24px, 4vw, 44px);
   box-shadow: 0 6px 26px rgba(0, 0, 0, 0.04);
-  margin-top: clamp(20px, 3vw, 32px);
+  margin-top: clamp(7px, 1vw, 9px) !important;
 }
 
 .story-thin-body-text {
@@ -1422,7 +1423,7 @@ h1, h2, h3, h4, h5, h6 {
 .skills-clean-page {
   display: flex;
   flex-direction: column;
-  gap: clamp(24px, 3.5vw, 36px);
+  gap: 0 !important;
 }
 
 .skills-logos-only-wrap {
@@ -1431,6 +1432,7 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: flex-start;
   gap: clamp(20px, 3.5vw, 36px);
   margin-top: clamp(8px, 1.5vw, 16px);
+  margin-bottom: 0 !important;
 }
 
 .skill-solo-logo {
@@ -1507,7 +1509,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .skills-text-box {
-  margin-top: clamp(14px, 2vw, 24px) !important;
+  margin-top: clamp(7px, 1vw, 9px) !important;
 }
 
 @media (max-width: 600px) {
@@ -1526,8 +1528,12 @@ h1, h2, h3, h4, h5, h6 {
 .about-clean-page {
   display: flex;
   flex-direction: column;
-  gap: clamp(24px, 3.5vw, 40px);
+  gap: 0 !important;
   max-width: 900px;
+}
+
+.about-clean-page .story-clean-title {
+  margin-bottom: clamp(16px, 2vw, 24px);
 }
 
 .about-noblock-wrap {
@@ -1553,16 +1559,23 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #FFFFFF;
   border: 1.5px solid rgba(17, 17, 17, 0.12);
   border-radius: 16px;
-  min-height: clamp(240px, 28vw, 380px);
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 6px 26px rgba(0, 0, 0, 0.04);
-  padding: 16px;
-  margin-top: clamp(8px, 1.5vw, 16px);
+  padding: 14px;
+  margin: 0;
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
+}
+
+.about-photo-img {
+  width: 100%;
+  max-height: clamp(340px, 45vh, 520px);
+  object-fit: contain;
+  border-radius: 10px;
+  display: block;
 }
 
 .about-photo-placeholder {
@@ -1601,7 +1614,203 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .about-text-box {
-  margin-top: clamp(14px, 2vw, 24px) !important;
+  margin-top: clamp(7px, 1vw, 9px) !important;
+}
+
+/* ==========================================================================
+   DESK TOUR - WORKSTATION PHOTO MOSAIC (ZERO GAPS, SHARP CORNERS, LIKE 900K)
+   Row 1: 2 Photos side-by-side (Workstation 1 angle 50%, Workstation 1 front 50%)
+   Row 2: 1 Photo full-width (Workstation 2 Dell 100%)
+   Zero gaps, thin white border seams, sharp corners, smooth hover zoom
+   ========================================================================== */
+.desk-tour-clean-page {
+  display: flex;
+  flex-direction: column;
+  gap: 0 !important;
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.desk-tour-clean-page .story-clean-title {
+  margin-bottom: clamp(16px, 2vw, 24px);
+}
+
+.desk-mosaic-showcase {
+  display: flex;
+  flex-direction: column;
+  gap: 0 !important;
+  border: 3px solid #FFFFFF;
+  background-color: #FFFFFF;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.16);
+  position: relative;
+  overflow: visible;
+  max-width: 1040px;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 0 !important;
+  box-sizing: border-box;
+}
+
+.desk-mosaic-row {
+  display: flex;
+  width: 100%;
+  gap: 0 !important;
+  margin: 0;
+  padding: 0;
+}
+
+.desk-mosaic-row-top {
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.desk-mosaic-row-bottom {
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.desk-mosaic-item {
+  position: relative;
+  overflow: visible;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  background-color: #0E0E0E;
+  border-radius: 0 !important;
+}
+
+.desk-mosaic-half {
+  flex: 0 0 50%;
+  width: 50%;
+  aspect-ratio: 4 / 3;
+}
+
+.desk-mosaic-full {
+  flex: 0 0 100%;
+  width: 100%;
+  aspect-ratio: 21 / 10;
+}
+
+.desk-mosaic-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  border-radius: 0 !important;
+  border: 1.5px solid #FFFFFF;
+  box-sizing: border-box;
+  cursor: pointer;
+  position: relative;
+  image-rendering: -webkit-optimize-contrast;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s ease,
+              z-index 0.01s,
+              filter 0.25s ease;
+  filter: contrast(1.01) brightness(0.99);
+}
+
+.desk-mosaic-full .desk-mosaic-img {
+  object-position: center 42%;
+}
+
+/* Controlled gentle hover zoom (like 900K story) */
+.desk-mosaic-img:hover {
+  transform: scale(1.12);
+  z-index: 50;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  filter: contrast(1.05) brightness(1.02);
+}
+
+@media (max-width: 768px) {
+  .desk-mosaic-row-top {
+    flex-direction: column;
+  }
+  .desk-mosaic-half {
+    flex: 0 0 100%;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+  }
+  .desk-mosaic-full {
+    aspect-ratio: 16 / 10;
+  }
+  .desk-mosaic-img:hover {
+    transform: scale(1.06);
+  }
+}
+
+.desk-tour-text-box {
+  margin-top: clamp(7px, 1vw, 9px) !important;
+}
+
+/* Lightbox modal styles */
+.desk-lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(16px, 3vw, 40px);
+  animation: fadeIn 0.25s ease forwards;
+  cursor: zoom-out;
+}
+
+.desk-lightbox-content {
+  position: relative;
+  max-width: 95vw;
+  max-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+}
+
+.desk-lightbox-img {
+  max-width: 100%;
+  max-height: 88vh;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.desk-lightbox-close {
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 1.5px solid #111111;
+  color: #111111;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+}
+
+.desk-lightbox-close:hover {
+  transform: scale(1.1);
+  background-color: #FFC800;
+}
+
+@media (max-width: 720px) {
+  .desk-tour-gallery {
+    grid-template-columns: 1fr;
+  }
+  .desk-tour-card-wide .desk-photo-frame {
+    aspect-ratio: 16 / 10;
+  }
 }
 
 .skills-noblock-wrap {

@@ -121,8 +121,8 @@ export const PROFILE_DATA = {
     buttonText: "LET'S WORK TOGETHER",
     email: "jahnviagarwal700@gmail.com",
     whatsapp: "+91 63961-24279",
-    instagram: "https://instagram.com/jahnvi.edits",
-    instagramHandle: "@jahnvi.edits",
+    instagram: "https://instagram.com/jahnviagarwall",
+    instagramHandle: "@jahnviagarwall",
     linkedin: "https://linkedin.com/in/jahnvi-agarwal",
     linkedinHandle: "in/jahnvi-agarwal"
   },
@@ -142,6 +142,15 @@ export const getAssetUrl = (path: string): string => {
   const cleanPath = path.replace(/^\.?\//, '');
   const base = ((import.meta as any).env?.BASE_URL as string) || '/';
   return base.endsWith('/') ? `${base}${cleanPath}` : `${base}/${cleanPath}`;
+};
+
+export const WHATSAPP_DEFAULT_MESSAGE =
+  "Hi Jahnvi, I came across your portfolio and wanted to discuss a project with you.";
+
+export const getWhatsAppUrl = (customMessage?: string): string => {
+  const cleanPhone = PROFILE_DATA.contact.whatsapp.replace(/[^0-9]/g, '');
+  const msg = customMessage || WHATSAPP_DEFAULT_MESSAGE;
+  return `https://wa.me/${cleanPhone}?text=${encodeURIComponent(msg)}`;
 };
 
 const RAW_PROJECTS: Project[] = [
