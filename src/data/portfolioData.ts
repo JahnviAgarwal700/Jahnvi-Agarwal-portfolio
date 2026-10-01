@@ -64,7 +64,7 @@ export const PROFILE_DATA = {
   title: "VIDEO EDITOR",
   smallLabel: "VIDEO EDITOR",
   heroHeading: "Hi, I'm Jahnvi.",
-  heroStatement: "Hi there :) I am a video editor with 5 years of experience and have edited 1,000+ videos across all genres. I’ve created content that generated millions of views across various countries and co-built a YouTube channel to 900K+ subscribers in one year. I’ve worked across YouTube long, short-form, advertising, corporate, and branded content. I can also handle projects end-to-end. I specialize in Premiere Pro, After Effects, and AI-powered workflows to have a fast turnaround.",
+  heroStatement: "Hi there :) I am a video editor with 4 years of experience and have edited 1,000+ videos across various genres and co-built a YouTube channel to 900K+ subscribers in one year. I’ve worked across YouTube long, short-form, advertising, corporate, and branded content. I can also handle projects end-to-end. I specialize in Premiere Pro, After Effects, and AI-powered workflows to have a fast turnaround.",
   location: "India · Working Worldwide",
   proof: {
     number: "900K+",
