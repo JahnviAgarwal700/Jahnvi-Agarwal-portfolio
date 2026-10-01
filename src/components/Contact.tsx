@@ -32,8 +32,11 @@ export const Contact: React.FC = () => {
             style={{ '--stagger-index': 3 } as React.CSSProperties}
           >
             <a
-              href={`mailto:${contact.email}?subject=Video%20Editing%20Inquiry%20%E2%80%94%20Jahnvi%20Agarwal`}
+              href={getWhatsAppUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-primary btn-maroon-cta"
+              aria-label="Connect on WhatsApp"
             >
               {contact.buttonText}
             </a>

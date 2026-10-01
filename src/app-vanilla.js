@@ -25,8 +25,8 @@ const PROFILE = {
     availability: "Available for projects in India & worldwide."
   },
   contact: {
-    email: "jahnvi.editor@example.com",
-    whatsapp: "+91 98765 43210",
+    email: "jahnviagarwal700@gmail.com",
+    whatsapp: "+91 63961-24279",
     instagram: "https://instagram.com/jahnviagarwall",
     linkedin: "https://linkedin.com/in/jahnvi-agarwal"
   }
@@ -230,8 +230,8 @@ function renderPortfolio() {
                   <a href="#work" class="btn-hero-work">
                     VIEW MY WORK
                   </a>
-                  <a href="#contact" class="btn-hero-connect">
-                    CONNECT
+                  <a href="https://wa.me/916396124279?text=Hi%20Jahnvi%2C%20I%20came%20across%20your%20portfolio%20and%20wanted%20to%20discuss%20a%20project%20with%20you." target="_blank" rel="noopener noreferrer" class="btn-hero-connect">
+                    LET'S CONNECT
                   </a>
                 </div>
               </div>
@@ -334,7 +334,7 @@ function renderPortfolio() {
                 <h2 class="contact-heading">${PROFILE.cta.heading}</h2>
                 <p class="contact-copy">${PROFILE.cta.copy}</p>
                 <div class="contact-actions">
-                  <a href="mailto:${PROFILE.contact.email}?subject=Video%20Editing%20Inquiry%20%E2%80%94%20Jahnvi%20Agarwal" class="btn contact-btn">Get In Touch</a>
+                  <a href="https://wa.me/916396124279?text=Hi%20Jahnvi%2C%20I%20came%20across%20your%20portfolio%20and%20wanted%20to%20discuss%20a%20project%20with%20you." target="_blank" rel="noopener noreferrer" class="btn contact-btn">LET'S CONNECT</a>
                   <div class="contact-availability">${PROFILE.cta.availability}</div>
                   <div class="contact-links-grid">
                     <a href="mailto:${PROFILE.contact.email}" class="contact-channel-item">

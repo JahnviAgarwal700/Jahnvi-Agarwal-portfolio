@@ -72,7 +72,7 @@ export const Hero: React.FC<HeroProps> = () => {
               {PROFILE_DATA.heroStatement}
             </p>
 
-            {/* CTA Group: VIEW MY WORK & CONNECT */}
+            {/* CTA Group: VIEW MY WORK & LET'S CONNECT */}
             <div className="hero-cta-wrap">
               <a href="#work" className="btn-hero-work">
                 VIEW MY WORK
@@ -84,7 +84,7 @@ export const Hero: React.FC<HeroProps> = () => {
                 className="btn-hero-connect"
                 aria-label="Connect on WhatsApp"
               >
-                CONNECT
+                LET'S CONNECT
               </a>
             </div>
           </div>
