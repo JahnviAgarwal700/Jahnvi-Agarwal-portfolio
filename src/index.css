@@ -499,107 +499,107 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
-   PHYSICAL HANGING ID-CARD PHOTO-BADGE
-   Tactile, 3D dimensional badge suspended from two cords beyond the viewport.
-   - Surface: Warm Cream #FFF4D6
-   - Border: Thin Dark-Golden-Yellow #D99F00
-   - Grommets: Metallic eyelets
-   - Photo: ONLY the portrait photo (/images/jahnvi-hero.jpg)
-   - Spring drop-down entrance, continuous ambient sway & 3D cursor tilt reaction
+   HERO PORTRAIT CARD WITH PREMIERE PRO CROP EFFECT
+   Clean standalone portrait card with rounded corners, warm cream border (#F5F0E8),
+   and the Premiere Pro-style hand cursor diagonal crop reveal animation.
    ========================================================================== */
 
 .hero-visual-col {
   width: 100%;
   display: flex;
   justify-content: flex-end;
-  align-items: flex-start;
-  position: relative;
-  perspective: 1400px;
-  -webkit-perspective: 1400px;
-}
-
-.hanging-id-card-wrapper {
-  position: relative;
-  width: 100%;
-  max-width: 470px; /* Noticeably bigger, bolder ID card presence */
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  user-select: none;
-  z-index: 10;
-  margin-top: -70px; /* Lanyard straps extend seamlessly upwards beyond viewport edge */
+  position: relative;
 }
 
-/* 
-  AUTHENTIC HANGING BADGE RIG
-  Unified single physical badge rig with woven black lanyard straps, central brass grommet
-  eyelet with brass ring, and portrait photo permanently locked together.
-  - Zero possibility of misalignment.
-  - Dramatic physical drop from top-right with natural spring pendulum inertia.
-  - Perpetual gentle swinging from left to right throughout.
-  - Reactive 3D cursor tilt with buttery rAF lerp.
-*/
-.hanging-badge-rig {
+.hero-portrait-wrap {
   position: relative;
   width: 100%;
-  transform-origin: 50% -260px; /* Swings naturally from the top suspension anchor point */
-  will-change: transform;
-  transform-style: preserve-3d;
-  -webkit-transform-style: preserve-3d;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+  max-width: 420px;
+  aspect-ratio: 3 / 4;
+  filter: drop-shadow(0 20px 48px rgba(0, 0, 0, 0.28));
+  transition: transform var(--transition-smooth), filter var(--transition-smooth);
 }
 
-/* Seamless upper lanyard strap extensions reaching into ceiling/header */
-.badge-strap-ext {
-  position: absolute;
-  top: -420px;
-  height: 425px;
-  background-color: #111111;
-  background-image: repeating-linear-gradient(
-    45deg,
-    #111111,
-    #111111 2px,
-    #1c1c1c 2px,
-    #1c1c1c 4px
-  );
-  box-shadow: inset 1px 0 2px rgba(255, 255, 255, 0.08), inset -1px 0 2px rgba(0, 0, 0, 0.8);
-  z-index: -1;
-  transform-origin: bottom center;
-  pointer-events: none;
+.hero-portrait-wrap:hover {
+  transform: translateY(-5px);
+  filter: drop-shadow(0 26px 56px rgba(0, 0, 0, 0.35));
 }
 
-.badge-strap-ext-left {
-  left: 36.36%;
-  width: 12.02%;
-  transform: translateX(-50%) rotate(-14.5deg);
-}
-
-.badge-strap-ext-right {
-  left: 73.97%;
-  width: 11.29%;
-  transform: translateX(-50%) rotate(18.5deg);
-}
-
-.hanging-badge-img {
-  display: block;
+.hero-portrait-frame {
   width: 100%;
-  height: auto;
-  user-select: none;
-  -webkit-user-drag: none;
-  pointer-events: auto;
-  filter: drop-shadow(0 8px 18px rgba(17, 17, 17, 0.14))
-          drop-shadow(0 24px 50px rgba(17, 17, 17, 0.22))
-          drop-shadow(0 40px 80px rgba(217, 159, 0, 0.35));
-  transition: filter 0.35s ease;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+  height: 100%;
+  background-color: #F5F0E8;
+  padding: 11px;
+  border-radius: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-sizing: border-box;
+  animation: premierePortraitReveal 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
+  will-change: clip-path, -webkit-clip-path, opacity;
 }
 
-.hanging-id-card-wrapper.is-hovered .hanging-badge-img {
-  filter: drop-shadow(0 14px 28px rgba(17, 17, 17, 0.16))
-          drop-shadow(0 30px 60px rgba(17, 17, 17, 0.22))
-          drop-shadow(0 48px 90px rgba(217, 159, 0, 0.38));
+.hero-portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 19px;
+  display: block;
+}
+
+.hero-hand-cursor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 20;
+  animation: premiereHandCursorDraw 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
+  will-change: top, left, opacity;
+}
+
+.hand-cursor-svg {
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+  display: block;
+  user-select: none;
+}
+
+@keyframes premierePortraitReveal {
+  0% {
+    opacity: 0;
+    clip-path: inset(0 100% 100% 0 round 28px);
+    -webkit-clip-path: inset(0 100% 100% 0 round 28px);
+  }
+  2% {
+    opacity: 1;
+    clip-path: inset(0 98% 98% 0 round 28px);
+    -webkit-clip-path: inset(0 98% 98% 0 round 28px);
+  }
+  100% {
+    opacity: 1;
+    clip-path: inset(0 0 0 0 round 28px);
+    -webkit-clip-path: inset(0 0 0 0 round 28px);
+  }
+}
+
+@keyframes premiereHandCursorDraw {
+  0% {
+    top: 0%;
+    left: 0%;
+    transform: translate(-10px, -3px);
+    opacity: 0;
+  }
+  4% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    left: 100%;
+    transform: translate(-14px, -14px);
+    opacity: 1;
+  }
 }
 
 /* ==========================================================================
@@ -3689,7 +3689,7 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 0;
   }
 
-  /* Prominently feature the Hanging ID Card on mobile below the CTAs */
+  /* Prominently feature the Portrait Card on mobile below the CTAs */
   .hero-visual-col {
     display: flex !important;
     justify-content: center;
@@ -3699,9 +3699,9 @@ h1, h2, h3, h4, h5, h6 {
     padding-bottom: 20px;
   }
 
-  .hanging-id-card-wrapper {
+  .hero-portrait-wrap {
+    margin: 0 auto;
     max-width: 320px;
-    margin-top: 0;
   }
 
   .desktop-nav {
