@@ -410,7 +410,7 @@ const RAW_PROJECTS: Project[] = [
     ticketNote: "Archival voice documentaries weaving rare historical footage, voiceover & narrative pacing",
     showcaseVideos: [
       { id: "diana", title: "Princess Diana", badge: "01 · Princess Diana", videoUrl: "videos/princess-diana.mp4", poster: "images/doc-princess-diana-thumb.jpg", aspectRatio: "16:9" },
-      { id: "trump", title: "Donald Trump", badge: "02 · Donald Trump", videoUrl: "videos/princess-diana.mp4", poster: "images/documentary-trump-thumb.png", aspectRatio: "16:9" }
+      { id: "trump", title: "Donald Trump", badge: "02 · Donald Trump", videoUrl: "videos/donald-trump.mp4", poster: "images/documentary-trump-thumb.png", aspectRatio: "16:9" }
     ],
     shortDescription: "Princess Diana & Donald Trump · Archival voice documentary edits weaving historical footage, voiceover, and narrative pacing.",
     description: "Archival voice documentary edits featuring Princess Diana and Donald Trump, weaving rare historical footage, voiceover storytelling, and atmospheric pacing into engaging narrative experiences.",
@@ -432,10 +432,10 @@ const RAW_PROJECTS: Project[] = [
         id: "voice-doc-trump",
         title: "Donald Trump",
         subtitle: "Voice Documentary Narrative",
-        videoUrl: "./videos/princess-diana.mp4",
+        videoUrl: "./videos/donald-trump.mp4",
         thumbnail: "/images/documentary-trump-thumb.png",
         badge: "02 · Donald Trump",
-        duration: "Archival Cut",
+        duration: "00:53",
         description: "Investigative documentary edit exploring high-stakes political biography, archival sound design, and retention-focused storytelling."
       }
     ]
