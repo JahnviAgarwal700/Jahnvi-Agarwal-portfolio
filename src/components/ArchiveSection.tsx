@@ -252,12 +252,8 @@ export const YOUTUBE_900K_REELS: ReelItem[] = [
 ];
 
 const StoryReelCard: React.FC<{ reel: ReelItem; index: number }> = ({ reel, index }) => {
-  const cardRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const manuallyPausedRef = useRef(false);
-
-  const isFirstReel = index === 0;
 
   // Listen for other reels playing so only one reel speaks at a time
   useEffect(() => {
@@ -281,7 +277,7 @@ const StoryReelCard: React.FC<{ reel: ReelItem; index: number }> = ({ reel, inde
 
   // Play function ensuring voice/sound is ON
   const startPlayingWithSound = useCallback(() => {
-    if (!videoRef.current || manuallyPausedRef.current) return;
+    if (!videoRef.current) return;
 
     // Notify other reels to pause so voice does not overlap
     document.dispatchEvent(new CustomEvent('story-reel-play', { detail: { id: reel.id } }));
@@ -297,7 +293,7 @@ const StoryReelCard: React.FC<{ reel: ReelItem; index: number }> = ({ reel, inde
           setIsPlaying(true);
         })
         .catch((err: Error) => {
-          // If browser autoplay policy blocks unmuted audio on first scroll:
+          // Fallback if browser requires touch/click gesture first
           if (err.name === 'NotAllowedError') {
             if (videoRef.current) {
               videoRef.current.muted = true;
@@ -322,85 +318,11 @@ const StoryReelCard: React.FC<{ reel: ReelItem; index: number }> = ({ reel, inde
     }
   }, [reel.id]);
 
-  // Auto-play first reel with voice when visitors scroll down to the reel section inside the 900K folder
-  useEffect(() => {
-    if (!isFirstReel || !reel.videoUrl) return;
-
-    const cardEl = cardRef.current;
-    if (!cardEl) return;
-
-    const scrollContainer = cardEl.closest('.folder-fullscreen-overlay');
-
-    const handleScrollCheck = () => {
-      if (!videoRef.current || manuallyPausedRef.current) return;
-      const rect = cardEl.getBoundingClientRect();
-      const containerRect = scrollContainer
-        ? scrollContainer.getBoundingClientRect()
-        : { top: 0, bottom: window.innerHeight };
-
-      // Trigger play when the reel is visible within the scrolling view
-      const isVisible = rect.top < containerRect.bottom - 60 && rect.bottom > containerRect.top + 60;
-      if (isVisible) {
-        if (videoRef.current.paused) {
-          startPlayingWithSound();
-        }
-      } else {
-        if (!videoRef.current.paused) {
-          videoRef.current.pause();
-          setIsPlaying(false);
-        }
-      }
-    };
-
-    let observer: IntersectionObserver | null = null;
-    try {
-      observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              if (videoRef.current && !manuallyPausedRef.current && videoRef.current.paused) {
-                startPlayingWithSound();
-              }
-            } else {
-              if (videoRef.current && !videoRef.current.paused) {
-                videoRef.current.pause();
-                setIsPlaying(false);
-              }
-            }
-          });
-        },
-        {
-          root: scrollContainer || null,
-          threshold: 0.2
-        }
-      );
-      observer.observe(cardEl);
-    } catch {
-      // IntersectionObserver fallback handled by scroll listener
-    }
-
-    const targetToListen = scrollContainer || window;
-    targetToListen.addEventListener('scroll', handleScrollCheck, { passive: true });
-
-    // Check visibility after folder open animation settles
-    const timer = setTimeout(handleScrollCheck, 250);
-
-    return () => {
-      clearTimeout(timer);
-      if (observer) {
-        observer.disconnect();
-      }
-      targetToListen.removeEventListener('scroll', handleScrollCheck);
-    };
-  }, [isFirstReel, reel.videoUrl, startPlayingWithSound]);
-
   const togglePlay = () => {
     if (!videoRef.current) return;
     if (videoRef.current.paused) {
-      manuallyPausedRef.current = false;
       startPlayingWithSound();
     } else {
-      manuallyPausedRef.current = true;
       videoRef.current.pause();
       setIsPlaying(false);
     }
@@ -415,8 +337,6 @@ const StoryReelCard: React.FC<{ reel: ReelItem; index: number }> = ({ reel, inde
 
   const handleMouseLeave = () => {
     if (!videoRef.current) return;
-    // Don't pause the first reel on mouse leave if it's auto-playing
-    if (isFirstReel) return;
     if (!videoRef.current.paused) {
       videoRef.current.pause();
       setIsPlaying(false);
@@ -425,7 +345,6 @@ const StoryReelCard: React.FC<{ reel: ReelItem; index: number }> = ({ reel, inde
 
   return (
     <div
-      ref={cardRef}
       className={`story-reel-col ${reel.videoUrl ? 'has-video' : 'is-placeholder'}`}
       onClick={reel.videoUrl ? togglePlay : undefined}
       onMouseEnter={reel.videoUrl ? handleMouseEnter : undefined}
@@ -442,7 +361,7 @@ const StoryReelCard: React.FC<{ reel: ReelItem; index: number }> = ({ reel, inde
             poster={reel.poster ? getAssetUrl(reel.poster) : undefined}
             playsInline
             loop
-            preload={isFirstReel ? 'auto' : 'metadata'}
+            preload="metadata"
             className="story-reel-video"
             onPlay={() => setIsPlaying(true)}
             onPause={() => setIsPlaying(false)}
