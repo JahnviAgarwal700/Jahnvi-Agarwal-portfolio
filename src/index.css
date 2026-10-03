@@ -1645,6 +1645,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: height 0.15s ease;
 }
 
+.story-reel-col:hover .video-progress-track,
 .project-mosaic-col:hover .video-progress-track {
   height: 6px;
 }

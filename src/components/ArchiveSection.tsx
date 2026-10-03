@@ -252,8 +252,13 @@ export const YOUTUBE_900K_REELS: ReelItem[] = [
 ];
 
 const StoryReelCard: React.FC<{ reel: ReelItem; index: number }> = ({ reel, index }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const manuallyPausedRef = useRef(false);
+
+  const isFirstReel = index === 0;
 
   // Listen for other reels playing so only one reel speaks at a time
   useEffect(() => {
@@ -277,7 +282,7 @@ const StoryReelCard: React.FC<{ reel: ReelItem; index: number }> = ({ reel, inde
 
   // Play function ensuring voice/sound is ON
   const startPlayingWithSound = useCallback(() => {
-    if (!videoRef.current) return;
+    if (!videoRef.current || manuallyPausedRef.current) return;
 
     // Notify other reels to pause so voice does not overlap
     document.dispatchEvent(new CustomEvent('story-reel-play', { detail: { id: reel.id } }));
@@ -318,11 +323,112 @@ const StoryReelCard: React.FC<{ reel: ReelItem; index: number }> = ({ reel, inde
     }
   }, [reel.id]);
 
+  // Auto-play first reel with voice when visitors scroll down to the reel section inside the 900K folder
+  useEffect(() => {
+    if (!isFirstReel || !reel.videoUrl) return;
+
+    const cardEl = cardRef.current;
+    if (!cardEl) return;
+
+    const scrollContainer = cardEl.closest('.folder-fullscreen-overlay');
+
+    const handleScrollCheck = () => {
+      if (!videoRef.current || manuallyPausedRef.current) return;
+      const rect = cardEl.getBoundingClientRect();
+      const containerRect = scrollContainer
+        ? scrollContainer.getBoundingClientRect()
+        : { top: 0, bottom: window.innerHeight };
+
+      // Trigger play when the reel is visible within the scrolling view
+      const isVisible = rect.top < containerRect.bottom - 30 && rect.bottom > containerRect.top + 30;
+      if (isVisible) {
+        if (videoRef.current.paused) {
+          startPlayingWithSound();
+        }
+      } else {
+        if (!videoRef.current.paused) {
+          videoRef.current.pause();
+          setIsPlaying(false);
+        }
+      }
+    };
+
+    let observer: IntersectionObserver | null = null;
+    try {
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              if (videoRef.current && !manuallyPausedRef.current && videoRef.current.paused) {
+                startPlayingWithSound();
+              }
+            } else {
+              if (videoRef.current && !videoRef.current.paused) {
+                videoRef.current.pause();
+                setIsPlaying(false);
+              }
+            }
+          });
+        },
+        {
+          root: scrollContainer || null,
+          threshold: 0.15
+        }
+      );
+      observer.observe(cardEl);
+    } catch {
+      // IntersectionObserver fallback handled by scroll listener
+    }
+
+    if (scrollContainer) {
+      scrollContainer.addEventListener('scroll', handleScrollCheck, { passive: true });
+    }
+    window.addEventListener('scroll', handleScrollCheck, { passive: true, capture: true });
+
+    // Check visibility after folder open animation settles
+    const t1 = setTimeout(handleScrollCheck, 150);
+    const t2 = setTimeout(handleScrollCheck, 400);
+
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      if (observer) {
+        observer.disconnect();
+      }
+      if (scrollContainer) {
+        scrollContainer.removeEventListener('scroll', handleScrollCheck);
+      }
+      window.removeEventListener('scroll', handleScrollCheck, true);
+    };
+  }, [isFirstReel, reel.videoUrl, startPlayingWithSound]);
+
+  const handleTimeUpdate = () => {
+    if (videoRef.current && videoRef.current.duration) {
+      const pct = (videoRef.current.currentTime / videoRef.current.duration) * 100;
+      setProgress(pct);
+    }
+  };
+
+  const handleProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    if (!videoRef.current || !videoRef.current.duration) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const fraction = Math.max(0, Math.min(1, clickX / rect.width));
+    videoRef.current.currentTime = fraction * videoRef.current.duration;
+    setProgress(fraction * 100);
+    if (videoRef.current.paused) {
+      startPlayingWithSound();
+    }
+  };
+
   const togglePlay = () => {
     if (!videoRef.current) return;
     if (videoRef.current.paused) {
+      manuallyPausedRef.current = false;
       startPlayingWithSound();
     } else {
+      manuallyPausedRef.current = true;
       videoRef.current.pause();
       setIsPlaying(false);
     }
@@ -337,6 +443,8 @@ const StoryReelCard: React.FC<{ reel: ReelItem; index: number }> = ({ reel, inde
 
   const handleMouseLeave = () => {
     if (!videoRef.current) return;
+    // Don't pause the first reel on mouse leave if it's auto-playing on scroll
+    if (isFirstReel) return;
     if (!videoRef.current.paused) {
       videoRef.current.pause();
       setIsPlaying(false);
@@ -345,6 +453,7 @@ const StoryReelCard: React.FC<{ reel: ReelItem; index: number }> = ({ reel, inde
 
   return (
     <div
+      ref={cardRef}
       className={`story-reel-col ${reel.videoUrl ? 'has-video' : 'is-placeholder'}`}
       onClick={reel.videoUrl ? togglePlay : undefined}
       onMouseEnter={reel.videoUrl ? handleMouseEnter : undefined}
@@ -361,10 +470,14 @@ const StoryReelCard: React.FC<{ reel: ReelItem; index: number }> = ({ reel, inde
             poster={reel.poster ? getAssetUrl(reel.poster) : undefined}
             playsInline
             loop
-            preload="metadata"
+            preload={isFirstReel ? 'auto' : 'metadata'}
             className="story-reel-video"
             onPlay={() => setIsPlaying(true)}
             onPause={() => setIsPlaying(false)}
+            onTimeUpdate={handleTimeUpdate}
+            onLoadedMetadata={handleTimeUpdate}
+            onSeeked={handleTimeUpdate}
+            onEnded={() => setProgress(100)}
           />
 
           {!isPlaying && (
@@ -379,6 +492,18 @@ const StoryReelCard: React.FC<{ reel: ReelItem; index: number }> = ({ reel, inde
 
           <div className="story-reel-bottom-badge">
             <span className="story-reel-tag">{reel.badge || `Reel ${index + 1}`}</span>
+          </div>
+
+          {/* Yellow Progress Scrubber Line on Video Bottom for Duration */}
+          <div
+            className="video-progress-track"
+            onClick={handleProgressClick}
+            title="Video duration / progress scrubber"
+          >
+            <div
+              className="video-progress-fill"
+              style={{ width: `${Math.min(100, Math.max(0, progress))}%` }}
+            />
           </div>
         </>
       ) : (
