@@ -257,12 +257,12 @@ const RAW_PROJECTS: Project[] = [
     duration: "02:18",
     thumbnail: "/images/business-journalism-thumb.svg",
     videoUrl: "videos/tamil-idli.mp4",
-    ticketNote: "2-minute investigative documentary edit on early morning street enterprise in Mumbai",
+    ticketNote: "From Scattered Footage to a Cohesive Documentary",
     showcaseVideos: [
       { id: "tamil-idli-cut", title: "How Mumbai Wakes Up to Tamilian Idlis", videoUrl: "videos/tamil-idli.mp4", poster: "images/business-journalism-thumb.svg", aspectRatio: "16:9" }
     ],
-    shortDescription: "How Mumbai Wakes Up to Tamilian Idlis · 2-minute documentary edit on early morning street enterprise.",
-    description: "An investigative business journalism documentary tracing the micro-entrepreneurship, logistics, and heritage of traditional Tamilian idli vendors serving thousands every morning across Mumbai.",
+    shortDescription: "How Mumbai Wakes Up to Tamilian Idlis · From scattered footage to a cohesive documentary.",
+    description: "I can shape raw documentary footage into a polished journalism film that connects stories, builds narrative, and keeps viewers engaged.",
     role: "Lead Video Editor & Storyteller",
     software: "Adobe Premiere Pro",
     year: "2024"
