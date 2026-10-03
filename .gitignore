@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Raw Large Video Files (>100MB rejected by GitHub)
+*BS PROJECTS FILM FINAL*.mp4

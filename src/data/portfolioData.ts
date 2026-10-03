@@ -288,7 +288,7 @@ const RAW_PROJECTS: Project[] = [
     year: "2024"
   },
 
-  // ─── 05. AI-generated corporate videos (SSAC & BS Projects) ───────────────
+  // ─── 05. AI-generated corporate videos (BS Projects & SSAC) ───────────────
   {
     id: "ai-commercial-ads",
     title: "AI-generated corporate videos",
@@ -296,38 +296,38 @@ const RAW_PROJECTS: Project[] = [
     category: "AI & Corporate Film",
     aspectRatio: "16:9",
     duration: "2 Videos",
-    thumbnail: "/images/ssac-thumb.png",
-    videoUrl: "videos/ssac-full.mp4",
+    thumbnail: "/images/bs-projects-outside-thumb.jpg",
+    videoUrl: "videos/bs-projects-final.mp4",
     ticketNote: "Complete AI Video Production for Corporate Brands",
     showcaseVideos: [
-      { id: "ssac", title: "SSAC Studio", badge: "01 · SSAC Studio", videoUrl: "videos/ssac-full.mp4", poster: "images/ssac-thumb.png", aspectRatio: "16:9" },
-      { id: "bs-projects", title: "BS Projects Private Limited", badge: "02 · BS Projects Private Limited", videoUrl: "videos/bs-brand-video.mp4", poster: "images/bs-project-thumb.png", aspectRatio: "16:9" }
+      { id: "bs-projects", title: "BS Projects Private Limited", badge: "01 · BS Projects Private Limited", videoUrl: "videos/bs-projects-final.mp4", poster: "images/bs-projects-inside-poster.jpg", aspectRatio: "16:9" },
+      { id: "ssac", title: "SSAC Studio", badge: "02 · SSAC Studio", videoUrl: "videos/ssac-full.mp4", poster: "images/ssac-thumb.png", aspectRatio: "16:9" }
     ],
-    shortDescription: "SSAC Studio & BS Projects Private Limited · Complete AI video production for corporate brands.",
+    shortDescription: "BS Projects Private Limited & SSAC Studio · Complete AI video production for corporate brands.",
     description: "I independently reached out to these brands and handled the projects end-to-end—from scripting and ElevenLabs voiceovers to AI-generated visuals, editing, sound design, and final delivery.",
     role: "Lead Video Editor & AI Producer",
     software: "Adobe Premiere Pro, After Effects & ElevenLabs",
     year: "2024",
     playlist: [
       {
+        id: "bs-projects-cut",
+        title: "BS Projects Private Limited",
+        subtitle: "Brand & Corporate Commercial Film",
+        videoUrl: "./videos/bs-projects-final.mp4",
+        thumbnail: "/images/bs-projects-inside-poster.jpg",
+        badge: "01 · BS Projects Private Limited",
+        duration: "02:00",
+        description: "A cinematic brand film delivering high-impact executive storytelling, precision pacing, custom sound design, and color grading for BS Projects Private Limited."
+      },
+      {
         id: "ssac-studio-cut",
         title: "SSAC Studio",
         subtitle: "Multi-Camera Studio & Commercial Edit",
         videoUrl: "./videos/ssac-full.mp4",
         thumbnail: "/images/ssac-thumb.png",
-        badge: "01 · SSAC Studio",
+        badge: "02 · SSAC Studio",
         duration: "08:15",
         description: "Multi-angle studio production featuring fast-paced conversational cutting, graphic inserts, color grading, and broadcast-quality audio leveling."
-      },
-      {
-        id: "bs-projects-cut",
-        title: "BS Projects Private Limited",
-        subtitle: "Brand & Corporate Commercial Film",
-        videoUrl: "./videos/bs-brand-video.mp4",
-        thumbnail: "/images/bs-project-thumb.png",
-        badge: "02 · BS Projects Private Limited",
-        duration: "02:40",
-        description: "A cinematic brand film delivering high-impact executive storytelling, precision pacing, custom sound design, and color grading for BS Projects Private Limited."
       }
     ]
   },
