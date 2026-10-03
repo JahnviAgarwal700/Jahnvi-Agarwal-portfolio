@@ -291,7 +291,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
         <div className="project-viewer-header">
           <div className="project-viewer-title-wrap">
             <h2 id="modal-project-title" className="project-viewer-title">
-              {project.ticketNote || project.shortDescription || project.heading || project.title}
+              {project.heading || project.title}
             </h2>
           </div>
 
