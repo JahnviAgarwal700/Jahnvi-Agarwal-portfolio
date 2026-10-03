@@ -730,17 +730,6 @@ export const ArchiveSection: React.FC = () => {
               </div>
 
               <div className="topbar-right-group">
-                {activeFolder.id !== 'youtube-900k-story' && (
-                  <>
-                    <div className="topbar-context-badge">
-                      <span className="context-dot" />
-                      <span className="context-name">
-                        {activeFolder.title}
-                      </span>
-                    </div>
-                    <span className="topbar-code-tag">CAT // 2023–2026</span>
-                  </>
-                )}
                 <button
                   type="button"
                   className="editorial-close-btn"
