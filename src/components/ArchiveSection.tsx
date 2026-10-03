@@ -125,50 +125,6 @@ const ScissorsSticker: React.FC = () => (
 
 const ARCHIVE_FOLDERS: FolderItem[] = [
   {
-    id: 'youtube-900k-story',
-    title: '900K+ SUBSCRIBERS',
-    shoulderTag: '900K+ in One Year',
-    theme: 'yellow',
-    bgColor: '#FFFFFF',
-    hoverColor: '#FFD026',
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#111111" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43z" />
-        <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#111111" stroke="none" />
-      </svg>
-    ),
-    sticker: <ClapperboardSticker />,
-    content: {
-      categoryBadge: 'YOUTUBE CASE STUDY',
-      headline: '900K+ Subscribers in One Year',
-      subtext: '',
-      storyProof: true,
-      columns: []
-    }
-  },
-
-  {
-    id: 'about-me',
-    title: 'MORE ABOUT ME',
-    shoulderTag: 'Curiosity · AI · Making',
-    theme: 'pink',
-    bgColor: '#FFFFFF',
-    hoverColor: '#FF7AA2',
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#111111" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="7" r="4.2" />
-        <path d="M5.5 21v-2a6.5 6.5 0 0 1 13 0v2" />
-      </svg>
-    ),
-    sticker: <EditorSticker />,
-    content: {
-      categoryBadge: 'PERSONAL ESSAY & MINDSET',
-      headline: 'More About Me',
-      subtext: '',
-      columns: []
-    }
-  },
-  {
     id: 'desk-tour',
     title: 'DESK TOUR',
     shoulderTag: 'Dual 4K Workstations',
@@ -192,9 +148,52 @@ const ARCHIVE_FOLDERS: FolderItem[] = [
     }
   },
   {
+    id: 'youtube-900k-story',
+    title: '900K+ SUBSCRIBERS',
+    shoulderTag: '900K+ in One Year',
+    theme: 'yellow',
+    bgColor: '#FFFFFF',
+    hoverColor: '#FFD026',
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#111111" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43z" />
+        <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#111111" stroke="none" />
+      </svg>
+    ),
+    sticker: <ClapperboardSticker />,
+    content: {
+      categoryBadge: 'YOUTUBE CASE STUDY',
+      headline: '900K+ Subscribers in One Year',
+      subtext: '',
+      storyProof: true,
+      columns: []
+    }
+  },
+  {
+    id: 'about-me',
+    title: 'MORE ABOUT ME',
+    shoulderTag: 'Curiosity · AI · Making',
+    theme: 'pink',
+    bgColor: '#FFFFFF',
+    hoverColor: '#FF7AA2',
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#111111" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="7" r="4.2" />
+        <path d="M5.5 21v-2a6.5 6.5 0 0 1 13 0v2" />
+      </svg>
+    ),
+    sticker: <EditorSticker />,
+    content: {
+      categoryBadge: 'PERSONAL ESSAY & MINDSET',
+      headline: 'More About Me',
+      subtext: '',
+      columns: []
+    }
+  },
+  {
     id: 'skills-tools',
-    title: 'SKILLS & TOOLS',
-    shoulderTag: 'Premiere · After Effects',
+    title: 'TOOLS I USE',
+    shoulderTag: 'Premiere · After Effects · AI',
     theme: 'lilac',
     bgColor: '#FFFFFF',
     hoverColor: '#B588F7',
@@ -210,12 +209,164 @@ const ARCHIVE_FOLDERS: FolderItem[] = [
     sticker: <ScissorsSticker />,
     content: {
       categoryBadge: 'SOFTWARE MASTERY & AI WORKFLOWS',
-      headline: 'Skills & Tools',
+      headline: 'Tools I Use',
       subtext: '',
       columns: []
     }
   }
 ];
+
+export interface ReelItem {
+  id: string;
+  title: string;
+  badge?: string;
+  videoUrl?: string;
+  poster?: string;
+}
+
+export const YOUTUBE_900K_REELS: ReelItem[] = [
+  {
+    id: 'reel-1',
+    title: 'Short Reel 01',
+    badge: 'Reel 1',
+    videoUrl: 'videos/1.mp4'
+  },
+  {
+    id: 'reel-5',
+    title: 'Short Reel 02',
+    badge: 'Reel 2',
+    videoUrl: 'videos/5.mp4'
+  },
+  {
+    id: 'reel-2',
+    title: 'Short Reel 03',
+    badge: 'Reel 3',
+    videoUrl: 'videos/2.mp4'
+  },
+  {
+    id: 'reel-21',
+    title: 'Short Reel 04',
+    badge: 'Reel 4',
+    videoUrl: 'videos/21.mp4'
+  }
+];
+
+const StoryReelCard: React.FC<{ reel: ReelItem; index: number }> = ({ reel, index }) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+
+  const togglePlay = () => {
+    if (!videoRef.current) return;
+    if (videoRef.current.paused) {
+      videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
+    } else {
+      videoRef.current.pause();
+      setIsPlaying(false);
+    }
+  };
+
+  const handleMouseEnter = () => {
+    if (!videoRef.current) return;
+    if (videoRef.current.paused) {
+      videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (!videoRef.current) return;
+    if (!videoRef.current.paused) {
+      videoRef.current.pause();
+      setIsPlaying(false);
+    }
+  };
+
+  const toggleMute = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!videoRef.current) return;
+    videoRef.current.muted = !videoRef.current.muted;
+    setIsMuted(videoRef.current.muted);
+  };
+
+  return (
+    <div
+      className={`story-reel-col ${reel.videoUrl ? 'has-video' : 'is-placeholder'}`}
+      onClick={reel.videoUrl ? togglePlay : undefined}
+      onMouseEnter={reel.videoUrl ? handleMouseEnter : undefined}
+      onMouseLeave={reel.videoUrl ? handleMouseLeave : undefined}
+      role={reel.videoUrl ? 'button' : undefined}
+      tabIndex={reel.videoUrl ? 0 : undefined}
+      aria-label={`${reel.title}${reel.badge ? ` - ${reel.badge}` : ''}`}
+    >
+      {reel.videoUrl ? (
+        <>
+          <video
+            ref={videoRef}
+            src={`${getAssetUrl(reel.videoUrl)}#t=0.001`}
+            poster={reel.poster ? getAssetUrl(reel.poster) : undefined}
+            playsInline
+            loop
+            muted={isMuted}
+            preload="metadata"
+            className="story-reel-video"
+            onPlay={() => setIsPlaying(true)}
+            onPause={() => setIsPlaying(false)}
+          />
+
+          <button
+            type="button"
+            className="story-reel-mute-btn"
+            onClick={toggleMute}
+            aria-label={isMuted ? 'Unmute video' : 'Mute video'}
+            title={isMuted ? 'Unmute' : 'Mute'}
+          >
+            {isMuted ? (
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="1" y1="1" x2="23" y2="23" />
+                <path d="M9 9v3a3 3 0 0 0 5.12 2.12M15 9.34V4a3 3 0 0 0-5.94-.6" />
+                <path d="M17 16.95A7 7 0 0 1 5 12v-2m14 0v2a7 7 0 0 1-.11 1.23" />
+              </svg>
+            ) : (
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
+              </svg>
+            )}
+          </button>
+
+          {!isPlaying && (
+            <div className="story-reel-play-overlay" aria-hidden="true">
+              <div className="story-reel-play-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="#FFFFFF" stroke="none">
+                  <polygon points="5 3 19 12 5 21 5 3" />
+                </svg>
+              </div>
+            </div>
+          )}
+
+          <div className="story-reel-bottom-badge">
+            <span className="story-reel-tag">{reel.badge || `Reel ${index + 1}`}</span>
+          </div>
+        </>
+      ) : (
+        <div className="story-reel-placeholder">
+          <div className="story-reel-empty-frame">
+            <div className="story-reel-ph-play">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255, 255, 255, 0.6)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <polygon points="5 3 19 12 5 21 5 3" />
+              </svg>
+            </div>
+            <div className="story-reel-ph-meta">
+              <span className="story-reel-ph-num">0{index + 1}</span>
+              <span className="story-reel-ph-title">Short Reel {index + 1}</span>
+              <span className="story-reel-ph-status">9 : 16</span>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
 
 export const ArchiveSection: React.FC = () => {
   const [expandedFolderId, setExpandedFolderId] = useState<string | null>(null);
@@ -533,38 +684,64 @@ export const ArchiveSection: React.FC = () => {
                   {/* Text in white box: restored earlier font but thinner */}
                   <div className="story-text-white-box">
                     <p className="story-thin-body-text">
-                      I co-built this YouTube channel with my brother and worked as its video editor. In just one year, we grew the channel to 900K+ subscribers, with multiple videos reaching millions of views, including one that surpassed 27M views. We recently sold the channel, so the original content is no longer publicly available.
+                      I co-built this YouTube channel with my brother and worked as its video editor. In just one year, we grew the channel to 900K+ subscribers, with multiple videos reaching millions of views, including one that surpassed 27M views. We recently sold the channel, so the original content is no longer publicly available. Below are a few highlights from my work on the channel.
                     </p>
+                  </div>
+
+                  {/* Black Section at the back with Seamless 9:16 Reels & Note Section Below */}
+                  <div className="story-reels-dark-section" aria-label="Geeky Gamer Highlights — 4 Short Form Reels">
+                    {/* Seamless 9:16 Reel Columns sticked together like the photos above */}
+                    <div className="story-reels-mosaic">
+                      {YOUTUBE_900K_REELS.map((reel, rIdx) => (
+                        <StoryReelCard key={reel.id || rIdx} reel={reel} index={rIdx} />
+                      ))}
+                    </div>
+
+                    {/* Clean Note Section Below Reels without side circles */}
+                    <div className="reels-ticket-note-wrap">
+                      <div className="reels-ticket-note">
+                        <div className="ticket-inner">
+                          <span className="ticket-icon">🎟️</span>
+                          <span className="ticket-text">
+                            These reels are from 2023 and were targeted for kids
+                          </span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               ) : activeFolder.id === 'skills-tools' ? (
                 <div className="story-clean-page skills-clean-page">
-                  {/* Clean Page Title: Skills & Tools */}
+                  {/* Clean Page Title: Tools I Use */}
                   <h1 className="story-clean-title">
-                    Skills & Tools
+                    Tools I Use
                   </h1>
 
-                  {/* Logos of Premiere Pro and After Effects on top */}
-                  <div className="skills-logos-only-wrap">
-                    <img
-                      src={getAssetUrl('images/adobe-premiere-pro-logo.svg')}
-                      alt="Adobe Premiere Pro"
-                      title="Adobe Premiere Pro"
-                      className="skill-solo-logo"
-                    />
-                    <img
-                      src={getAssetUrl('images/adobe-after-effects-logo.svg')}
-                      alt="Adobe After Effects"
-                      title="Adobe After Effects"
-                      className="skill-solo-logo"
-                    />
-                  </div>
+                  {/* Side-by-side: 900K story styled Photo Box on left, White Text Box on right */}
+                  <div className="skills-side-by-side-wrap">
+                    <div
+                      className="skills-photo-canva-box"
+                      onClick={() => setZoomedPhoto(getAssetUrl('images/tools-workstation.png'))}
+                      role="button"
+                      tabIndex={0}
+                      aria-label="View workstation photo full size"
+                      title="Click to zoom photo"
+                      onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setZoomedPhoto(getAssetUrl('images/tools-workstation.png'))}
+                    >
+                      <img
+                        src={getAssetUrl('images/tools-workstation.png')}
+                        alt="Jahnvi Agarwal — Editing at workstation with Premiere Pro"
+                        className="skills-canva-img"
+                        loading="eager"
+                      />
+                    </div>
 
-                  {/* Skills Narrative Text in White Block */}
-                  <div className="story-text-white-box skills-text-box">
-                    <p className="story-thin-body-text">
-                      I use Premiere Pro at an advanced level for editing, storytelling, pacing, and retention, with basic After Effects for motion graphics and visual effects. I also use tools like ElevenLabs and Claude to streamline parts of my workflow and explore new ways of creating. I can handle a project end-to-end — from script and voice to editing and final delivery.
-                    </p>
+                    {/* Skills Narrative Text in White Block */}
+                    <div className="story-text-white-box skills-side-text-box">
+                      <p className="story-thin-body-text">
+                        I use Premiere Pro at an advanced level for editing, storytelling, pacing, and retention, with basic After Effects for motion graphics and visual effects. I also use tools like ElevenLabs and Claude to streamline parts of my workflow and explore new ways of creating. I can handle a project end-to-end — from script and voice to editing and final delivery.
+                      </p>
+                    </div>
                   </div>
                 </div>
               ) : activeFolder.id === 'about-me' ? (
@@ -574,19 +751,19 @@ export const ArchiveSection: React.FC = () => {
                     More About Me
                   </h1>
 
-                  {/* Photo Block */}
+                  {/* Photo Block: Sized to photo only like 900K story */}
                   <div
                     className="about-photo-block"
                     aria-label="Photo Block"
-                    onClick={() => setZoomedPhoto(getAssetUrl('images/about-childhood-portrait.jpg'))}
-                    onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setZoomedPhoto(getAssetUrl('images/about-childhood-portrait.jpg'))}
+                    onClick={() => setZoomedPhoto(getAssetUrl('images/about-childhood.png'))}
+                    onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setZoomedPhoto(getAssetUrl('images/about-childhood.png'))}
                     role="button"
                     tabIndex={0}
                     style={{ cursor: 'pointer' }}
                     title="Click to zoom photo"
                   >
                     <img
-                      src={getAssetUrl('images/about-childhood-portrait.jpg')}
+                      src={getAssetUrl('images/about-childhood.png')}
                       alt="Jahnvi Agarwal — Childhood photo"
                       className="about-photo-img"
                       loading="lazy"
@@ -596,7 +773,7 @@ export const ArchiveSection: React.FC = () => {
                   {/* Text in white box */}
                   <div className="story-text-white-box about-text-box">
                     <p className="story-thin-body-text">
-                      I am 21. Outside of editing, I’m naturally curious about technology, AI, and anything that lets me create or build something new. I like experimenting, learning by doing, and figuring out how things work. I’m always exploring new tools and ideas that can make the creative process faster, smarter, or simply more interesting. I’m based in India, proficient in English and Hindi and I absolutely love what I do :)
+                      I am 21. Outside of editing, I’m naturally curious about technology, AI, and anything that lets me create or build something new. I like experimenting, learning by doing, and figuring out how things work. I’m always exploring new tools and ideas that can make the creative process faster, smarter, or simply more interesting. I’m based in India, proficient in English and Hindi and absolutely love what I do :).
                     </p>
                   </div>
                 </div>

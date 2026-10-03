@@ -14,7 +14,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 }) => {
   return (
     <article
-      className="work-card reveal-on-scroll reveal-card"
+      className={`work-card reveal-on-scroll reveal-card ${project.mobileOnly ? 'card-mobile-only' : ''}`}
       style={{ '--stagger-index': index % 3 } as React.CSSProperties}
       tabIndex={0}
       role="button"
@@ -47,30 +47,12 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         </div>
       </div>
 
-      {/* Clean Editorial Meta Underneath with Generous Whitespace */}
+      {/* Clean Editorial Meta Underneath */}
       <div className="card-info">
-        {/* Tags & Category */}
-        <div className="card-tags-row">
-          <span className="card-cat-tag">{project.category}</span>
-          {project.heading && (
-            <>
-              <span className="card-tag-dot" aria-hidden="true">•</span>
-              <span className="card-sub-tag">{project.heading}</span>
-            </>
-          )}
-        </div>
-
         {/* Title in Bodoni Moda */}
         <h3 className="card-title">
           {project.title}
         </h3>
-
-        {/* Clean Editorial Description */}
-        {project.shortDescription && (
-          <p className="card-short-desc">
-            {project.shortDescription}
-          </p>
-        )}
       </div>
     </article>
   );

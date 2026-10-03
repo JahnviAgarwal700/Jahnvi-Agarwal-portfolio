@@ -211,7 +211,11 @@ function renderPortfolio() {
                     </div>
 
                     <div class="hero-role">
-                      VIDEO EDITOR
+                      <svg class="hero-role-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <rect x="2" y="6" width="13" height="12" rx="2.5" fill="#000000" />
+                        <path d="M15 10.24L20.55 6.54C21.22 6.09 22 6.57 22 7.38V16.62C22 17.43 21.22 17.91 20.55 17.46L15 13.76V10.24Z" fill="#000000" />
+                      </svg>
+                      <span>Video Editor</span>
                     </div>
                   </div>
 
@@ -245,13 +249,13 @@ function renderPortfolio() {
           </div>
         </section>
 
-        <!-- 2. SELECTED WORK -->
-        <section id="work" class="work-section" aria-label="Selected Work">
+        <!-- 2. MY RECENT WORK -->
+        <section id="work" class="work-section" aria-label="My Recent Work">
           <div class="container">
             <div class="work-header">
               <div class="eyebrow-label">PORTFOLIO</div>
-              <h2 class="headline-section">Selected Work</h2>
-              <p class="work-subline">A mix of content, advertising and brand films.</p>
+              <h2 class="headline-section">My Recent Work</h2>
+              <p class="work-subline">A selection of videos, campaigns and content I've edited.</p>
             </div>
 
             <div class="work-grid">
@@ -266,12 +270,7 @@ function renderPortfolio() {
                     </div>
                   </div>
                   <div class="project-meta">
-                    <div class="project-top-row">
-                      <span class="project-category-tag">${project.category}</span>
-                      <span class="project-duration-tag">${project.duration}</span>
-                    </div>
                     <h3 class="project-title">${project.title}</h3>
-                    ${project.shortDescription ? `<p class="card-short-desc">${project.shortDescription}</p>` : ''}
                   </div>
                 </article>
               `).join('')}
@@ -348,10 +347,6 @@ function renderPortfolio() {
                     <a href="${PROFILE.contact.instagram}" target="_blank" rel="noopener noreferrer" class="contact-channel-item">
                       <span class="contact-channel-label">Instagram</span>
                       <span class="contact-channel-val">@jahnviagarwall</span>
-                    </a>
-                    <a href="${PROFILE.contact.linkedin}" target="_blank" rel="noopener noreferrer" class="contact-channel-item">
-                      <span class="contact-channel-label">LinkedIn</span>
-                      <span class="contact-channel-val">in/jahnvi-agarwal</span>
                     </a>
                   </div>
                 </div>
