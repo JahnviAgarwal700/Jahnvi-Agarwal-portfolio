@@ -267,28 +267,7 @@ const RAW_PROJECTS: Project[] = [
     year: "2024"
   },
 
-  // ─── 04. Podcast ──────────────────────────────────────────────────────────
-  {
-    id: "podcast-price-of-excellence",
-    title: "Podcast",
-    heading: "Podcast",
-    category: "Studio & Podcast",
-    aspectRatio: "16:9",
-    duration: "02:00",
-    thumbnail: "/images/price-of-excellence-thumb.svg",
-    videoUrl: "videos/price-of-excellence-2min.mp4",
-    ticketNote: "Studio podcast conversation edited to the first 2-minute hook cut for audience retention",
-    showcaseVideos: [
-      { id: "podcast-cut", title: "The Price of Excellence", badge: "Podcast Hook Cut", videoUrl: "videos/price-of-excellence-2min.mp4", poster: "images/price-of-excellence-thumb.svg", aspectRatio: "16:9" }
-    ],
-    shortDescription: "The Price of Excellence · Starting 2-minute hook cut crafted for maximum narrative retention.",
-    description: "A compelling studio podcast conversation exploring the unseen discipline, sacrifices, and psychology behind mastery. Edited to the starting 2-minute hook cut for high audience retention.",
-    role: "Lead Video Editor",
-    software: "Adobe Premiere Pro",
-    year: "2024"
-  },
-
-  // ─── 05. AI-generated corporate videos (BS Projects & SSAC) ───────────────
+  // ─── 04. AI-generated corporate videos (BS Projects & SSAC) ───────────────
   {
     id: "ai-commercial-ads",
     title: "AI-generated corporate videos",
@@ -330,6 +309,27 @@ const RAW_PROJECTS: Project[] = [
         description: "Multi-angle studio production featuring fast-paced conversational cutting, graphic inserts, color grading, and broadcast-quality audio leveling."
       }
     ]
+  },
+
+  // ─── 05. Podcast ──────────────────────────────────────────────────────────
+  {
+    id: "podcast-price-of-excellence",
+    title: "Podcast",
+    heading: "Podcast",
+    category: "Studio & Podcast",
+    aspectRatio: "16:9",
+    duration: "02:00",
+    thumbnail: "/images/price-of-excellence-thumb.svg",
+    videoUrl: "videos/price-of-excellence-2min.mp4",
+    ticketNote: "Studio podcast conversation edited to the first 2-minute hook cut for audience retention",
+    showcaseVideos: [
+      { id: "podcast-cut", title: "The Price of Excellence", badge: "Podcast Hook Cut", videoUrl: "videos/price-of-excellence-2min.mp4", poster: "images/price-of-excellence-thumb.svg", aspectRatio: "16:9" }
+    ],
+    shortDescription: "The Price of Excellence · Starting 2-minute hook cut crafted for maximum narrative retention.",
+    description: "A compelling studio podcast conversation exploring the unseen discipline, sacrifices, and psychology behind mastery. Edited to the starting 2-minute hook cut for high audience retention.",
+    role: "Lead Video Editor",
+    software: "Adobe Premiere Pro",
+    year: "2024"
   },
 
   // ─── 06. Super Squad Ad (formerly Product Commercial 3360) ─────────────────
