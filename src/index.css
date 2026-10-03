@@ -1651,6 +1651,12 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0 6px;
 }
 
+.showcase-labels-row.mosaic-count-1 {
+  max-width: 960px;
+}
+.showcase-labels-row.mosaic-count-1.mosaic-single-vertical {
+  max-width: 440px;
+}
 .showcase-labels-row.mosaic-count-1 .showcase-label-col {
   flex: 0 0 100%;
   width: 100%;
@@ -4802,19 +4808,28 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: none; /* No cheap glow */
 }
 
-/* Column Ratios for 1 Video */
+/* Column Ratios for 1 Video (Edge-to-edge frame, eliminates side white pillars) */
+.project-showcase-mosaic.mosaic-count-1 {
+  max-width: 960px;
+  background-color: #0B0B0B;
+}
+
+.project-showcase-mosaic.mosaic-count-1.mosaic-single-vertical {
+  max-width: 440px;
+}
+
 .project-mosaic-col.count-1 {
   flex: 0 0 100%;
   width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
+  border: none;
 }
 .project-mosaic-col.count-1.aspect-widescreen {
   aspect-ratio: 16 / 9;
 }
 .project-mosaic-col.count-1.aspect-vertical {
   aspect-ratio: 9 / 16;
-  max-width: 440px;
 }
 
 /* Column Ratios for 2 Videos */
