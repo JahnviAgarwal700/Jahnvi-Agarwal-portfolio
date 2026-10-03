@@ -319,11 +319,11 @@ const RAW_PROJECTS: Project[] = [
     category: "Studio & Podcast",
     aspectRatio: "16:9",
     duration: "02:00",
-    thumbnail: "/images/podcast-knowledge-project-thumb.png",
+    thumbnail: "/images/podcast-studio-thumb.jpg",
     videoUrl: "videos/price-of-excellence-2min.mp4",
     ticketNote: "Studio podcast conversation edited to the first 2-minute hook cut for audience retention",
     showcaseVideos: [
-      { id: "podcast-cut", title: "The Price of Excellence", badge: "Podcast Hook Cut", videoUrl: "videos/price-of-excellence-2min.mp4", poster: "images/podcast-knowledge-project-thumb.png", aspectRatio: "16:9" }
+      { id: "podcast-cut", title: "The Price of Excellence", badge: "Podcast Hook Cut", videoUrl: "videos/price-of-excellence-2min.mp4", poster: "images/podcast-studio-thumb.jpg", aspectRatio: "16:9" }
     ],
     shortDescription: "The Price of Excellence · Starting 2-minute hook cut crafted for maximum narrative retention.",
     description: "A compelling studio podcast conversation exploring the unseen discipline, sacrifices, and psychology behind mastery. Edited to the starting 2-minute hook cut for high audience retention.",
