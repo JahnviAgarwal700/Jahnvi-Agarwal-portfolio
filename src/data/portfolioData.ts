@@ -332,44 +332,44 @@ const RAW_PROJECTS: Project[] = [
     year: "2024"
   },
 
-  // ─── 06. Super Squad Ad (formerly Product Commercial 3360) ─────────────────
+  // ─── 06. Brand Films On Voice (Super Squad) ───────────────────────────────
   {
     id: "product-commercial-3360",
-    title: "Super Squad Ad",
-    heading: "Super Squad Ad",
-    category: "Commercial",
+    title: "Brand Films On Voice",
+    heading: "Brand Films On Voice",
+    category: "Brand Films",
     aspectRatio: "16:9",
     duration: "2 Videos",
     thumbnail: "/images/vidssave-thumb.png",
     videoUrl: "videos/3360.mp4",
-    ticketNote: "High-energy commercial advertisement cuts with tight beat-matching & kinetic typography",
+    ticketNote: "High-Energy Brand Advertising",
     showcaseVideos: [
-      { id: "super-squad", title: "Super Squad Ad (3360)", badge: "01 · Super Squad", videoUrl: "videos/3360.mp4", poster: "images/vidssave-thumb.png", aspectRatio: "16:9" },
-      { id: "vidssave", title: "Vidssave", badge: "02 · Vidssave", videoUrl: "videos/vidssave.mp4", poster: "images/work-commercial.png", aspectRatio: "16:9" }
+      { id: "super-squad", title: "Back Up Launch Film", badge: "01 · Back Up Launch Film", videoUrl: "videos/3360.mp4", poster: "images/vidssave-thumb.png", aspectRatio: "16:9" },
+      { id: "vidssave", title: "Brand Campaign", badge: "02 · Brand Campaign", videoUrl: "videos/vidssave.mp4", poster: "images/work-commercial.png", aspectRatio: "16:9" }
     ],
-    shortDescription: "Super Squad Ad (3360) & Vidssave · High-energy commercial advertisement cuts with kinetic typography.",
-    description: "High-energy commercial advertisement edits crafted to stop the scroll, featuring tight audio beat-matching, dynamic pacing, and crisp typography.",
+    shortDescription: "Back Up Launch Film & Brand Campaign · High-energy brand advertising.",
+    description: "I edited this commercial for Super Squad, combining dynamic visuals, fast-paced editing, sound design, music, and motion-driven storytelling to create an engaging brand advertisement designed to capture attention and communicate the brand with impact.",
     role: "Commercial Video Editor",
     software: "Premiere Pro & After Effects",
     year: "2024",
     playlist: [
       {
         id: "product-commercial-3360-cut",
-        title: "Super Squad Ad (3360)",
+        title: "Back Up Launch Film",
         subtitle: "High-Energy Commercial Cut",
         videoUrl: "./videos/3360.mp4",
         thumbnail: "/images/vidssave-thumb.png",
-        badge: "01 · Super Squad",
+        badge: "01 · Back Up Launch Film",
         duration: "00:37",
-        description: "High-energy commercial advertisement edit for Super Squad (3360), focused on stopping the scroll, clear product showcase, tight audio beat-matching, and kinetic typography."
+        description: "I edited this commercial for Super Squad, combining dynamic visuals, fast-paced editing, sound design, music, and motion-driven storytelling to create an engaging brand advertisement designed to capture attention and communicate the brand with impact."
       },
       {
         id: "product-commercial-vidssave-cut",
-        title: "Vidssave",
+        title: "Brand Campaign",
         subtitle: "Brand Commercial Master Edit",
         videoUrl: "./videos/vidssave.mp4",
         thumbnail: "/images/work-commercial.png",
-        badge: "02 · Vidssave",
+        badge: "02 · Brand Campaign",
         duration: "00:27",
         description: "Commercial advertisement focused on stopping the scroll, clear product value proposition, and clean kinetic typography."
       }
