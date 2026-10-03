@@ -1962,54 +1962,11 @@ h1, h2, h3, h4, h5, h6 {
 .about-clean-page {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 0 !important;
-  max-width: 640px;
-  width: 100%;
-  margin: 0 auto;
 }
 
-.about-clean-page .story-clean-title {
-  margin-bottom: clamp(16px, 2vw, 24px);
-  text-align: center;
-  width: 100%;
-}
-
-.about-photo-block {
-  max-width: 620px;
-  width: 100%;
-  border: 3px solid #FFFFFF;
-  background-color: #FFFFFF;
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.16);
-  padding: 0 !important;
-  border-radius: 0 !important;
-  overflow: hidden;
-  box-sizing: border-box;
-  margin: 0 auto clamp(16px, 2vw, 24px) auto;
-  display: block;
-  cursor: pointer;
-  position: relative;
-}
-
-.about-photo-img {
-  width: 100%;
-  height: auto;
+.about-canva-img {
   aspect-ratio: 738 / 554;
-  object-fit: cover;
-  border-radius: 0 !important;
-  display: block;
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
-}
-
-.about-photo-block:hover .about-photo-img {
-  transform: scale(1.04);
-}
-
-.about-text-box {
-  max-width: 620px;
-  width: 100%;
-  box-sizing: border-box;
-  margin: 0 auto !important;
 }
 
 .about-photo-placeholder {
