@@ -376,22 +376,22 @@ const RAW_PROJECTS: Project[] = [
     ]
   },
 
-  // ─── 07. IM-X1000 Series ───────────────────────────────────────────────────
+  // ─── 07. Product Commercial (KEYENCE IM-X1000 Series) ─────────────────────
   {
     id: "im-x1000-measurement",
-    title: "IM-X1000 Series",
-    heading: "Commercial Video",
+    title: "Product Commercial",
+    heading: "Product Commercial",
     category: "Commercial",
     aspectRatio: "16:9",
     duration: "00:16",
-    thumbnail: "/images/im-x1000-thumb.jpg",
+    thumbnail: "/images/product-commercial-keyence-thumb.jpg",
     videoUrl: "videos/im-x1000-measurement.mp4",
-    ticketNote: "High-precision commercial showcase for KEYENCE automated measurement system",
+    ticketNote: "Product-Focused Visuals. Clean and Clear Commercial Editing.",
     showcaseVideos: [
-      { id: "imx1000", title: "IM-X1000 Series", badge: "Commercial Cut", videoUrl: "videos/im-x1000-measurement.mp4", poster: "images/im-x1000-thumb.jpg", aspectRatio: "16:9" }
+      { id: "imx1000", title: "KEYENCE IM-X1000 Measurement System", videoUrl: "videos/im-x1000-measurement.mp4", poster: "images/product-commercial-keyence-thumb.jpg", aspectRatio: "16:9" }
     ],
-    shortDescription: "Image Dimension Measurement System IM-X1000 Series · Precision commercial edit.",
-    description: "High-precision commercial showcase for the KEYENCE Image Dimension Measurement System IM-X1000 Series, highlighting automated optical inspection, optical clarity, and product engineering excellence.",
+    shortDescription: "KEYENCE IM-X1000 measurement system · Product-focused visuals and clean commercial editing.",
+    description: "A clean commercial edit showcasing the KEYENCE IM-X1000 measurement system through product-focused visuals, clear on-screen messaging, and precise pacing.",
     role: "Commercial Video Editor",
     software: "Premiere Pro & After Effects",
     year: "2024"
