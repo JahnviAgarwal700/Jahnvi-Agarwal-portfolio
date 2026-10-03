@@ -37,11 +37,11 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           loading="lazy"
         />
 
-        {/* Minimal sleek hover overlay */}
-        <div className="card-hover-overlay" aria-hidden="true">
-          <div className="card-play-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M8 5v14l11-7z" />
+        {/* White Video Play Icon Button - Always visible so visitors know it's a video */}
+        <div className="card-video-play-overlay" aria-hidden="true">
+          <div className="card-video-play-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#FFFFFF" stroke="none">
+              <polygon points="5 3 19 12 5 21 5 3" />
             </svg>
           </div>
         </div>

@@ -745,38 +745,76 @@ h1, h2, h3, h4, h5, h6 {
   transform: scale(1.035);
 }
 
-/* Minimal sleek hover overlay */
+/* White Video Play Icon Overlay on all 9 thumbnails - Always visible so visitors know there are videos inside */
+.card-video-play-overlay,
 .card-hover-overlay {
   position: absolute;
   inset: 0;
-  background-color: rgba(17, 17, 17, 0.32);
-  opacity: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 6px;
-  transition: opacity 0.28s ease;
-}
-
-.work-card:hover .card-hover-overlay {
+  background-color: rgba(0, 0, 0, 0.16);
   opacity: 1;
+  pointer-events: none;
+  border-radius: 6px;
+  transition: background-color 0.28s ease;
 }
 
+.work-card:hover .card-video-play-overlay,
+.work-card:hover .card-hover-overlay {
+  background-color: rgba(0, 0, 0, 0.32);
+}
+
+.card-video-play-icon,
 .card-play-icon {
-  width: 46px;
-  height: 46px;
-  border-radius: var(--radius-full);
-  background-color: var(--warm-cream);
-  color: var(--near-black);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-color: rgba(17, 17, 17, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1.5px solid rgba(255, 255, 255, 0.65);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.28);
-  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  padding-left: 3px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+  color: #ffffff;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.25s ease,
+              border-color 0.25s ease,
+              box-shadow 0.25s ease;
 }
 
+.card-video-play-icon svg,
+.card-play-icon svg {
+  width: 22px;
+  height: 22px;
+  fill: #ffffff;
+  display: block;
+}
+
+.work-card:hover .card-video-play-icon,
 .work-card:hover .card-play-icon {
-  display: none;
+  display: flex !important;
+  transform: scale(1.12);
+  background-color: rgba(17, 17, 17, 0.94);
+  border-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.65);
+}
+
+@media (max-width: 640px) {
+  .card-video-play-icon,
+  .card-play-icon {
+    width: 44px;
+    height: 44px;
+    padding-left: 2.5px;
+  }
+  .card-video-play-icon svg,
+  .card-play-icon svg {
+    width: 18px;
+    height: 18px;
+  }
 }
 
 /* Clean Editorial Metadata underneath with generous spacing */
