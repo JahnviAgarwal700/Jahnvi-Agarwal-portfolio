@@ -1461,11 +1461,11 @@ h1, h2, h3, h4, h5, h6 {
   border: 1.5px solid rgba(255, 255, 255, 0.12);
 }
 
-/* Clean Note Badge (Positioned below videos, glow & notches removed) */
+/* Clean Note Badge (Positioned below videos with comfortable gap, glow & notches removed) */
 .reels-ticket-note-wrap {
   display: flex;
   justify-content: center;
-  margin-top: clamp(20px, 2.4vw, 28px);
+  margin-top: clamp(22px, 2.8vw, 34px);
   margin-bottom: 0;
   width: 100%;
 }
@@ -1605,6 +1605,116 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: center;
   padding-left: 3px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* Yellow Progress Scrubber Line on Videos */
+.video-progress-track {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.22);
+  z-index: 25;
+  cursor: pointer;
+  transition: height 0.15s ease;
+}
+
+.project-mosaic-col:hover .video-progress-track {
+  height: 6px;
+}
+
+.video-progress-fill {
+  height: 100%;
+  background-color: #FFC800; /* Energetic accent yellow */
+  box-shadow: 0 0 8px rgba(255, 200, 0, 0.85);
+  transition: width 0.12s linear;
+  pointer-events: none;
+}
+
+/* Video Labels placed directly below videos (outside frame so subtitles are never covered) */
+.showcase-labels-row {
+  width: 100%;
+  max-width: 1040px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 14px auto 0 auto;
+  box-sizing: border-box;
+}
+
+.showcase-label-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0 6px;
+}
+
+.showcase-labels-row.mosaic-count-1 .showcase-label-col {
+  flex: 0 0 100%;
+  width: 100%;
+}
+
+.showcase-labels-row.mosaic-count-2 .showcase-label-col {
+  flex: 0 0 50%;
+  width: 50%;
+}
+
+.showcase-labels-row.mosaic-count-2.mosaic-mixed-ratios {
+  max-width: 980px;
+}
+.showcase-labels-row.mosaic-count-2.mosaic-mixed-ratios .showcase-label-col.aspect-widescreen {
+  flex: 0 0 76%;
+  width: 76%;
+}
+.showcase-labels-row.mosaic-count-2.mosaic-mixed-ratios .showcase-label-col.aspect-vertical {
+  flex: 0 0 24%;
+  width: 24%;
+}
+
+.showcase-labels-row.mosaic-count-3 .showcase-label-col.aspect-widescreen {
+  flex: 1 1 38%;
+  width: 38%;
+}
+.showcase-labels-row.mosaic-count-3 .showcase-label-col.aspect-vertical {
+  flex: 0 0 24%;
+  width: 24%;
+}
+
+.showcase-labels-row.mosaic-count-4 .showcase-label-col {
+  flex: 0 0 25%;
+  width: 25%;
+}
+
+.showcase-labels-row.mosaic-count-5 .showcase-label-col {
+  flex: 0 0 20%;
+  width: 20%;
+}
+
+.video-under-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1A1A1A;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 6px;
+  padding: 7px 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  box-sizing: border-box;
+  max-width: 98%;
+}
+
+.video-under-badge-text {
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #FFFFFF;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
 }
 
 .story-reel-bottom-badge {
@@ -4825,5 +4935,32 @@ h1, h2, h3, h4, h5, h6 {
   .reels-ticket-note {
     padding: 10px 24px;
     font-size: 13px;
+  }
+
+  .showcase-labels-row {
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .showcase-labels-row.mosaic-count-5 .showcase-label-col,
+  .showcase-labels-row.mosaic-count-4 .showcase-label-col {
+    flex: 0 0 50%;
+    width: 50%;
+  }
+
+  .showcase-labels-row.mosaic-count-2 .showcase-label-col,
+  .showcase-labels-row.mosaic-count-2.mosaic-mixed-ratios .showcase-label-col.aspect-widescreen,
+  .showcase-labels-row.mosaic-count-2.mosaic-mixed-ratios .showcase-label-col.aspect-vertical {
+    flex: 0 0 100%;
+    width: 100%;
+  }
+
+  .video-under-badge {
+    padding: 5px 12px;
+  }
+
+  .video-under-badge-text {
+    font-size: 11px;
   }
 }

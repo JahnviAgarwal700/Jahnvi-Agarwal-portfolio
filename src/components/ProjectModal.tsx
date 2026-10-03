@@ -24,6 +24,31 @@ const ShowcaseVideoCard: React.FC<ShowcaseVideoCardProps> = ({
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [progress, setProgress] = useState(0);
+
+  const handleTimeUpdate = () => {
+    if (videoRef.current && videoRef.current.duration) {
+      const pct = (videoRef.current.currentTime / videoRef.current.duration) * 100;
+      setProgress(pct);
+    }
+  };
+
+  const handleProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    if (!videoRef.current || !videoRef.current.duration) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const fraction = Math.max(0, Math.min(1, clickX / rect.width));
+    videoRef.current.currentTime = fraction * videoRef.current.duration;
+    setProgress(fraction * 100);
+    if (videoRef.current.paused) {
+      videoRef.current
+        .play()
+        .then(() => setIsPlaying(true))
+        .catch(() => {});
+      setActivePlayingId(video.id);
+    }
+  };
 
   // Automatic playback when this video is activePlayingId; pause when inactive
   useEffect(() => {
@@ -113,6 +138,10 @@ const ShowcaseVideoCard: React.FC<ShowcaseVideoCardProps> = ({
             className="story-reel-video"
             onPlay={() => setIsPlaying(true)}
             onPause={() => setIsPlaying(false)}
+            onTimeUpdate={handleTimeUpdate}
+            onLoadedMetadata={handleTimeUpdate}
+            onSeeked={handleTimeUpdate}
+            onEnded={() => setProgress(100)}
           />
 
           {/* Center Play/Pause Overlay Icon (visible only when paused) */}
@@ -126,12 +155,17 @@ const ShowcaseVideoCard: React.FC<ShowcaseVideoCardProps> = ({
             </div>
           )}
 
-          {/* Bottom Badge with white text (rendered only if badge is provided) */}
-          {Boolean(video.badge) && (
-            <div className="story-reel-bottom-badge">
-              <span className="story-reel-tag">{video.badge}</span>
-            </div>
-          )}
+          {/* Yellow Progress Scrubber Line on Video Bottom */}
+          <div
+            className="video-progress-track"
+            onClick={handleProgressClick}
+            title="Video progress scrubber"
+          >
+            <div
+              className="video-progress-fill"
+              style={{ width: `${Math.min(100, Math.max(0, progress))}%` }}
+            />
+          </div>
         </>
       ) : (
         <div className="story-reel-placeholder">
@@ -312,7 +346,34 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
             ))}
           </div>
 
-          {/* Clean Pink Note Section Below Videos without side circles */}
+          {/* Text Labels Right Below Videos (prevents covering subtitles) */}
+          {showcaseVideos.some((v) => Boolean(v.badge)) && (
+            <div
+              className={`showcase-labels-row mosaic-count-${showcaseVideos.length} ${
+                hasMixedRatios ? 'mosaic-mixed-ratios' : ''
+              }`}
+            >
+              {showcaseVideos.map((video, vIdx) => {
+                const isVertical = video.aspectRatio === '9:16';
+                return (
+                  <div
+                    key={video.id || vIdx}
+                    className={`showcase-label-col ${
+                      isVertical ? 'aspect-vertical' : 'aspect-widescreen'
+                    } count-${showcaseVideos.length}`}
+                  >
+                    {Boolean(video.badge) && (
+                      <div className="video-under-badge">
+                        <span className="video-under-badge-text">{video.badge}</span>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
+          {/* Clean Pink Note Section Below Videos with comfortable gap */}
           <div className="reels-ticket-note-wrap">
             <div className="reels-ticket-note">
               <div className="ticket-inner">
