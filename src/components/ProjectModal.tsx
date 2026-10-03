@@ -126,10 +126,12 @@ const ShowcaseVideoCard: React.FC<ShowcaseVideoCardProps> = ({
             </div>
           )}
 
-          {/* Bottom Badge with white text */}
-          <div className="story-reel-bottom-badge">
-            <span className="story-reel-tag">{video.badge || video.title}</span>
-          </div>
+          {/* Bottom Badge with white text (rendered only if badge is provided) */}
+          {Boolean(video.badge) && (
+            <div className="story-reel-bottom-badge">
+              <span className="story-reel-tag">{video.badge}</span>
+            </div>
+          )}
         </>
       ) : (
         <div className="story-reel-placeholder">

@@ -41,7 +41,7 @@ export interface ExtraVideo {
 export interface ProjectShowcaseVideo {
   id: string;
   title: string;
-  badge: string;
+  badge?: string;
   videoUrl: string;
   poster?: string;
   aspectRatio?: '16:9' | '9:16';
@@ -259,7 +259,7 @@ const RAW_PROJECTS: Project[] = [
     videoUrl: "videos/tamil-idli.mp4",
     ticketNote: "2-minute investigative documentary edit on early morning street enterprise in Mumbai",
     showcaseVideos: [
-      { id: "tamil-idli-cut", title: "How Mumbai Wakes Up to Tamilian Idlis", badge: "Documentary Cut", videoUrl: "videos/tamil-idli.mp4", poster: "images/business-journalism-thumb.svg", aspectRatio: "16:9" }
+      { id: "tamil-idli-cut", title: "How Mumbai Wakes Up to Tamilian Idlis", videoUrl: "videos/tamil-idli.mp4", poster: "images/business-journalism-thumb.svg", aspectRatio: "16:9" }
     ],
     shortDescription: "How Mumbai Wakes Up to Tamilian Idlis · 2-minute documentary edit on early morning street enterprise.",
     description: "An investigative business journalism documentary tracing the micro-entrepreneurship, logistics, and heritage of traditional Tamilian idli vendors serving thousands every morning across Mumbai.",
