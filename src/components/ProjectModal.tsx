@@ -291,7 +291,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
         <div className="project-viewer-header">
           <div className="project-viewer-title-wrap">
             <h2 id="modal-project-title" className="project-viewer-title">
-              {project.heading || project.title}
+              {project.ticketNote || project.shortDescription || project.heading || project.title}
             </h2>
           </div>
 
@@ -329,7 +329,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
           </div>
         </div>
 
-        {/* Black Section with Seamless Video Columns & Note Section Below */}
+        {/* Black Section with Seamless Video Columns */}
         <div className="story-reels-dark-section project-viewer-dark-section">
           {/* Seamless Video Mosaic: sticked together with white outer border */}
           <div
@@ -375,18 +375,6 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
               })}
             </div>
           )}
-
-          {/* Clean Pink Note Section Below Videos with comfortable gap */}
-          <div className="reels-ticket-note-wrap">
-            <div className="reels-ticket-note">
-              <div className="ticket-inner">
-                <span className="ticket-icon">🎟️</span>
-                <span className="ticket-text">
-                  {project.ticketNote || project.shortDescription || project.description}
-                </span>
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* Bottom Story Description (Specs removed per request) */}
