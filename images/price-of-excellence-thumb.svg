@@ -30,7 +30,7 @@
   <line x1="1220" y1="360" x2="1240" y2="360" stroke="#FFFFFF" stroke-opacity="0.2" stroke-width="1.5" />
 
   <!-- Number Badge -->
-  <text x="1200" y="90" text-anchor="end" font-family="'Google Sans Flex', 'Inter', -apple-system, sans-serif" font-size="20" font-weight="700" fill="#FFD028" letter-spacing="2">09</text>
+  <text x="1200" y="90" text-anchor="end" font-family="'Google Sans Flex', 'Inter', -apple-system, sans-serif" font-size="20" font-weight="700" fill="#FFD028" letter-spacing="2">05</text>
 
   <!-- Center Play Button with Maroon Accent -->
   <g transform="translate(640, 310)">
