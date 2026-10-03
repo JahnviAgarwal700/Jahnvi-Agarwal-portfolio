@@ -314,19 +314,19 @@ const RAW_PROJECTS: Project[] = [
   // ─── 05. Podcast ──────────────────────────────────────────────────────────
   {
     id: "podcast-price-of-excellence",
-    title: "Podcast",
-    heading: "Podcast",
+    title: "Podcast Editing & Clipping",
+    heading: "Podcast Editing & Clipping",
     category: "Studio & Podcast",
     aspectRatio: "16:9",
     duration: "02:00",
     thumbnail: "/images/podcast-studio-thumb.jpg",
     videoUrl: "videos/price-of-excellence-2min.mp4",
-    ticketNote: "Studio podcast conversation edited to the first 2-minute hook cut for audience retention",
+    ticketNote: "Full-Length Podcasts & High-Retention Short Clips",
     showcaseVideos: [
       { id: "podcast-cut", title: "The Price of Excellence", badge: "Podcast Hook Cut", videoUrl: "videos/price-of-excellence-2min.mp4", poster: "images/podcast-studio-thumb.jpg", aspectRatio: "16:9" }
     ],
-    shortDescription: "The Price of Excellence · Starting 2-minute hook cut crafted for maximum narrative retention.",
-    description: "A compelling studio podcast conversation exploring the unseen discipline, sacrifices, and psychology behind mastery. Edited to the starting 2-minute hook cut for high audience retention.",
+    shortDescription: "Podcast Editing & Clipping · Full-length podcasts & high-retention short clips.",
+    description: "I edit raw podcast conversations into engaging long-form episodes and short-form clips of the best recorded moments also.",
     role: "Lead Video Editor",
     software: "Adobe Premiere Pro",
     year: "2024"
