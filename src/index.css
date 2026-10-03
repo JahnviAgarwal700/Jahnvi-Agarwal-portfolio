@@ -4875,6 +4875,13 @@ h1, h2, h3, h4, h5, h6 {
   aspect-ratio: 9 / 16;
 }
 
+.project-showcase-mosaic.mosaic-count-2.mosaic-all-vertical,
+.showcase-labels-row.mosaic-count-2.mosaic-all-vertical {
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* Mixed Aspect Ratios for 2 Videos (16:9 Long-Form on left + 9:16 Short-Form on right) */
 .project-showcase-mosaic.mosaic-count-2.mosaic-mixed-ratios {
   align-items: stretch;

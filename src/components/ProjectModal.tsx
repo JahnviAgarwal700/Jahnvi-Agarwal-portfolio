@@ -278,6 +278,9 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
   const isSingleVertical =
     showcaseVideos.length === 1 && showcaseVideos[0].aspectRatio === '9:16';
 
+  const isAllVertical =
+    showcaseVideos.length > 0 && showcaseVideos.every((v) => v.aspectRatio === '9:16');
+
   return (
     <div
       className="project-viewer-backdrop"
@@ -335,7 +338,9 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
           <div
             className={`story-reels-mosaic project-showcase-mosaic mosaic-count-${showcaseVideos.length} ${
               hasMixedRatios ? 'mosaic-mixed-ratios' : ''
-            } ${isSingleVertical ? 'mosaic-single-vertical' : ''}`}
+            } ${isSingleVertical ? 'mosaic-single-vertical' : ''} ${
+              isAllVertical ? 'mosaic-all-vertical' : ''
+            }`}
           >
             {showcaseVideos.map((video, vIdx) => (
               <ShowcaseVideoCard
@@ -354,7 +359,9 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
             <div
               className={`showcase-labels-row mosaic-count-${showcaseVideos.length} ${
                 hasMixedRatios ? 'mosaic-mixed-ratios' : ''
-              } ${isSingleVertical ? 'mosaic-single-vertical' : ''}`}
+              } ${isSingleVertical ? 'mosaic-single-vertical' : ''} ${
+                isAllVertical ? 'mosaic-all-vertical' : ''
+              }`}
             >
               {showcaseVideos.map((video, vIdx) => {
                 const isVertical = video.aspectRatio === '9:16';
