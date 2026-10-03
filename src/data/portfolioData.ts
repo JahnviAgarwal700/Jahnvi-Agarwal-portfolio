@@ -222,19 +222,19 @@ const RAW_PROJECTS: Project[] = [
     featured: true
   },
 
-  // ─── 02. Business Journalism or Documentary ───────────────────────────────
+  // ─── 02. Documentary Storytelling ─────────────────────────────────────────
   {
     id: "business-journalism",
-    title: "Business Journalism or Documentary",
-    heading: "Business Journalism or Documentary",
-    category: "Business Journalism",
+    title: "Documentary Storytelling",
+    heading: "Documentary Storytelling",
+    category: "Documentary",
     aspectRatio: "16:9",
     duration: "02:18",
-    thumbnail: "/images/business-journalism-thumb.svg",
+    thumbnail: "/images/documentary-storytelling-thumb.jpg",
     videoUrl: "videos/tamil-idli.mp4",
     ticketNote: "From Scattered Footage to a Cohesive Documentary",
     showcaseVideos: [
-      { id: "tamil-idli-cut", title: "How Mumbai Wakes Up to Tamilian Idlis", videoUrl: "videos/tamil-idli.mp4", poster: "images/business-journalism-thumb.svg", aspectRatio: "16:9" }
+      { id: "tamil-idli-cut", title: "How Mumbai Wakes Up to Tamilian Idlis", videoUrl: "videos/tamil-idli.mp4", poster: "images/documentary-storytelling-thumb.jpg", aspectRatio: "16:9" }
     ],
     shortDescription: "How Mumbai Wakes Up to Tamilian Idlis · From scattered footage to a cohesive documentary.",
     description: "I can shape raw documentary footage into a polished journalism film that connects stories, builds narrative, and keeps viewers engaged.",
