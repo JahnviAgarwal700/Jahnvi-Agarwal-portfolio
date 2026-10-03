@@ -165,74 +165,7 @@ export const getWhatsAppUrl = (customMessage?: string): string => {
 };
 
 const RAW_PROJECTS: Project[] = [
-  // ─── 01. Shorts (5 Shorts Slot) ───────────────────────────────────────────
-  {
-    id: "shorts",
-    title: "Shorts",
-    heading: "Short Form",
-    category: "Short Form",
-    aspectRatio: "9:16",
-    duration: "5 Shorts",
-    thumbnail: "/images/work-short-form.svg",
-    videoUrl: "videos/1.mp4",
-    ticketNote: "These short-form reels are engineered for high hook rate, rapid narrative pacing, and maximum retention",
-    showcaseVideos: [
-      { id: "short-1", title: "Short 01", badge: "Reel 1", videoUrl: "videos/1.mp4", aspectRatio: "9:16" },
-      { id: "short-2", title: "Short 02", badge: "Reel 2", videoUrl: "videos/5.mp4", aspectRatio: "9:16" },
-      { id: "short-3", title: "Short 03", badge: "Reel 3", videoUrl: "videos/2.mp4", aspectRatio: "9:16" },
-      { id: "short-4", title: "Short 04", badge: "Reel 4", videoUrl: "videos/21.mp4", aspectRatio: "9:16" },
-      { id: "short-5", title: "Short 05", badge: "Reel 5", videoUrl: "videos/varun-mayya-reel.mp4", aspectRatio: "9:16" }
-    ],
-    shortDescription: "Viral high-retention short-form edits tailored for hook rate, rapid narrative pacing, and retention.",
-    description: "High-retention vertical short-form video editing for Instagram Reels, YouTube Shorts, and TikTok. Engineered with kinetic pacing, animated text, sound design, and pattern interrupts.",
-    role: "Short-Form Video Editor",
-    software: "Adobe Premiere Pro & After Effects",
-    year: "2024"
-  },
-
-  // ─── 02. Business Journalism or Documentary ───────────────────────────────
-  {
-    id: "business-journalism",
-    title: "Business Journalism or Documentary",
-    heading: "Business Journalism or Documentary",
-    category: "Business Journalism",
-    aspectRatio: "16:9",
-    duration: "02:18",
-    thumbnail: "/images/business-journalism-thumb.svg",
-    videoUrl: "videos/tamil-idli.mp4",
-    ticketNote: "2-minute investigative documentary edit on early morning street enterprise in Mumbai",
-    showcaseVideos: [
-      { id: "tamil-idli-cut", title: "How Mumbai Wakes Up to Tamilian Idlis", badge: "Documentary Cut", videoUrl: "videos/tamil-idli.mp4", poster: "images/business-journalism-thumb.svg", aspectRatio: "16:9" }
-    ],
-    shortDescription: "How Mumbai Wakes Up to Tamilian Idlis · 2-minute documentary edit on early morning street enterprise.",
-    description: "An investigative business journalism documentary tracing the micro-entrepreneurship, logistics, and heritage of traditional Tamilian idli vendors serving thousands every morning across Mumbai.",
-    role: "Lead Video Editor & Storyteller",
-    software: "Adobe Premiere Pro",
-    year: "2024"
-  },
-
-  // ─── 03. Podcast ──────────────────────────────────────────────────────────
-  {
-    id: "podcast-price-of-excellence",
-    title: "Podcast",
-    heading: "Podcast",
-    category: "Studio & Podcast",
-    aspectRatio: "16:9",
-    duration: "02:00",
-    thumbnail: "/images/price-of-excellence-thumb.svg",
-    videoUrl: "videos/price-of-excellence-2min.mp4",
-    ticketNote: "Studio podcast conversation edited to the first 2-minute hook cut for audience retention",
-    showcaseVideos: [
-      { id: "podcast-cut", title: "The Price of Excellence", badge: "Podcast Hook Cut", videoUrl: "videos/price-of-excellence-2min.mp4", poster: "images/price-of-excellence-thumb.svg", aspectRatio: "16:9" }
-    ],
-    shortDescription: "The Price of Excellence · Starting 2-minute hook cut crafted for maximum narrative retention.",
-    description: "A compelling studio podcast conversation exploring the unseen discipline, sacrifices, and psychology behind mastery. Edited to the starting 2-minute hook cut for high audience retention.",
-    role: "Lead Video Editor",
-    software: "Adobe Premiere Pro",
-    year: "2024"
-  },
-
-  // ─── 04. Talking Head ─────────────────────────────────────────────────────
+  // ─── 01. Talking Head ─────────────────────────────────────────────────────
   {
     id: "talking-head-videos",
     title: "Talking Head",
@@ -287,6 +220,73 @@ const RAW_PROJECTS: Project[] = [
     year: "2024",
     clientContext: "Varun Mayya",
     featured: true
+  },
+
+  // ─── 02. Shorts (5 Shorts Slot) ───────────────────────────────────────────
+  {
+    id: "shorts",
+    title: "Shorts",
+    heading: "Short Form",
+    category: "Short Form",
+    aspectRatio: "9:16",
+    duration: "5 Shorts",
+    thumbnail: "/images/work-short-form.svg",
+    videoUrl: "videos/1.mp4",
+    ticketNote: "These short-form reels are engineered for high hook rate, rapid narrative pacing, and maximum retention",
+    showcaseVideos: [
+      { id: "short-1", title: "Short 01", badge: "Reel 1", videoUrl: "videos/1.mp4", aspectRatio: "9:16" },
+      { id: "short-2", title: "Short 02", badge: "Reel 2", videoUrl: "videos/5.mp4", aspectRatio: "9:16" },
+      { id: "short-3", title: "Short 03", badge: "Reel 3", videoUrl: "videos/2.mp4", aspectRatio: "9:16" },
+      { id: "short-4", title: "Short 04", badge: "Reel 4", videoUrl: "videos/21.mp4", aspectRatio: "9:16" },
+      { id: "short-5", title: "Short 05", badge: "Reel 5", videoUrl: "videos/varun-mayya-reel.mp4", aspectRatio: "9:16" }
+    ],
+    shortDescription: "Viral high-retention short-form edits tailored for hook rate, rapid narrative pacing, and retention.",
+    description: "High-retention vertical short-form video editing for Instagram Reels, YouTube Shorts, and TikTok. Engineered with kinetic pacing, animated text, sound design, and pattern interrupts.",
+    role: "Short-Form Video Editor",
+    software: "Adobe Premiere Pro & After Effects",
+    year: "2024"
+  },
+
+  // ─── 03. Business Journalism or Documentary ───────────────────────────────
+  {
+    id: "business-journalism",
+    title: "Business Journalism or Documentary",
+    heading: "Business Journalism or Documentary",
+    category: "Business Journalism",
+    aspectRatio: "16:9",
+    duration: "02:18",
+    thumbnail: "/images/business-journalism-thumb.svg",
+    videoUrl: "videos/tamil-idli.mp4",
+    ticketNote: "2-minute investigative documentary edit on early morning street enterprise in Mumbai",
+    showcaseVideos: [
+      { id: "tamil-idli-cut", title: "How Mumbai Wakes Up to Tamilian Idlis", badge: "Documentary Cut", videoUrl: "videos/tamil-idli.mp4", poster: "images/business-journalism-thumb.svg", aspectRatio: "16:9" }
+    ],
+    shortDescription: "How Mumbai Wakes Up to Tamilian Idlis · 2-minute documentary edit on early morning street enterprise.",
+    description: "An investigative business journalism documentary tracing the micro-entrepreneurship, logistics, and heritage of traditional Tamilian idli vendors serving thousands every morning across Mumbai.",
+    role: "Lead Video Editor & Storyteller",
+    software: "Adobe Premiere Pro",
+    year: "2024"
+  },
+
+  // ─── 04. Podcast ──────────────────────────────────────────────────────────
+  {
+    id: "podcast-price-of-excellence",
+    title: "Podcast",
+    heading: "Podcast",
+    category: "Studio & Podcast",
+    aspectRatio: "16:9",
+    duration: "02:00",
+    thumbnail: "/images/price-of-excellence-thumb.svg",
+    videoUrl: "videos/price-of-excellence-2min.mp4",
+    ticketNote: "Studio podcast conversation edited to the first 2-minute hook cut for audience retention",
+    showcaseVideos: [
+      { id: "podcast-cut", title: "The Price of Excellence", badge: "Podcast Hook Cut", videoUrl: "videos/price-of-excellence-2min.mp4", poster: "images/price-of-excellence-thumb.svg", aspectRatio: "16:9" }
+    ],
+    shortDescription: "The Price of Excellence · Starting 2-minute hook cut crafted for maximum narrative retention.",
+    description: "A compelling studio podcast conversation exploring the unseen discipline, sacrifices, and psychology behind mastery. Edited to the starting 2-minute hook cut for high audience retention.",
+    role: "Lead Video Editor",
+    software: "Adobe Premiere Pro",
+    year: "2024"
   },
 
   // ─── 05. AI Film or Corporate Film (SSAC & BS Projects) ───────────────────
