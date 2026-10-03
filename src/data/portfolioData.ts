@@ -288,25 +288,25 @@ const RAW_PROJECTS: Project[] = [
     year: "2024"
   },
 
-  // ─── 05. AI Film or Corporate Film (SSAC & BS Projects) ───────────────────
+  // ─── 05. AI-generated corporate videos (SSAC & BS Projects) ───────────────
   {
     id: "ai-commercial-ads",
-    title: "AI Film or Corporate Film",
-    heading: "SSAC & BS Projects",
+    title: "AI-generated corporate videos",
+    heading: "AI-generated corporate videos",
     category: "AI & Corporate Film",
     aspectRatio: "16:9",
     duration: "2 Videos",
     thumbnail: "/images/ssac-thumb.png",
     videoUrl: "videos/ssac-full.mp4",
-    ticketNote: "Executive brand storytelling & AI-assisted commercial showcase edits",
+    ticketNote: "Complete AI Video Production for Corporate Brands",
     showcaseVideos: [
       { id: "ssac", title: "SSAC Studio", badge: "01 · SSAC Studio", videoUrl: "videos/ssac-full.mp4", poster: "images/ssac-thumb.png", aspectRatio: "16:9" },
-      { id: "bs-projects", title: "BS Projects", badge: "02 · BS Projects", videoUrl: "videos/bs-brand-video.mp4", poster: "images/bs-project-thumb.png", aspectRatio: "16:9" }
+      { id: "bs-projects", title: "BS Projects Private Limited", badge: "02 · BS Projects Private Limited", videoUrl: "videos/bs-brand-video.mp4", poster: "images/bs-project-thumb.png", aspectRatio: "16:9" }
     ],
-    shortDescription: "SSAC Studio & BS Projects · 2 high-impact commercial and AI-assisted brand showcase edits.",
-    description: "Dynamic commercial and corporate showcase featuring multi-angle studio production, executive brand storytelling, precision pacing, and AI-assisted workflows.",
-    role: "Lead Video Editor & Color Treatment",
-    software: "Adobe Premiere Pro & After Effects",
+    shortDescription: "SSAC Studio & BS Projects Private Limited · Complete AI video production for corporate brands.",
+    description: "I independently reached out to these brands and handled the projects end-to-end—from scripting and ElevenLabs voiceovers to AI-generated visuals, editing, sound design, and final delivery.",
+    role: "Lead Video Editor & AI Producer",
+    software: "Adobe Premiere Pro, After Effects & ElevenLabs",
     year: "2024",
     playlist: [
       {
@@ -321,13 +321,13 @@ const RAW_PROJECTS: Project[] = [
       },
       {
         id: "bs-projects-cut",
-        title: "BS Projects",
+        title: "BS Projects Private Limited",
         subtitle: "Brand & Corporate Commercial Film",
         videoUrl: "./videos/bs-brand-video.mp4",
         thumbnail: "/images/bs-project-thumb.png",
-        badge: "02 · BS Projects",
+        badge: "02 · BS Projects Private Limited",
         duration: "02:40",
-        description: "A cinematic brand film delivering high-impact executive storytelling, precision pacing, custom sound design, and color grading for BS Projects."
+        description: "A cinematic brand film delivering high-impact executive storytelling, precision pacing, custom sound design, and color grading for BS Projects Private Limited."
       }
     ]
   },
