@@ -256,7 +256,7 @@ const RAW_PROJECTS: Project[] = [
     ticketNote: "These short-form reels are engineered for high hook rate, rapid narrative pacing, and maximum retention",
     showcaseVideos: [
       { id: "short-podcast", title: "Podcast Clips", badge: "Podcast Clips", videoUrl: "videos/1.mp4", aspectRatio: "9:16" },
-      { id: "short-tech", title: "Tech Shorts", badge: "Tech Shorts", videoUrl: "videos/varun-mayya-reel.mp4", aspectRatio: "9:16" },
+      { id: "short-tech", title: "Turn your claude into a job hunting MACHINE!", badge: "Tech Shorts", videoUrl: "videos/claude-job-machine.mp4", poster: "images/claude-job-machine-poster.jpg", aspectRatio: "9:16" },
       { id: "short-ugc", title: "UGC Content", badge: "UGC Content", videoUrl: "videos/21.mp4", aspectRatio: "9:16" },
       { id: "short-gaming", title: "Gaming Shorts", badge: "Gaming Shorts", videoUrl: "videos/2.mp4", aspectRatio: "9:16" }
     ],
