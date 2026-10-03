@@ -25,3 +25,7 @@ dist-ssr
 
 # Raw Large Video Files (>100MB rejected by GitHub)
 *BS PROJECTS FILM FINAL*.mp4
+
+# System and installer binaries
+*.exe
+*.winmd

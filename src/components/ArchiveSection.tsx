@@ -252,15 +252,155 @@ export const YOUTUBE_900K_REELS: ReelItem[] = [
 ];
 
 const StoryReelCard: React.FC<{ reel: ReelItem; index: number }> = ({ reel, index }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(true);
+  const manuallyPausedRef = useRef(false);
+
+  const isFirstReel = index === 0;
+
+  // Listen for other reels playing so only one reel speaks at a time
+  useEffect(() => {
+    const handleOtherReelPlay = (e: Event) => {
+      const customEvent = e as CustomEvent<{ id: string }>;
+      if (customEvent.detail?.id !== reel.id) {
+        if (videoRef.current && !videoRef.current.paused) {
+          videoRef.current.pause();
+          setIsPlaying(false);
+        }
+      }
+    };
+    document.addEventListener('story-reel-play', handleOtherReelPlay);
+    return () => {
+      document.removeEventListener('story-reel-play', handleOtherReelPlay);
+      if (videoRef.current) {
+        videoRef.current.pause();
+      }
+    };
+  }, [reel.id]);
+
+  // Play function ensuring voice/sound is ON
+  const startPlayingWithSound = useCallback(() => {
+    if (!videoRef.current || manuallyPausedRef.current) return;
+
+    // Notify other reels to pause so voice does not overlap
+    document.dispatchEvent(new CustomEvent('story-reel-play', { detail: { id: reel.id } }));
+
+    // Unmute and ensure volume is 100%
+    videoRef.current.muted = false;
+    videoRef.current.volume = 1.0;
+
+    const playPromise = videoRef.current.play();
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          setIsPlaying(true);
+        })
+        .catch((err: Error) => {
+          // If browser autoplay policy blocks unmuted audio on first scroll:
+          if (err.name === 'NotAllowedError') {
+            if (videoRef.current) {
+              videoRef.current.muted = true;
+              videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
+
+              // Instant unmute on the very next user gesture anywhere on screen
+              const activateAudio = () => {
+                if (videoRef.current) {
+                  videoRef.current.muted = false;
+                  videoRef.current.volume = 1.0;
+                }
+                window.removeEventListener('click', activateAudio);
+                window.removeEventListener('touchstart', activateAudio);
+                window.removeEventListener('keydown', activateAudio);
+              };
+              window.addEventListener('click', activateAudio, { once: true });
+              window.addEventListener('touchstart', activateAudio, { once: true });
+              window.addEventListener('keydown', activateAudio, { once: true });
+            }
+          }
+        });
+    }
+  }, [reel.id]);
+
+  // Auto-play first reel with voice when visitors scroll down to the reel section inside the 900K folder
+  useEffect(() => {
+    if (!isFirstReel || !reel.videoUrl) return;
+
+    const cardEl = cardRef.current;
+    if (!cardEl) return;
+
+    const scrollContainer = cardEl.closest('.folder-fullscreen-overlay');
+
+    const handleScrollCheck = () => {
+      if (!videoRef.current || manuallyPausedRef.current) return;
+      const rect = cardEl.getBoundingClientRect();
+      const containerRect = scrollContainer
+        ? scrollContainer.getBoundingClientRect()
+        : { top: 0, bottom: window.innerHeight };
+
+      // Trigger play when the reel is visible within the scrolling view
+      const isVisible = rect.top < containerRect.bottom - 60 && rect.bottom > containerRect.top + 60;
+      if (isVisible) {
+        if (videoRef.current.paused) {
+          startPlayingWithSound();
+        }
+      } else {
+        if (!videoRef.current.paused) {
+          videoRef.current.pause();
+          setIsPlaying(false);
+        }
+      }
+    };
+
+    let observer: IntersectionObserver | null = null;
+    try {
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              if (videoRef.current && !manuallyPausedRef.current && videoRef.current.paused) {
+                startPlayingWithSound();
+              }
+            } else {
+              if (videoRef.current && !videoRef.current.paused) {
+                videoRef.current.pause();
+                setIsPlaying(false);
+              }
+            }
+          });
+        },
+        {
+          root: scrollContainer || null,
+          threshold: 0.2
+        }
+      );
+      observer.observe(cardEl);
+    } catch {
+      // IntersectionObserver fallback handled by scroll listener
+    }
+
+    const targetToListen = scrollContainer || window;
+    targetToListen.addEventListener('scroll', handleScrollCheck, { passive: true });
+
+    // Check visibility after folder open animation settles
+    const timer = setTimeout(handleScrollCheck, 250);
+
+    return () => {
+      clearTimeout(timer);
+      if (observer) {
+        observer.disconnect();
+      }
+      targetToListen.removeEventListener('scroll', handleScrollCheck);
+    };
+  }, [isFirstReel, reel.videoUrl, startPlayingWithSound]);
 
   const togglePlay = () => {
     if (!videoRef.current) return;
     if (videoRef.current.paused) {
-      videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
+      manuallyPausedRef.current = false;
+      startPlayingWithSound();
     } else {
+      manuallyPausedRef.current = true;
       videoRef.current.pause();
       setIsPlaying(false);
     }
@@ -269,27 +409,23 @@ const StoryReelCard: React.FC<{ reel: ReelItem; index: number }> = ({ reel, inde
   const handleMouseEnter = () => {
     if (!videoRef.current) return;
     if (videoRef.current.paused) {
-      videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
+      startPlayingWithSound();
     }
   };
 
   const handleMouseLeave = () => {
     if (!videoRef.current) return;
+    // Don't pause the first reel on mouse leave if it's auto-playing
+    if (isFirstReel) return;
     if (!videoRef.current.paused) {
       videoRef.current.pause();
       setIsPlaying(false);
     }
   };
 
-  const toggleMute = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (!videoRef.current) return;
-    videoRef.current.muted = !videoRef.current.muted;
-    setIsMuted(videoRef.current.muted);
-  };
-
   return (
     <div
+      ref={cardRef}
       className={`story-reel-col ${reel.videoUrl ? 'has-video' : 'is-placeholder'}`}
       onClick={reel.videoUrl ? togglePlay : undefined}
       onMouseEnter={reel.videoUrl ? handleMouseEnter : undefined}
@@ -306,33 +442,11 @@ const StoryReelCard: React.FC<{ reel: ReelItem; index: number }> = ({ reel, inde
             poster={reel.poster ? getAssetUrl(reel.poster) : undefined}
             playsInline
             loop
-            muted={isMuted}
-            preload="metadata"
+            preload={isFirstReel ? 'auto' : 'metadata'}
             className="story-reel-video"
             onPlay={() => setIsPlaying(true)}
             onPause={() => setIsPlaying(false)}
           />
-
-          <button
-            type="button"
-            className="story-reel-mute-btn"
-            onClick={toggleMute}
-            aria-label={isMuted ? 'Unmute video' : 'Mute video'}
-            title={isMuted ? 'Unmute' : 'Mute'}
-          >
-            {isMuted ? (
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="1" y1="1" x2="23" y2="23" />
-                <path d="M9 9v3a3 3 0 0 0 5.12 2.12M15 9.34V4a3 3 0 0 0-5.94-.6" />
-                <path d="M17 16.95A7 7 0 0 1 5 12v-2m14 0v2a7 7 0 0 1-.11 1.23" />
-              </svg>
-            ) : (
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
-              </svg>
-            )}
-          </button>
 
           {!isPlaying && (
             <div className="story-reel-play-overlay" aria-hidden="true">
@@ -569,28 +683,6 @@ export const ArchiveSection: React.FC = () => {
                   <span className="back-chevron">←</span>
                   <span className="back-text">BACK TO ARCHIVE</span>
                 </button>
-
-                {/* Floating Ana Cuna Outline Nav Pills */}
-                {!['youtube-900k-story', 'skills-tools', 'about-me'].includes(activeFolder.id) && (
-                  <div className="topbar-floating-pills">
-                    <a href="#dossier-summary" className="topbar-nav-pill">
-                      <span className="pill-dot">○</span>
-                      <span>SUMMARY</span>
-                    </a>
-                    {activeFolder.content.metrics && (
-                      <a href="#dossier-metrics" className="topbar-nav-pill">
-                        <span className="pill-dot">○</span>
-                        <span>TELEMETRY</span>
-                      </a>
-                    )}
-                    {activeFolder.content.columns && activeFolder.content.columns.length > 0 && (
-                      <a href="#dossier-columns" className="topbar-nav-pill">
-                        <span className="pill-dot">○</span>
-                        <span>DELIVERABLES</span>
-                      </a>
-                    )}
-                  </div>
-                )}
               </div>
 
               <div className="topbar-right-group">
@@ -688,17 +780,10 @@ export const ArchiveSection: React.FC = () => {
                     </p>
                   </div>
 
-                  {/* Black Section at the back with Seamless 9:16 Reels & Note Section Below */}
+                  {/* Black Section at the back with Pink Note on Top and Seamless 9:16 Reels Below */}
                   <div className="story-reels-dark-section" aria-label="Geeky Gamer Highlights — 4 Short Form Reels">
-                    {/* Seamless 9:16 Reel Columns sticked together like the photos above */}
-                    <div className="story-reels-mosaic">
-                      {YOUTUBE_900K_REELS.map((reel, rIdx) => (
-                        <StoryReelCard key={reel.id || rIdx} reel={reel} index={rIdx} />
-                      ))}
-                    </div>
-
-                    {/* Clean Note Section Below Reels without side circles */}
-                    <div className="reels-ticket-note-wrap">
+                    {/* Pink Note on Top */}
+                    <div className="reels-ticket-note-wrap archive-reels-note-top">
                       <div className="reels-ticket-note">
                         <div className="ticket-inner">
                           <span className="ticket-icon">🎟️</span>
@@ -707,6 +792,13 @@ export const ArchiveSection: React.FC = () => {
                           </span>
                         </div>
                       </div>
+                    </div>
+
+                    {/* Seamless 9:16 Reel Columns sticked together like the photos above */}
+                    <div className="story-reels-mosaic">
+                      {YOUTUBE_900K_REELS.map((reel, rIdx) => (
+                        <StoryReelCard key={reel.id || rIdx} reel={reel} index={rIdx} />
+                      ))}
                     </div>
                   </div>
                 </div>

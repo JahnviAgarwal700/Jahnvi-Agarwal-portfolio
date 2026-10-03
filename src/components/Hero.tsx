@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { PROFILE_DATA, getWhatsAppUrl, getAssetUrl } from '../data/portfolioData';
+import { PROFILE_DATA, getAssetUrl } from '../data/portfolioData';
 import { HeroDecorativeShapes } from './HeroDecorativeShapes';
 
 interface HeroProps {
@@ -127,11 +127,9 @@ export const Hero: React.FC<HeroProps> = () => {
                 VIEW MY WORK
               </a>
               <a
-                href={getWhatsAppUrl()}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#contact"
                 className="btn-hero-connect"
-                aria-label="Connect on WhatsApp"
+                aria-label="Go to contact section"
               >
                 LET'S CONNECT
               </a>
