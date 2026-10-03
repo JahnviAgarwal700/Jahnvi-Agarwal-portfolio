@@ -331,19 +331,6 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
 
         {/* Black Section with Seamless Video Columns */}
         <div className="story-reels-dark-section project-viewer-dark-section">
-          {/* Clean Pink Note Section on Top Above Videos as marked */}
-          {(project.ticketNote || project.shortDescription || project.description) && (
-            <div className="reels-ticket-note-wrap archive-reels-note-top">
-              <div className="reels-ticket-note">
-                <div className="ticket-inner">
-                  <span className="ticket-text">
-                    {project.ticketNote || project.shortDescription || project.description}
-                  </span>
-                </div>
-              </div>
-            </div>
-          )}
-
           {/* Seamless Video Mosaic: sticked together with white outer border */}
           <div
             className={`story-reels-mosaic project-showcase-mosaic mosaic-count-${showcaseVideos.length} ${
@@ -386,6 +373,19 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                   </div>
                 );
               })}
+            </div>
+          )}
+
+          {/* Clean Pink Note Section Below Videos without icon */}
+          {(project.ticketNote || project.shortDescription || project.description) && (
+            <div className="reels-ticket-note-wrap">
+              <div className="reels-ticket-note">
+                <div className="ticket-inner">
+                  <span className="ticket-text">
+                    {project.ticketNote || project.shortDescription || project.description}
+                  </span>
+                </div>
+              </div>
             </div>
           )}
         </div>
