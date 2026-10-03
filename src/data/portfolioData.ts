@@ -311,47 +311,25 @@ const RAW_PROJECTS: Project[] = [
     ]
   },
 
-  // ─── 05. Real Estate ───────────────────────────────────────────────────────
+  // ─── 05. Podcast ──────────────────────────────────────────────────────────
   {
-    id: "real-estate-projects",
-    title: "Real Estate",
-    heading: "Real Estate Projects",
-    category: "Real Estate",
+    id: "podcast-price-of-excellence",
+    title: "Podcast",
+    heading: "Podcast",
+    category: "Studio & Podcast",
     aspectRatio: "16:9",
-    duration: "2 Videos",
-    thumbnail: "/images/cinematic-tours-thumb.png",
-    videoUrl: "videos/vidssave.com DESIGNER RESIDENCE _ CINEMATIC REAL ESTATE VIDEO IN 4K _ SONY FX6 1080p.mp4",
-    ticketNote: "Architectural real estate showcases highlighting Kerala heritage & luxury hillside living",
+    duration: "02:00",
+    thumbnail: "/images/price-of-excellence-thumb.svg",
+    videoUrl: "videos/price-of-excellence-2min.mp4",
+    ticketNote: "Studio podcast conversation edited to the first 2-minute hook cut for audience retention",
     showcaseVideos: [
-      { id: "cinematic-tours", title: "Cinematic Tours", badge: "01 · Cinematic Tours", videoUrl: "videos/vidssave.com DESIGNER RESIDENCE _ CINEMATIC REAL ESTATE VIDEO IN 4K _ SONY FX6 1080p.mp4", poster: "images/cinematic-tours-thumb.png", aspectRatio: "16:9" },
-      { id: "nakshatra", title: "Nakshatra Mana", badge: "02 · Nakshatra Mana", videoUrl: "videos/nakshatra-mana.mp4", poster: "images/nakshatra-mana-thumb.png", aspectRatio: "16:9" }
+      { id: "podcast-cut", title: "The Price of Excellence", badge: "Podcast Hook Cut", videoUrl: "videos/price-of-excellence-2min.mp4", poster: "images/price-of-excellence-thumb.svg", aspectRatio: "16:9" }
     ],
-    shortDescription: "Cinematic Tours & Nakshatra Mana · Architectural estate films.",
-    description: "Architectural real estate showcases highlighting tranquil Kerala heritage landscapes, spatial luxury, and serene natural lighting across iconic estates.",
-    role: "Lead Video Editor & Colorist",
+    shortDescription: "The Price of Excellence · Starting 2-minute hook cut crafted for maximum narrative retention.",
+    description: "A compelling studio podcast conversation exploring the unseen discipline, sacrifices, and psychology behind mastery. Edited to the starting 2-minute hook cut for high audience retention.",
+    role: "Lead Video Editor",
     software: "Adobe Premiere Pro",
-    year: "2024",
-    playlist: [
-      {
-        id: "cinematic-tours",
-        title: "Cinematic Tours",
-        subtitle: "Designer Residence · Cinematic Real Estate Film",
-        videoUrl: "./videos/vidssave.com DESIGNER RESIDENCE _ CINEMATIC REAL ESTATE VIDEO IN 4K _ SONY FX6 1080p.mp4",
-        thumbnail: "/images/cinematic-tours-thumb.png",
-        badge: "01 · Cinematic Tours",
-        description: "A cinematic tour of a designer residence, highlighting its architecture, materials, and inviting interiors."
-      },
-      {
-        id: "nakshatra-mana",
-        title: "Nakshatra Mana — Tranquil Living",
-        subtitle: "Architectural Tropical Living Film",
-        videoUrl: "./videos/nakshatra-mana.mp4",
-        thumbnail: "/images/nakshatra-mana-thumb.png",
-        badge: "02 · Nakshatra Mana",
-        duration: "04:23",
-        description: "A tranquil cinematic real estate showcase capturing the serene landscape, traditional heritage architecture, and natural light of Nakshatra Mana."
-      }
-    ]
+    year: "2024"
   },
 
   // ─── 06. Super Squad Ad (formerly Product Commercial 3360) ─────────────────
@@ -463,25 +441,61 @@ const RAW_PROJECTS: Project[] = [
     ]
   },
 
-  // ─── 09. Podcast ──────────────────────────────────────────────────────────
+  // ─── 09. Real Estate films ────────────────────────────────────────────────
   {
-    id: "podcast-price-of-excellence",
-    title: "Podcast",
-    heading: "Podcast",
-    category: "Studio & Podcast",
+    id: "real-estate-projects",
+    title: "Real Estate films",
+    heading: "Real Estate films",
+    category: "Real Estate",
     aspectRatio: "16:9",
-    duration: "02:00",
-    thumbnail: "/images/price-of-excellence-thumb.svg",
-    videoUrl: "videos/price-of-excellence-2min.mp4",
-    ticketNote: "Studio podcast conversation edited to the first 2-minute hook cut for audience retention",
+    duration: "2 Videos",
+    thumbnail: "/images/real-estate-films-thumb.jpg",
+    videoUrl: "videos/vidssave.com DESIGNER RESIDENCE _ CINEMATIC REAL ESTATE VIDEO IN 4K _ SONY FX6 1080p.mp4",
+    ticketNote: "Real Estate Content From Property Tours to Human Stories",
     showcaseVideos: [
-      { id: "podcast-cut", title: "The Price of Excellence", badge: "Podcast Hook Cut", videoUrl: "videos/price-of-excellence-2min.mp4", poster: "images/price-of-excellence-thumb.svg", aspectRatio: "16:9" }
+      {
+        id: "cinematic-tours",
+        title: "Cinematic Tour",
+        badge: "01 · Cinematic Tour",
+        videoUrl: "videos/vidssave.com DESIGNER RESIDENCE _ CINEMATIC REAL ESTATE VIDEO IN 4K _ SONY FX6 1080p.mp4",
+        poster: "images/cinematic-tours-thumb.png",
+        aspectRatio: "16:9"
+      },
+      {
+        id: "nakshatra",
+        title: "Storytelling Concept",
+        badge: "02 · Storytelling Concept",
+        videoUrl: "videos/nakshatra-mana.mp4",
+        poster: "images/real-estate-films-thumb.jpg",
+        aspectRatio: "16:9"
+      }
     ],
-    shortDescription: "The Price of Excellence · Starting 2-minute hook cut crafted for maximum narrative retention.",
-    description: "A compelling studio podcast conversation exploring the unseen discipline, sacrifices, and psychology behind mastery. Edited to the starting 2-minute hook cut for high audience retention.",
-    role: "Lead Video Editor",
+    shortDescription: "Cinematic Tour & Storytelling Concept · Real estate content from property tours to human stories.",
+    description: "I edit real estate content across different formats, from fast-paced property showcases to slower, interview-led stories focused on people, places, and lifestyle.",
+    role: "Lead Video Editor & Colorist",
     software: "Adobe Premiere Pro",
-    year: "2024"
+    year: "2024",
+    playlist: [
+      {
+        id: "cinematic-tours",
+        title: "Cinematic Tour",
+        subtitle: "Designer Residence · Architectural Film",
+        videoUrl: "./videos/vidssave.com DESIGNER RESIDENCE _ CINEMATIC REAL ESTATE VIDEO IN 4K _ SONY FX6 1080p.mp4",
+        thumbnail: "/images/cinematic-tours-thumb.png",
+        badge: "01 · Cinematic Tour",
+        description: "A cinematic tour of a designer residence, highlighting its architecture, materials, and inviting interiors."
+      },
+      {
+        id: "nakshatra-mana",
+        title: "Storytelling Concept",
+        subtitle: "Nakshatra Mana — Architectural Living Film",
+        videoUrl: "./videos/nakshatra-mana.mp4",
+        thumbnail: "/images/real-estate-films-thumb.jpg",
+        badge: "02 · Storytelling Concept",
+        duration: "04:23",
+        description: "A tranquil cinematic real estate showcase capturing the serene landscape, traditional heritage architecture, and natural light of Nakshatra Mana."
+      }
+    ]
   }
 ];
 
