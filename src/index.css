@@ -1523,13 +1523,14 @@ h1, h2, h3, h4, h5, h6 {
 .ticket-inner {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  gap: 0;
   z-index: 2;
+  text-align: center;
 }
 
 .ticket-icon {
-  font-size: 16px;
-  line-height: 1;
+  display: none !important;
 }
 
 .ticket-text {

@@ -375,6 +375,17 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
               })}
             </div>
           )}
+
+          {/* Clean Pink Note Section Below Videos without icon */}
+          <div className="reels-ticket-note-wrap">
+            <div className="reels-ticket-note">
+              <div className="ticket-inner">
+                <span className="ticket-text">
+                  {project.ticketNote || project.shortDescription || project.description}
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Bottom Story Description (Specs removed per request) */}

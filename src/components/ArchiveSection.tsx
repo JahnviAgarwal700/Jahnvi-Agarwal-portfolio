@@ -705,7 +705,6 @@ export const ArchiveSection: React.FC = () => {
                     <div className="reels-ticket-note-wrap archive-reels-note-top">
                       <div className="reels-ticket-note">
                         <div className="ticket-inner">
-                          <span className="ticket-icon">🎟️</span>
                           <span className="ticket-text">
                             These reels are from 2023 and were targeted for kids
                           </span>
