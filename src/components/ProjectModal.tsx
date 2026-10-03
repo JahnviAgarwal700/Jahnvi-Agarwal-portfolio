@@ -235,6 +235,10 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
     }
   };
 
+  const hasMixedRatios =
+    showcaseVideos.some((v) => v.aspectRatio === '9:16') &&
+    showcaseVideos.some((v) => v.aspectRatio === '16:9');
+
   return (
     <div
       className="project-viewer-backdrop"
@@ -290,7 +294,9 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
         <div className="story-reels-dark-section project-viewer-dark-section">
           {/* Seamless Video Mosaic: sticked together with white outer border */}
           <div
-            className={`story-reels-mosaic project-showcase-mosaic mosaic-count-${showcaseVideos.length}`}
+            className={`story-reels-mosaic project-showcase-mosaic mosaic-count-${showcaseVideos.length} ${
+              hasMixedRatios ? 'mosaic-mixed-ratios' : ''
+            }`}
           >
             {showcaseVideos.map((video, vIdx) => (
               <ShowcaseVideoCard

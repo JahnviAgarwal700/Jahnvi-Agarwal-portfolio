@@ -242,13 +242,12 @@ const RAW_PROJECTS: Project[] = [
     duration: "Full + Short",
     thumbnail: "/images/work-talking-head.png",
     videoUrl: "videos/varun-mayya-intro.mp4",
-    ticketNote: "From one piece of raw content into multiple high-retention formats — Long-form & viral adaptations",
+    ticketNote: "One Recording → One Long-Form Video + Multiple High-Retention Shorts",
     showcaseVideos: [
-      { id: "varun-long", title: "Varun & Maya — Full-Length", badge: "01 · Varun & Maya", videoUrl: "videos/varun-mayya-intro.mp4", poster: "images/work-talking-head.png", aspectRatio: "16:9" },
-      { id: "varun-one-person-biz", title: "The Fastest Way To Build A One-Person Business", badge: "02 · One-Person Business (2 Min)", videoUrl: "videos/varun-mayya-one-person-biz-2min.mp4", poster: "images/varun-mayya-biz-thumb.jpg", aspectRatio: "16:9" },
-      { id: "varun-short", title: "Varun & Maya — Viral Cut", badge: "03 · Viral Cut (9:16)", videoUrl: "videos/varun-mayya-reel.mp4", poster: "images/talking-head-thumb.png", aspectRatio: "9:16" }
+      { id: "varun-long", title: "Varun & Maya — Full-Length", badge: "01 · Full-Length (16:9)", videoUrl: "videos/varun-mayya-intro.mp4", poster: "images/work-talking-head.png", aspectRatio: "16:9" },
+      { id: "varun-short", title: "Varun & Maya — Short-Form", badge: "02 · Viral Short (9:16)", videoUrl: "videos/varun-mayya-reel.mp4", poster: "images/talking-head-thumb.png", aspectRatio: "9:16" }
     ],
-    shortDescription: "Varun & Maya (Dual Formats) & 16 Things Every Woman Should Know How To Do ALONE.",
+    shortDescription: "Varun & Maya · One recording repurposed into long-form video and high-retention shorts.",
     dualVideos: {
       fullLength: {
         title: "Full-Length Video",
@@ -282,7 +281,7 @@ const RAW_PROJECTS: Project[] = [
       thumbnail: "/images/16-things-alone-thumb.svg",
       description: "Engaging conversational talking head edit focused on pacing, natural sound leveling, and strong viewer retention."
     },
-    description: "I take raw footage and turn it into a fully polished, high-quality video ready to publish.",
+    description: "I turn your raw talking-head footage into a polished long-form video, then repurpose the best moments into multiple engaging Shorts.",
     role: "Lead Video Editor & Pacing Specialist",
     software: "Adobe Premiere Pro",
     year: "2024",

@@ -4719,6 +4719,22 @@ h1, h2, h3, h4, h5, h6 {
   aspect-ratio: 9 / 16;
 }
 
+/* Mixed Aspect Ratios for 2 Videos (16:9 Long-Form on left + 9:16 Short-Form on right) */
+.project-showcase-mosaic.mosaic-count-2.mosaic-mixed-ratios {
+  align-items: stretch;
+  max-width: 980px;
+}
+.project-showcase-mosaic.mosaic-count-2.mosaic-mixed-ratios .project-mosaic-col.aspect-widescreen {
+  flex: 0 0 76%;
+  width: 76%;
+  aspect-ratio: 16 / 9;
+}
+.project-showcase-mosaic.mosaic-count-2.mosaic-mixed-ratios .project-mosaic-col.aspect-vertical {
+  flex: 0 0 24%;
+  width: 24%;
+  aspect-ratio: 9 / 16;
+}
+
 /* Column Ratios for 3 Videos (e.g. Talking Head: 16:9 + 16:9 + 9:16) */
 .project-showcase-mosaic.mosaic-count-3 {
   align-items: stretch;
