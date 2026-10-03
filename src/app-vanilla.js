@@ -234,7 +234,7 @@ function renderPortfolio() {
                   <a href="#work" class="btn-hero-work">
                     VIEW MY WORK
                   </a>
-                  <a href="https://wa.me/916396124279?text=Hi%20Jahnvi%2C%20I%20came%20across%20your%20portfolio%20and%20wanted%20to%20discuss%20a%20project%20with%20you." target="_blank" rel="noopener noreferrer" class="btn-hero-connect">
+                  <a href="#contact" class="btn-hero-connect">
                     LET'S CONNECT
                   </a>
                 </div>

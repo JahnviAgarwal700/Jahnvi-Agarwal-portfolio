@@ -128,8 +128,16 @@ export const Hero: React.FC<HeroProps> = () => {
               </a>
               <a
                 href="#contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const target = document.getElementById('contact');
+                  if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    window.history.pushState(null, '', '#contact');
+                  }
+                }}
                 className="btn-hero-connect"
-                aria-label="Go to contact section"
+                aria-label="Scroll down to contact section"
               >
                 LET'S CONNECT
               </a>

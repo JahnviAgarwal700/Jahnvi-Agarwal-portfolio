@@ -3153,6 +3153,7 @@ h1, h2, h3, h4, h5, h6 {
    10. Section 07: Contact
    -------------------------------------------------------------------------- */
 .contact-section {
+  scroll-margin-top: 50px;
   padding-top: clamp(32px, 4vw, 54px);
   padding-bottom: clamp(60px, 7vw, 100px);
   background-color: var(--white);
