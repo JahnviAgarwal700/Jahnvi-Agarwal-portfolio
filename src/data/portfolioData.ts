@@ -397,23 +397,23 @@ const RAW_PROJECTS: Project[] = [
     year: "2024"
   },
 
-  // ─── 08. Voice Documentary (Diana & Donald Trump) ──────────────────────────
+  // ─── 08. Faceless YouTube Documentary (Diana & Donald Trump) ──────────────────
   {
     id: "documentary",
-    title: "Voice Documentary",
-    heading: "Voice Documentary",
-    category: "Voice Documentary",
+    title: "Faceless YouTube Documentary",
+    heading: "Faceless YouTube Documentary",
+    category: "Faceless Documentary",
     aspectRatio: "16:9",
     duration: "2 Documentaries",
     thumbnail: "/images/doc-princess-diana-thumb.jpg",
     videoUrl: "videos/princess-diana.mp4",
-    ticketNote: "Archival voice documentaries weaving rare historical footage, voiceover & narrative pacing",
+    ticketNote: "Scriptwriting, Voice-Over & Video Editing",
     showcaseVideos: [
       { id: "diana", title: "Princess Diana", badge: "01 · Princess Diana", videoUrl: "videos/princess-diana.mp4", poster: "images/doc-princess-diana-thumb.jpg", aspectRatio: "16:9" },
       { id: "trump", title: "Donald Trump", badge: "02 · Donald Trump", videoUrl: "videos/donald-trump.mp4", poster: "images/documentary-trump-thumb.png", aspectRatio: "16:9" }
     ],
-    shortDescription: "Princess Diana & Donald Trump · Archival voice documentary edits weaving historical footage, voiceover, and narrative pacing.",
-    description: "Archival voice documentary edits featuring Princess Diana and Donald Trump, weaving rare historical footage, voiceover storytelling, and atmospheric pacing into engaging narrative experiences.",
+    shortDescription: "Princess Diana & Donald Trump · Scriptwriting, voice-over & video editing.",
+    description: "I can handle the complete documentary workflow from research and scriptwriting to voice-over, video editing and final delivery. I have created faceless YouTube documentaries like these built around strong narratives, archival footage, engaging visuals, and retention-focused editing.",
     role: "Lead Video Editor & Archival Researcher",
     software: "Adobe Premiere Pro",
     year: "2024",
