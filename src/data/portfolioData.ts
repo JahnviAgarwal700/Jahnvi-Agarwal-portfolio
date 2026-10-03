@@ -243,25 +243,24 @@ const RAW_PROJECTS: Project[] = [
     year: "2024"
   },
 
-  // ─── 03. Shorts (5 Shorts Slot) ───────────────────────────────────────────
+  // ─── 03. Shorts (4 Shorts Slot) ───────────────────────────────────────────
   {
     id: "shorts",
     title: "Shorts",
     heading: "Short Form",
     category: "Short Form",
     aspectRatio: "9:16",
-    duration: "5 Shorts",
+    duration: "4 Shorts",
     thumbnail: "/images/work-short-form.svg",
     videoUrl: "videos/1.mp4",
     ticketNote: "These short-form reels are engineered for high hook rate, rapid narrative pacing, and maximum retention",
     showcaseVideos: [
-      { id: "short-1", title: "Short 01", badge: "Reel 1", videoUrl: "videos/1.mp4", aspectRatio: "9:16" },
-      { id: "short-2", title: "Short 02", badge: "Reel 2", videoUrl: "videos/5.mp4", aspectRatio: "9:16" },
-      { id: "short-3", title: "Short 03", badge: "Reel 3", videoUrl: "videos/2.mp4", aspectRatio: "9:16" },
-      { id: "short-4", title: "Short 04", badge: "Reel 4", videoUrl: "videos/21.mp4", aspectRatio: "9:16" },
-      { id: "short-5", title: "Short 05", badge: "Reel 5", videoUrl: "videos/varun-mayya-reel.mp4", aspectRatio: "9:16" }
+      { id: "short-podcast", title: "Podcast Clips", badge: "Podcast Clips", videoUrl: "videos/1.mp4", aspectRatio: "9:16" },
+      { id: "short-tech", title: "Tech Shorts", badge: "Tech Shorts", videoUrl: "videos/varun-mayya-reel.mp4", aspectRatio: "9:16" },
+      { id: "short-ugc", title: "UGC Content", badge: "UGC Content", videoUrl: "videos/21.mp4", aspectRatio: "9:16" },
+      { id: "short-gaming", title: "Gaming Shorts", badge: "Gaming Shorts", videoUrl: "videos/2.mp4", aspectRatio: "9:16" }
     ],
-    shortDescription: "Viral high-retention short-form edits tailored for hook rate, rapid narrative pacing, and retention.",
+    shortDescription: "Podcast Clips, Tech Shorts, UGC Content & Gaming Shorts · High-retention vertical edits.",
     description: "High-retention vertical short-form video editing for Instagram Reels, YouTube Shorts, and TikTok. Engineered with kinetic pacing, animated text, sound design, and pattern interrupts.",
     role: "Short-Form Video Editor",
     software: "Adobe Premiere Pro & After Effects",
