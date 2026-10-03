@@ -222,7 +222,28 @@ const RAW_PROJECTS: Project[] = [
     featured: true
   },
 
-  // ─── 02. Shorts (5 Shorts Slot) ───────────────────────────────────────────
+  // ─── 02. Business Journalism or Documentary ───────────────────────────────
+  {
+    id: "business-journalism",
+    title: "Business Journalism or Documentary",
+    heading: "Business Journalism or Documentary",
+    category: "Business Journalism",
+    aspectRatio: "16:9",
+    duration: "02:18",
+    thumbnail: "/images/business-journalism-thumb.svg",
+    videoUrl: "videos/tamil-idli.mp4",
+    ticketNote: "From Scattered Footage to a Cohesive Documentary",
+    showcaseVideos: [
+      { id: "tamil-idli-cut", title: "How Mumbai Wakes Up to Tamilian Idlis", videoUrl: "videos/tamil-idli.mp4", poster: "images/business-journalism-thumb.svg", aspectRatio: "16:9" }
+    ],
+    shortDescription: "How Mumbai Wakes Up to Tamilian Idlis · From scattered footage to a cohesive documentary.",
+    description: "I can shape raw documentary footage into a polished journalism film that connects stories, builds narrative, and keeps viewers engaged.",
+    role: "Lead Video Editor & Storyteller",
+    software: "Adobe Premiere Pro",
+    year: "2024"
+  },
+
+  // ─── 03. Shorts (5 Shorts Slot) ───────────────────────────────────────────
   {
     id: "shorts",
     title: "Shorts",
@@ -244,27 +265,6 @@ const RAW_PROJECTS: Project[] = [
     description: "High-retention vertical short-form video editing for Instagram Reels, YouTube Shorts, and TikTok. Engineered with kinetic pacing, animated text, sound design, and pattern interrupts.",
     role: "Short-Form Video Editor",
     software: "Adobe Premiere Pro & After Effects",
-    year: "2024"
-  },
-
-  // ─── 03. Business Journalism or Documentary ───────────────────────────────
-  {
-    id: "business-journalism",
-    title: "Business Journalism or Documentary",
-    heading: "Business Journalism or Documentary",
-    category: "Business Journalism",
-    aspectRatio: "16:9",
-    duration: "02:18",
-    thumbnail: "/images/business-journalism-thumb.svg",
-    videoUrl: "videos/tamil-idli.mp4",
-    ticketNote: "From Scattered Footage to a Cohesive Documentary",
-    showcaseVideos: [
-      { id: "tamil-idli-cut", title: "How Mumbai Wakes Up to Tamilian Idlis", videoUrl: "videos/tamil-idli.mp4", poster: "images/business-journalism-thumb.svg", aspectRatio: "16:9" }
-    ],
-    shortDescription: "How Mumbai Wakes Up to Tamilian Idlis · From scattered footage to a cohesive documentary.",
-    description: "I can shape raw documentary footage into a polished journalism film that connects stories, builds narrative, and keeps viewers engaged.",
-    role: "Lead Video Editor & Storyteller",
-    software: "Adobe Premiere Pro",
     year: "2024"
   },
 
