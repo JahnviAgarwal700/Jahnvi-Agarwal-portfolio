@@ -214,7 +214,7 @@ const RAW_PROJECTS: Project[] = [
       thumbnail: "/images/16-things-alone-thumb.svg",
       description: "Engaging conversational talking head edit focused on pacing, natural sound leveling, and strong viewer retention."
     },
-    description: "I turn your raw talking-head footage into a polished long-form video, then repurpose the best moments into multiple engaging Shorts.",
+    description: "I turn your raw talking-head footage into a polished long-form video, then repurpose the best moments into multiple engaging Shorts. This clip was created as an editing sample for Varun Mayya.",
     role: "Lead Video Editor & Pacing Specialist",
     software: "Adobe Premiere Pro",
     year: "2024",
