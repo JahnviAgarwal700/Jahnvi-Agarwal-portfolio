@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Project, PROJECTS, ProjectShowcaseVideo } from '../data/portfolioData';
+import { MobileVideoLightbox } from './MobileVideoLightbox';
 
 interface ProjectModalProps {
   project: Project | null;
@@ -13,6 +14,8 @@ interface ShowcaseVideoCardProps {
   totalCount: number;
   activePlayingId: string | null;
   setActivePlayingId: (id: string | null) => void;
+  isMobile?: boolean;
+  onVideoClick?: (index: number) => void;
 }
 
 const ShowcaseVideoCard: React.FC<ShowcaseVideoCardProps> = ({
@@ -20,7 +23,9 @@ const ShowcaseVideoCard: React.FC<ShowcaseVideoCardProps> = ({
   index,
   totalCount,
   activePlayingId,
-  setActivePlayingId
+  setActivePlayingId,
+  isMobile = false,
+  onVideoClick
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -127,6 +132,15 @@ const ShowcaseVideoCard: React.FC<ShowcaseVideoCardProps> = ({
     }
   };
 
+  const handleCardClick = (e: React.MouseEvent) => {
+    if (isMobile && onVideoClick) {
+      e.stopPropagation();
+      onVideoClick(index);
+    } else if (video.videoUrl) {
+      togglePlay();
+    }
+  };
+
   // Compute column class based on totalCount and aspect ratio
   const isVertical = video.aspectRatio === '9:16';
   const colClass = `project-mosaic-col ${isVertical ? 'aspect-vertical' : 'aspect-widescreen'} count-${totalCount}`;
@@ -137,12 +151,12 @@ const ShowcaseVideoCard: React.FC<ShowcaseVideoCardProps> = ({
     >
       <div
         className={colClass}
-        onClick={video.videoUrl ? togglePlay : undefined}
+        onClick={handleCardClick}
         onMouseEnter={video.videoUrl ? handleMouseEnter : undefined}
         onMouseLeave={video.videoUrl ? handleMouseLeave : undefined}
         role="button"
         tabIndex={0}
-        aria-label={`${video.title || video.badge} — Click to play/pause`}
+        aria-label={`${video.title || video.badge} — ${isMobile ? 'Tap to enlarge' : 'Click to play/pause'}`}
       >
         {video.videoUrl ? (
           <>
@@ -236,7 +250,11 @@ const ShowcaseVideoCard: React.FC<ShowcaseVideoCardProps> = ({
 
       {/* Video Badge / Name text directly below this video */}
       {Boolean(video.badge) && (
-        <div className="showcase-item-badge-wrap">
+        <div
+          className="showcase-item-badge-wrap"
+          onClick={isMobile && onVideoClick ? (e) => { e.stopPropagation(); onVideoClick(index); } : undefined}
+          style={isMobile ? { cursor: 'pointer' } : undefined}
+        >
           <div className="video-under-badge">
             <span className="video-under-badge-text">{video.badge}</span>
           </div>
@@ -253,8 +271,23 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
 }) => {
   const dialogRef = useRef<HTMLDivElement>(null);
 
+  const [isMobile, setIsMobile] = useState<boolean>(() => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth <= 768;
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   // Derive showcase videos array
-  const showcaseVideos: ProjectShowcaseVideo[] =
+  const rawShowcaseVideos: ProjectShowcaseVideo[] =
     project && project.showcaseVideos && project.showcaseVideos.length > 0
       ? project.showcaseVideos
       : project
@@ -270,16 +303,29 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
         ]
       : [];
 
+  // In mobile version for short form content: show 4 reels and remove the gaming one
+  const showcaseVideos: ProjectShowcaseVideo[] =
+    isMobile && project?.id === 'shorts'
+      ? rawShowcaseVideos.filter((v) => v.id !== 'short-gaming')
+      : rawShowcaseVideos;
+
   const [activePlayingId, setActivePlayingId] = useState<string | null>(null);
+  const [mobileLightboxIndex, setMobileLightboxIndex] = useState<number | null>(null);
 
   // Automatically start playing the first video inside any box when opened or changed
   useEffect(() => {
+    setMobileLightboxIndex(null);
     if (project && showcaseVideos.length > 0 && showcaseVideos[0].videoUrl) {
       setActivePlayingId(showcaseVideos[0].id);
     } else {
       setActivePlayingId(null);
     }
   }, [project?.id]);
+
+  const handleOpenMobileLightbox = (index: number) => {
+    setActivePlayingId(null);
+    setMobileLightboxIndex(index);
+  };
 
   useEffect(() => {
     if (!project) return;
@@ -385,6 +431,19 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
 
         {/* Black Section with Seamless Video Columns */}
         <div className={`story-reels-dark-section project-viewer-dark-section project-dark-${project.id}`}>
+          {/* On mobile for shorts: render pink note above the mosaic (like 900K archive) */}
+          {isMobile && project.id === 'shorts' && (project.ticketNote || project.shortDescription || project.description) && (
+            <div className="reels-ticket-note-wrap archive-reels-note-top">
+              <div className="reels-ticket-note">
+                <div className="ticket-inner">
+                  <span className="ticket-text">
+                    {project.ticketNote || project.shortDescription || project.description}
+                  </span>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* Seamless Video Mosaic: sticked together with white outer border */}
           <div
             className={`project-showcase-mosaic mosaic-count-${showcaseVideos.length} ${
@@ -401,14 +460,14 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                 totalCount={showcaseVideos.length}
                 activePlayingId={activePlayingId}
                 setActivePlayingId={setActivePlayingId}
+                isMobile={isMobile}
+                onVideoClick={handleOpenMobileLightbox}
               />
             ))}
           </div>
 
-
-
-          {/* Clean Pink Note Section Below Videos without icon */}
-          {(project.ticketNote || project.shortDescription || project.description) && (
+          {/* Clean Pink Note Section Below Videos (for desktop or non-shorts) */}
+          {(!isMobile || project.id !== 'shorts') && (project.ticketNote || project.shortDescription || project.description) && (
             <div className="reels-ticket-note-wrap">
               <div className="reels-ticket-note">
                 <div className="ticket-inner">
@@ -428,6 +487,23 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
           </p>
         </div>
       </div>
+
+      {/* Mobile Enlarged Video Lightbox (allows visitors to see full resolution work on mobile) */}
+      {mobileLightboxIndex !== null && isMobile && (
+        <MobileVideoLightbox
+          videos={showcaseVideos.map((v) => ({
+            id: v.id,
+            title: v.title,
+            badge: v.badge,
+            videoUrl: v.videoUrl,
+            poster: v.poster,
+            aspectRatio: v.aspectRatio
+          }))}
+          currentIndex={mobileLightboxIndex}
+          onClose={() => setMobileLightboxIndex(null)}
+          onIndexChange={(newIdx) => setMobileLightboxIndex(newIdx)}
+        />
+      )}
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { getAssetUrl } from '../data/portfolioData';
+import { MobileVideoLightbox } from './MobileVideoLightbox';
 
 interface FolderItem {
   id: string;
@@ -251,7 +252,12 @@ export const YOUTUBE_900K_REELS: ReelItem[] = [
   }
 ];
 
-const StoryReelCard: React.FC<{ reel: ReelItem; index: number }> = ({ reel, index }) => {
+const StoryReelCard: React.FC<{
+  reel: ReelItem;
+  index: number;
+  isMobile?: boolean;
+  onMobileClick?: (index: number) => void;
+}> = ({ reel, index, isMobile = false, onMobileClick }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -451,16 +457,25 @@ const StoryReelCard: React.FC<{ reel: ReelItem; index: number }> = ({ reel, inde
     }
   };
 
+  const handleCardClick = (e: React.MouseEvent) => {
+    if (isMobile && onMobileClick) {
+      e.stopPropagation();
+      onMobileClick(index);
+    } else if (reel.videoUrl) {
+      togglePlay();
+    }
+  };
+
   return (
     <div
       ref={cardRef}
       className={`story-reel-col ${reel.videoUrl ? 'has-video' : 'is-placeholder'}`}
-      onClick={reel.videoUrl ? togglePlay : undefined}
+      onClick={reel.videoUrl ? handleCardClick : undefined}
       onMouseEnter={reel.videoUrl ? handleMouseEnter : undefined}
       onMouseLeave={reel.videoUrl ? handleMouseLeave : undefined}
       role={reel.videoUrl ? 'button' : undefined}
       tabIndex={reel.videoUrl ? 0 : undefined}
-      aria-label={`${reel.title}${reel.badge ? ` - ${reel.badge}` : ''}`}
+      aria-label={`${reel.title}${reel.badge ? ` - ${reel.badge}` : ''} — ${isMobile ? 'Tap to enlarge' : 'Click to play/pause'}`}
     >
       {reel.videoUrl ? (
         <>
@@ -530,7 +545,23 @@ export const ArchiveSection: React.FC = () => {
   const [expandedFolderId, setExpandedFolderId] = useState<string | null>(null);
   const [isExiting, setIsExiting] = useState(false);
   const [zoomedPhoto, setZoomedPhoto] = useState<string | null>(null);
+  const [activeMobileReelIndex, setActiveMobileReelIndex] = useState<number | null>(null);
   const hasPushedHistoryRef = useRef(false);
+
+  const [isMobile, setIsMobile] = useState<boolean>(() => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth <= 768;
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Lock background scroll when full-screen dossier is active
   useEffect(() => {
@@ -829,7 +860,13 @@ export const ArchiveSection: React.FC = () => {
                     {/* Seamless 9:16 Reel Columns sticked together like the photos above */}
                     <div className="story-reels-mosaic">
                       {YOUTUBE_900K_REELS.map((reel, rIdx) => (
-                        <StoryReelCard key={reel.id || rIdx} reel={reel} index={rIdx} />
+                        <StoryReelCard
+                          key={reel.id || rIdx}
+                          reel={reel}
+                          index={rIdx}
+                          isMobile={isMobile}
+                          onMobileClick={(idx) => setActiveMobileReelIndex(idx)}
+                        />
                       ))}
                     </div>
                   </div>
@@ -1050,6 +1087,23 @@ export const ArchiveSection: React.FC = () => {
             />
           </div>
         </div>
+      )}
+
+      {/* Lightbox for Mobile 900K Archive Reels (allows visitors to see full resolution work on mobile) */}
+      {activeMobileReelIndex !== null && isMobile && (
+        <MobileVideoLightbox
+          videos={YOUTUBE_900K_REELS.map((r) => ({
+            id: r.id,
+            title: r.title,
+            badge: r.badge,
+            videoUrl: r.videoUrl || '',
+            poster: r.poster,
+            aspectRatio: '9:16'
+          }))}
+          currentIndex={activeMobileReelIndex}
+          onClose={() => setActiveMobileReelIndex(null)}
+          onIndexChange={(newIdx) => setActiveMobileReelIndex(newIdx)}
+        />
       )}
     </section>
   );

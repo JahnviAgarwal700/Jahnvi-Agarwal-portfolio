@@ -150,8 +150,15 @@ export const getAssetUrl = (path: string): string => {
   if (path.startsWith('http://') || path.startsWith('https://') || path.startsWith('data:')) {
     return path;
   }
-  const cleanPath = path.replace(/^\.?\//, '');
   const base = ((import.meta as any).env?.BASE_URL as string) || '/';
+  if (base !== '/' && path.startsWith(base)) {
+    return path;
+  }
+  const cleanBase = base.replace(/^\/|\/$/g, '');
+  const cleanPath = path.replace(/^\.?\//, '');
+  if (cleanBase && cleanPath.startsWith(cleanBase + '/')) {
+    return base.endsWith('/') ? `${base}${cleanPath.slice(cleanBase.length + 1)}` : `${base}/${cleanPath.slice(cleanBase.length + 1)}`;
+  }
   return base.endsWith('/') ? `${base}${cleanPath}` : `${base}/${cleanPath}`;
 };
 
