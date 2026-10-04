@@ -52,10 +52,8 @@ export const Navbar: React.FC = () => {
         <div className="mobile-nav-menu is-open">
           <ul className="mobile-nav-links">
             <li><a href="#work" onClick={closeMenu}>Work</a></li>
-            <li><a href="#proof" onClick={closeMenu}>900K+ Proof</a></li>
             <li><a href="#what-i-edit" onClick={closeMenu}>What I Edit</a></li>
             <li><a href="#about" onClick={closeMenu}>About</a></li>
-            <li><a href="#behind-the-edit" onClick={closeMenu}>Behind the Edit</a></li>
             <li><a href="#contact" onClick={closeMenu}>Contact</a></li>
           </ul>
 
