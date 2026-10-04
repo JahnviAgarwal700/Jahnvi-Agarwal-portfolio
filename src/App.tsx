@@ -7,7 +7,6 @@ import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { ProjectModal } from './components/ProjectModal';
 import { CustomCursor } from './components/CustomCursor';
-import { FilmGrain } from './components/FilmGrain';
 import { useScrollReveal } from './hooks/useScrollReveal';
 import { Project, PROJECTS } from './data/portfolioData';
 
@@ -25,9 +24,6 @@ export const App: React.FC = () => {
 
   return (
     <div className="portfolio-app">
-      {/* 00 — Organic Live Celluloid Film Grain Texture */}
-      <FilmGrain />
-
       {/* Interactive Custom Cursor */}
       <CustomCursor />
 

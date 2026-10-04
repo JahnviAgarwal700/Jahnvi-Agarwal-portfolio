@@ -35,6 +35,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           alt={`${project.title} preview`}
           className="card-media-img"
           loading="lazy"
+          decoding="async"
         />
 
         {/* White Video Play Icon Button - Always visible so visitors know it's a video */}

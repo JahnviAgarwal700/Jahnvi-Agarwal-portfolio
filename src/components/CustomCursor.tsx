@@ -2,22 +2,18 @@ import React, { useEffect, useRef } from 'react';
 import { getAssetUrl } from '../data/portfolioData';
 
 /**
- * CustomCursor Component
+ * CustomCursor Component (Zero-Latency, Ultra-High Performance)
  * 
  * Replaces system cursor on pointer/mouse devices with the bespoke custom yellow cursor.
  * Features:
- * - Ultra-smooth 60/120fps rAF loop with adaptive lerp (near-zero perceived latency)
- * - Micro-inertia tilt on directional changes
- * - Subtle idle floating/breathing movement
- * - Magnetic attraction to interactive elements (a, button, cards) by 3-5px
- * - Tactile click compression (15-20% scale-down + rotate) with elastic spring-back
- * - Single reused circular ripple element on click
- * - Tactile Web Audio / click.wav sound effect (debounced, autoplay safe)
+ * - Instantaneous 1:1 hardware pointer tracking (zero lerp delay, 0ms input lag)
+ * - Micro-inertia tilt on horizontal movement with automatic decay
+ * - Instant click compression (scale-down)
+ * - Zero background CPU/GPU overhead: NO continuous rAF loop when idle
  * - Auto-hidden over videos and video controls
  * - Completely disabled on mobile / touch devices
  */
 
-// Precise hotspot coordinates calculated from the 512x512 asset at 56px display size
 const CURSOR_WIDTH = 56;
 const CURSOR_HEIGHT = 56;
 const HOTSPOT_X = 11.05; // x: 101/512 * 56px
@@ -47,22 +43,18 @@ export const CustomCursor: React.FC = () => {
     const ripple = rippleRef.current;
     if (!wrapper || !graphic || !ripple) return;
 
-    // Movement & Physics State
-    let mouseX = -100;
-    let mouseY = -100;
-    let cursorX = -100;
-    let cursorY = -100;
-    let prevCursorX = -100;
-    let currentTilt = 0;
-
+    // State
     let isHovering = false;
     let isClicking = false;
     let isOverVideo = false;
     let isOpenMode = false;
-    let isOutside = true;
-    let rafId: number;
+    let isVisible = false;
 
-    // 2. Audio Engine for Click Sound
+    let prevX = -100;
+    let tiltDecayTimeout: number | null = null;
+    let currentTilt = 0;
+
+    // 2. Audio Engine for Click Sound (Lazy-initialized)
     let audioCtx: AudioContext | null = null;
     let clickBuffer: AudioBuffer | null = null;
     let lastSoundTime = 0;
@@ -77,7 +69,6 @@ export const CustomCursor: React.FC = () => {
 
         if (AudioContextClass) {
           audioCtx = new AudioContextClass();
-          // Load click.wav asset asynchronously
           fetch(getAssetUrl('sounds/click.wav'))
             .then((res) => {
               if (res.ok) return res.arrayBuffer();
@@ -92,9 +83,7 @@ export const CustomCursor: React.FC = () => {
             .then((decoded) => {
               clickBuffer = decoded || null;
             })
-            .catch(() => {
-              // Sound will fallback to high-precision Web Audio synthesis
-            });
+            .catch(() => {});
         }
         audioInitialized = true;
       } catch (_) {}
@@ -102,7 +91,6 @@ export const CustomCursor: React.FC = () => {
 
     const playClickSound = () => {
       const now = performance.now();
-      // Debounce: prevent duplicate overlapping sound triggers
       if (now - lastSoundTime < 50) return;
       lastSoundTime = now;
 
@@ -127,7 +115,6 @@ export const CustomCursor: React.FC = () => {
           source.connect(masterGain);
           source.start(0);
         } else {
-          // Fallback: Synthesize crisp mechanical switch click
           const t0 = audioCtx.currentTime;
           const osc = audioCtx.createOscillator();
           const clickGain = audioCtx.createGain();
@@ -148,7 +135,7 @@ export const CustomCursor: React.FC = () => {
       } catch (_) {}
     };
 
-    // Pointer Tracking
+    // Update target state only on element boundary transitions
     let lastTarget: EventTarget | null = null;
     let lastHoverState = false;
     let lastOpenMode = false;
@@ -156,7 +143,6 @@ export const CustomCursor: React.FC = () => {
     const updateTargetState = (target: HTMLElement | null) => {
       if (!target) return;
 
-      // Check if mouse is over an openable video card in selected work
       const openTarget = Boolean(
         target.closest('[data-cursor-open="true"], .card-media-box, .work-card')
       );
@@ -170,13 +156,11 @@ export const CustomCursor: React.FC = () => {
         }
       }
 
-      // Check if mouse is over a playing video player or modal container
       const overVideo = Boolean(
         target.closest('video, .video-player-container, .video-wrapper, iframe, .allow-system-cursor')
       );
       isOverVideo = overVideo && !isOpenMode;
 
-      // Check if hovering an interactive link/button
       const isInteractive = Boolean(
         target.closest(
           'a, button, [role="button"], input, select, textarea, .project-card, .btn-hero-work, .btn-hero-connect, .nav-link, .modal-close-btn, .playlist-track, .portfolio-card, .desk-mosaic-item, .desk-mosaic-img, .desk-lightbox-close'
@@ -191,21 +175,58 @@ export const CustomCursor: React.FC = () => {
         } else {
           graphic.classList.remove('is-hovering');
         }
+        applyGraphicTransform();
+      }
+
+      // Hide or show cursor
+      if (isOverVideo) {
+        wrapper.style.opacity = '0';
+      } else if (isVisible) {
+        wrapper.style.opacity = '1';
       }
     };
 
-    const handlePointerMove = (e: PointerEvent) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
+    const applyGraphicTransform = () => {
+      const scaleStr = isClicking ? ' scale(0.85)' : isHovering ? ' scale(1.12)' : '';
+      const tiltStr = currentTilt !== 0 ? ` rotate(${currentTilt.toFixed(1)}deg)` : '';
+      graphic.style.transform = `${tiltStr}${scaleStr}`;
+    };
 
-      if (isOutside) {
-        isOutside = false;
-        cursorX = mouseX;
-        cursorY = mouseY;
-        prevCursorX = cursorX;
+    // Instantaneous 1:1 hardware pointer tracking (Zero Lerp Lag!)
+    const handlePointerMove = (e: PointerEvent) => {
+      const x = e.clientX;
+      const y = e.clientY;
+
+      if (!isVisible) {
+        isVisible = true;
+        if (!isOverVideo) {
+          wrapper.style.opacity = '1';
+        }
       }
 
-      // Only evaluate element hierarchy when crossing element boundaries (prevents 120Hz-1000Hz layout thrashing)
+      // Direct transform translation: 0ms delay, instantaneous cursor tracking
+      const renderX = x - HOTSPOT_X;
+      const renderY = y - HOTSPOT_Y;
+      wrapper.style.transform = `translate3d(${renderX}px, ${renderY}px, 0)`;
+
+      // Directional velocity micro-tilt
+      if (prevX !== -100) {
+        const velX = x - prevX;
+        const targetTilt = Math.max(-5.5, Math.min(5.5, velX * 0.32));
+        if (Math.abs(targetTilt) > 0.5) {
+          currentTilt = targetTilt;
+          applyGraphicTransform();
+
+          if (tiltDecayTimeout) clearTimeout(tiltDecayTimeout);
+          tiltDecayTimeout = window.setTimeout(() => {
+            currentTilt = 0;
+            applyGraphicTransform();
+          }, 70);
+        }
+      }
+      prevX = x;
+
+      // Element boundary check
       if (e.target !== lastTarget) {
         lastTarget = e.target;
         updateTargetState(e.target as HTMLElement | null);
@@ -213,88 +234,47 @@ export const CustomCursor: React.FC = () => {
     };
 
     const handlePointerDown = (e: PointerEvent) => {
-      // Left click only
       if (e.button !== 0) return;
 
       isClicking = true;
       if (isOpenMode) {
         wrapper.classList.add('is-clicking-open');
       }
+      graphic.classList.add('is-clicking');
+      applyGraphicTransform();
+
       initAudio();
       playClickSound();
 
-      // Trigger circular ripple at click coordinate
-      const clickX = e.clientX;
-      const clickY = e.clientY;
-
-      ripple.style.left = `${clickX}px`;
-      ripple.style.top = `${clickY}px`;
+      // Trigger ripple
+      ripple.style.left = `${e.clientX}px`;
+      ripple.style.top = `${e.clientY}px`;
       ripple.classList.remove('is-active');
-      // Trigger reflow to restart CSS keyframe animation
       void ripple.offsetWidth;
       ripple.classList.add('is-active');
-
-      graphic.classList.add('is-clicking');
     };
 
     const handlePointerUp = () => {
       isClicking = false;
       wrapper.classList.remove('is-clicking-open');
       graphic.classList.remove('is-clicking');
+      applyGraphicTransform();
     };
 
     const handleMouseLeave = () => {
-      isOutside = true;
+      isVisible = false;
+      wrapper.style.opacity = '0';
     };
 
     const handleMouseEnter = (e: MouseEvent) => {
-      isOutside = false;
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-    };
-
-    // 4. Ultra-Smooth 60/120fps Animation Loop
-    const renderLoop = () => {
-      if (!isOutside) {
-        const targetX = mouseX;
-        const targetY = mouseY;
-
-        // Fluid, ultra-creamy adaptive lerp:
-        const dist = Math.hypot(targetX - cursorX, targetY - cursorY);
-        const lerp = Math.min(0.55, Math.max(0.24, dist * 0.010));
-
-        cursorX += (targetX - cursorX) * lerp;
-        cursorY += (targetY - cursorY) * lerp;
-
-        // Smooth directional inertia tilt (clamped to ±5.5deg with exponential easing)
-        const velX = cursorX - prevCursorX;
-        prevCursorX = cursorX;
-        const targetTilt = Math.max(-5.5, Math.min(5.5, velX * 0.38));
-        currentTilt += (targetTilt - currentTilt) * 0.18;
-
-        // Subtle idle floating/breathing movement when cursor is nearly stationary
-        const time = performance.now() * 0.0022;
-        const idleFloatY = isHovering || isClicking || isOpenMode || dist > 2 ? 0 : Math.sin(time) * 1.2;
-
-        // Always position wrapper at precise pointer hotspot so cursor remains visible
-        const renderX = cursorX - HOTSPOT_X;
-        const renderY = cursorY - HOTSPOT_Y + idleFloatY;
-        wrapper.style.transform = `translate3d(${renderX.toFixed(1)}px, ${renderY.toFixed(1)}px, 0)`;
-
-        // Apply directional inertia tilt directly without CSS variable re-resolution
-        graphic.style.transform = `rotate(${currentTilt.toFixed(1)}deg)${isClicking ? ' scale(0.85)' : isHovering ? ' scale(1.15)' : ''}`;
-
-        // Handle visibility (hide over video or outside window)
-        const shouldHide = isOutside || isOverVideo;
-        wrapper.style.opacity = shouldHide ? '0' : '1';
-      } else {
-        wrapper.style.opacity = '0';
+      isVisible = true;
+      const renderX = e.clientX - HOTSPOT_X;
+      const renderY = e.clientY - HOTSPOT_Y;
+      wrapper.style.transform = `translate3d(${renderX}px, ${renderY}px, 0)`;
+      if (!isOverVideo) {
+        wrapper.style.opacity = '1';
       }
-
-      rafId = requestAnimationFrame(renderLoop);
     };
-
-    rafId = requestAnimationFrame(renderLoop);
 
     // Event listeners
     window.addEventListener('pointermove', handlePointerMove, { passive: true });
@@ -304,7 +284,7 @@ export const CustomCursor: React.FC = () => {
     document.addEventListener('mouseenter', handleMouseEnter);
 
     return () => {
-      cancelAnimationFrame(rafId);
+      if (tiltDecayTimeout) clearTimeout(tiltDecayTimeout);
       document.documentElement.classList.remove('custom-cursor-enabled');
       window.removeEventListener('pointermove', handlePointerMove);
       window.removeEventListener('pointerdown', handlePointerDown);
@@ -319,13 +299,11 @@ export const CustomCursor: React.FC = () => {
 
   return (
     <>
-      {/* Outer wrapper: position-translated via translate3d */}
       <div
         ref={cursorWrapperRef}
         className="custom-cursor-wrapper"
         aria-hidden="true"
       >
-        {/* Inner graphic: handles scale, click compression, rotation & idle hover */}
         <div ref={cursorGraphicRef} className="custom-cursor-graphic">
           <img
             src={getAssetUrl('images/custom-cursor.png')}
@@ -337,13 +315,11 @@ export const CustomCursor: React.FC = () => {
           />
         </div>
 
-        {/* Rounded block titled "OPEN" shown automatically over video cards */}
         <div className="custom-cursor-open-badge">
           <span className="badge-open-text">OPEN</span>
         </div>
       </div>
 
-      {/* Single reused click ripple element */}
       <div
         ref={rippleRef}
         className="custom-cursor-ripple"
