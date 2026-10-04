@@ -899,7 +899,7 @@ h1, h2, h3, h4, h5, h6 {
    ========================================================================== */
 .section-archive {
   padding-top: 0;
-  padding-bottom: clamp(20px, 2.5vw, 36px);
+  padding-bottom: clamp(80px, 9vw, 120px);
   background: radial-gradient(circle at 65% 20%, #FAF5EA 0%, #F3ECE0 100%); /* Warm studio lighting surface */
   position: relative;
   overflow: hidden;
@@ -3204,8 +3204,8 @@ h1, h2, h3, h4, h5, h6 {
    -------------------------------------------------------------------------- */
 .contact-section {
   scroll-margin-top: 50px;
-  padding-top: clamp(32px, 4vw, 54px);
-  padding-bottom: clamp(60px, 7vw, 100px);
+  padding-top: var(--section-spacing);
+  padding-bottom: var(--section-spacing);
   background-color: var(--white);
 }
 
