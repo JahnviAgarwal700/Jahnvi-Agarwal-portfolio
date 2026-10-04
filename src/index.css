@@ -4817,6 +4817,13 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0 auto;
   box-sizing: border-box;
   position: relative;
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.story-reels-mosaic.project-showcase-mosaic {
+  background-color: transparent !important;
+  border: none !important;
 }
 
 /* Video Unit wrapping each video and its direct name/badge below it */
@@ -4875,12 +4882,16 @@ h1, h2, h3, h4, h5, h6 {
   width: 50%;
 }
 
-/* Seamless connection when side-by-side in 2-video mosaics */
-.project-showcase-mosaic:not(.mosaic-single-vertical) .showcase-video-unit + .showcase-video-unit .project-mosaic-col {
-  border-left: 1px solid #FFFFFF;
-}
+/* Seamless connection when side-by-side in multi-video mosaics */
 .project-showcase-mosaic:not(.mosaic-single-vertical) .showcase-video-unit:first-child .project-mosaic-col {
   border-right: 1px solid #FFFFFF;
+}
+.project-showcase-mosaic:not(.mosaic-single-vertical) .showcase-video-unit:not(:first-child):not(:last-child) .project-mosaic-col {
+  border-left: 1px solid #FFFFFF;
+  border-right: 1px solid #FFFFFF;
+}
+.project-showcase-mosaic:not(.mosaic-single-vertical) .showcase-video-unit:last-child .project-mosaic-col {
+  border-left: 1px solid #FFFFFF;
 }
 
 /* All Vertical Shorts (e.g. Shorts section) */
@@ -4939,7 +4950,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 14px;
   width: 100%;
   box-sizing: border-box;
 }
@@ -4948,24 +4959,35 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
   border-radius: 999px;
-  padding: 6px 14px;
+  padding: 6px 18px;
   box-sizing: border-box;
   max-width: 95%;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .video-under-badge-text {
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.92);
-  letter-spacing: 0.02em;
+  font-family: 'Google Sans Flex', 'Inter', -apple-system, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #FFFFFF;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.showcase-video-unit:hover .video-under-badge {
+  background: rgba(255, 199, 0, 0.22);
+  border-color: #FFC700;
+  transform: translateY(-2px);
+}
+
+.showcase-video-unit:hover .video-under-badge-text {
+  color: #FFC700;
 }
 
 /* Project Viewer Footer: Clean Editorial Description on White Background */
@@ -5152,18 +5174,22 @@ h1, h2, h3, h4, h5, h6 {
 
   .project-showcase-mosaic.mosaic-all-vertical .showcase-video-unit.count-4 .video-under-badge,
   .project-viewer-shorts .showcase-video-unit.count-4 .video-under-badge {
-    padding: 3px 4px !important;
-    border-radius: 5px !important;
+    padding: 4px 8px !important;
+    border-radius: 999px !important;
+    background: rgba(255, 255, 255, 0.14) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
     max-width: 100% !important;
   }
 
   .project-showcase-mosaic.mosaic-all-vertical .showcase-video-unit.count-4 .video-under-badge-text,
   .project-viewer-shorts .showcase-video-unit.count-4 .video-under-badge-text {
-    font-size: 8.5px !important;
-    line-height: 1.15 !important;
-    letter-spacing: -0.2px !important;
-    white-space: normal !important;
-    word-break: break-word !important;
+    font-size: 10px !important;
+    font-weight: 600 !important;
+    color: #FFFFFF !important;
+    line-height: 1.2 !important;
+    letter-spacing: 0.3px !important;
+    text-transform: uppercase !important;
+    white-space: nowrap !important;
     text-align: center !important;
   }
 }

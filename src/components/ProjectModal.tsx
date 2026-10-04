@@ -349,7 +349,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
         <div className={`story-reels-dark-section project-viewer-dark-section project-dark-${project.id}`}>
           {/* Seamless Video Mosaic: sticked together with white outer border */}
           <div
-            className={`story-reels-mosaic project-showcase-mosaic mosaic-count-${showcaseVideos.length} ${
+            className={`project-showcase-mosaic mosaic-count-${showcaseVideos.length} ${
               hasMixedRatios ? 'mosaic-mixed-ratios' : ''
             } ${isSingleVertical ? 'mosaic-single-vertical' : ''} ${
               isAllVertical ? 'mosaic-all-vertical' : ''

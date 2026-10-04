@@ -234,12 +234,12 @@ const RAW_PROJECTS: Project[] = [
     videoUrl: "videos/cursor-buddy.mp4",
     ticketNote: "These short-form reels are engineered for high hook rate, rapid narrative pacing, and maximum retention",
     showcaseVideos: [
-      { id: "short-tech", title: "I'm building a buddy for your computer cursor", badge: "Tech Shorts", videoUrl: "videos/cursor-buddy.mp4", poster: "images/cursor-buddy-short-poster.jpg", aspectRatio: "9:16" },
-      { id: "short-godfather", title: "Godfather of Silicon Valley's Indian Mafia", badge: "Godfather of Silicon Valley", videoUrl: "videos/godfather-silicon-valley.mp4", poster: "images/godfather-short-poster.jpg", aspectRatio: "9:16" },
-      { id: "short-gaming", title: "Gaming Shorts", badge: "Gaming Shorts", videoUrl: "videos/2.mp4", poster: "images/gaming-short-poster.jpg", aspectRatio: "9:16" },
-      { id: "short-focus", title: "Your Phone Is the Enemy of Focus", badge: "Phone & Focus", videoUrl: "videos/phone-is-the-enemy-of-focus.mp4", poster: "images/phone-focus-short-poster.jpg", aspectRatio: "9:16" }
+      { id: "short-tech", title: "I'm building a buddy for your computer cursor", badge: "Tech", videoUrl: "videos/cursor-buddy.mp4", poster: "images/cursor-buddy-short-poster.jpg", aspectRatio: "9:16" },
+      { id: "short-godfather", title: "Godfather of Silicon Valley's Indian Mafia", badge: "Voiceover", videoUrl: "videos/godfather-silicon-valley.mp4", poster: "images/godfather-short-poster.jpg", aspectRatio: "9:16" },
+      { id: "short-focus", title: "Your Phone Is the Enemy of Focus", badge: "Podcast", videoUrl: "videos/phone-is-the-enemy-of-focus.mp4", poster: "images/phone-focus-short-poster.jpg", aspectRatio: "9:16" },
+      { id: "short-gaming", title: "Gaming Shorts", badge: "Gaming", videoUrl: "videos/2.mp4", poster: "images/gaming-short-poster.jpg", aspectRatio: "9:16" }
     ],
-    shortDescription: "Tech, Silicon Valley, Gaming & Mindset Shorts · High-retention vertical edits.",
+    shortDescription: "Tech, Voiceover, Podcast & Gaming Shorts · High-retention vertical edits.",
     description: "High-retention vertical short-form video editing for Instagram Reels, YouTube Shorts, and TikTok. Engineered with kinetic pacing, animated text, sound design, and pattern interrupts.",
     role: "Short-Form Video Editor",
     software: "Adobe Premiere Pro & After Effects",
