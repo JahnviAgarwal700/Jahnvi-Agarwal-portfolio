@@ -230,7 +230,7 @@ const RAW_PROJECTS: Project[] = [
     category: "Short Form",
     aspectRatio: "9:16",
     duration: "5 Shorts",
-    thumbnail: "/images/work-short-form.png",
+    thumbnail: "/images/work-short-form.png?v=5shorts",
     videoUrl: "videos/cursor-buddy.mp4",
     ticketNote: "Reel editing for TikTok, YT Shorts or Instagram",
     showcaseVideos: [
