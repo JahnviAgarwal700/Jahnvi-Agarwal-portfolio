@@ -126,10 +126,10 @@ export const PROFILE_DATA = {
     }
   },
   contact: {
-    heading: "Have a video in mind?",
-    subCopy: "Send me the footage or brief.",
+    heading: "Got a video in mind?",
+    subCopy: "Let's make something worth watching.",
     callout: "Let's make something worth watching.",
-    buttonText: "LET'S CONNECT",
+    buttonText: "HIT ME UP",
     email: "jahnviagarwal700@gmail.com",
     whatsapp: "+91 63961-24279",
     instagram: "https://instagram.com/jahnviagarwall",
