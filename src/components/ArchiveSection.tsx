@@ -875,31 +875,30 @@ export const ArchiveSection: React.FC = () => {
                     More About Me
                   </h1>
 
-                  {/* Side-by-side: Photo Box on left, White Text Box on right (as in tools i use) */}
-                  <div className="skills-side-by-side-wrap about-side-by-side-wrap">
-                    <div
-                      className="skills-photo-canva-box about-photo-canva-box"
-                      onClick={() => setZoomedPhoto(getAssetUrl('images/about-childhood.png'))}
-                      role="button"
-                      tabIndex={0}
-                      aria-label="View childhood photo full size"
-                      title="Click to zoom photo"
-                      onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setZoomedPhoto(getAssetUrl('images/about-childhood.png'))}
-                    >
-                      <img
-                        src={getAssetUrl('images/about-childhood.png')}
-                        alt="Jahnvi Agarwal — Childhood photo"
-                        className="skills-canva-img about-canva-img"
-                        loading="eager"
-                      />
-                    </div>
+                  {/* Photo Block: Sized to photo only like 900K story */}
+                  <div
+                    className="about-photo-block"
+                    aria-label="Photo Block"
+                    onClick={() => setZoomedPhoto(getAssetUrl('images/about-childhood.png'))}
+                    onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setZoomedPhoto(getAssetUrl('images/about-childhood.png'))}
+                    role="button"
+                    tabIndex={0}
+                    style={{ cursor: 'pointer' }}
+                    title="Click to zoom photo"
+                  >
+                    <img
+                      src={getAssetUrl('images/about-childhood.png')}
+                      alt="Jahnvi Agarwal — Childhood photo"
+                      className="about-photo-img"
+                      loading="eager"
+                    />
+                  </div>
 
-                    {/* Text in white box */}
-                    <div className="story-text-white-box skills-side-text-box about-side-text-box">
-                      <p className="story-thin-body-text">
-                        I am 21. Outside of editing, I’m naturally curious about technology, AI, and anything that lets me create or build something new. I like experimenting, learning by doing, and figuring out how things work. I’m always exploring new tools and ideas that can make the creative process faster, smarter, or simply more interesting. I’m based in India, proficient in English and Hindi and absolutely love what I do :).
-                      </p>
-                    </div>
+                  {/* Text in white box */}
+                  <div className="story-text-white-box about-text-box">
+                    <p className="story-thin-body-text">
+                      I am 21. Outside of editing, I’m naturally curious about technology, AI, and anything that lets me create or build something new. I like experimenting, learning by doing, and figuring out how things work. I’m always exploring new tools and ideas that can make the creative process faster, smarter, or simply more interesting. I’m based in India, proficient in English and Hindi and absolutely love what I do :).
+                    </p>
                   </div>
                 </div>
               ) : activeFolder.id === 'desk-tour' ? (

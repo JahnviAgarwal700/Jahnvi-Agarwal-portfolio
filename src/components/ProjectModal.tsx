@@ -118,76 +118,89 @@ const ShowcaseVideoCard: React.FC<ShowcaseVideoCardProps> = ({
 
   return (
     <div
-      className={colClass}
-      onClick={video.videoUrl ? togglePlay : undefined}
-      onMouseEnter={video.videoUrl ? handleMouseEnter : undefined}
-      onMouseLeave={video.videoUrl ? handleMouseLeave : undefined}
-      role="button"
-      tabIndex={0}
-      aria-label={`${video.title || video.badge} — Click to play/pause`}
+      className={`showcase-video-unit ${isVertical ? 'aspect-vertical' : 'aspect-widescreen'} count-${totalCount}`}
     >
-      {video.videoUrl ? (
-        <>
-          <video
-            ref={videoRef}
-            src={`${video.videoUrl}#t=0.001`}
-            poster={video.poster}
-            playsInline
-            loop
-            preload="metadata"
-            className="story-reel-video"
-            onPlay={() => setIsPlaying(true)}
-            onPause={() => setIsPlaying(false)}
-            onTimeUpdate={handleTimeUpdate}
-            onLoadedMetadata={handleTimeUpdate}
-            onSeeked={handleTimeUpdate}
-            onEnded={() => setProgress(100)}
-          />
+      <div
+        className={colClass}
+        onClick={video.videoUrl ? togglePlay : undefined}
+        onMouseEnter={video.videoUrl ? handleMouseEnter : undefined}
+        onMouseLeave={video.videoUrl ? handleMouseLeave : undefined}
+        role="button"
+        tabIndex={0}
+        aria-label={`${video.title || video.badge} — Click to play/pause`}
+      >
+        {video.videoUrl ? (
+          <>
+            <video
+              ref={videoRef}
+              src={`${video.videoUrl}#t=0.001`}
+              poster={video.poster}
+              playsInline
+              loop
+              preload="metadata"
+              className="story-reel-video"
+              onPlay={() => setIsPlaying(true)}
+              onPause={() => setIsPlaying(false)}
+              onTimeUpdate={handleTimeUpdate}
+              onLoadedMetadata={handleTimeUpdate}
+              onSeeked={handleTimeUpdate}
+              onEnded={() => setProgress(100)}
+            />
 
-          {/* Center Play/Pause Overlay Icon (visible only when paused) */}
-          {!isPlaying && (
-            <div className="story-reel-play-overlay" aria-hidden="true">
-              <div className="story-reel-play-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="#FFFFFF" stroke="none">
+            {/* Center Play/Pause Overlay Icon (visible only when paused) */}
+            {!isPlaying && (
+              <div className="story-reel-play-overlay" aria-hidden="true">
+                <div className="story-reel-play-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="#FFFFFF" stroke="none">
+                    <polygon points="5 3 19 12 5 21 5 3" />
+                  </svg>
+                </div>
+              </div>
+            )}
+
+            {/* Yellow Progress Scrubber Line on Video Bottom */}
+            <div
+              className="video-progress-track"
+              onClick={handleProgressClick}
+              title="Video progress scrubber"
+            >
+              <div
+                className="video-progress-fill"
+                style={{ width: `${Math.min(100, Math.max(0, progress))}%` }}
+              />
+            </div>
+          </>
+        ) : (
+          <div className="story-reel-placeholder">
+            <div className="story-reel-empty-frame">
+              <div className="story-reel-ph-play">
+                <svg
+                  width="28"
+                  height="28"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="rgba(255, 255, 255, 0.6)"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
                   <polygon points="5 3 19 12 5 21 5 3" />
                 </svg>
               </div>
+              <div className="story-reel-ph-meta">
+                <span className="story-reel-ph-title">{video.title || `Reel ${index + 1}`}</span>
+                <span className="story-reel-ph-status">{isVertical ? '9 : 16' : '16 : 9'}</span>
+              </div>
             </div>
-          )}
-
-          {/* Yellow Progress Scrubber Line on Video Bottom */}
-          <div
-            className="video-progress-track"
-            onClick={handleProgressClick}
-            title="Video progress scrubber"
-          >
-            <div
-              className="video-progress-fill"
-              style={{ width: `${Math.min(100, Math.max(0, progress))}%` }}
-            />
           </div>
-        </>
-      ) : (
-        <div className="story-reel-placeholder">
-          <div className="story-reel-empty-frame">
-            <div className="story-reel-ph-play">
-              <svg
-                width="28"
-                height="28"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="rgba(255, 255, 255, 0.6)"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <polygon points="5 3 19 12 5 21 5 3" />
-              </svg>
-            </div>
-            <div className="story-reel-ph-meta">
-              <span className="story-reel-ph-title">{video.title || `Reel ${index + 1}`}</span>
-              <span className="story-reel-ph-status">{isVertical ? '9 : 16' : '16 : 9'}</span>
-            </div>
+        )}
+      </div>
+
+      {/* Video Badge / Name text directly below this video */}
+      {Boolean(video.badge) && (
+        <div className="showcase-item-badge-wrap">
+          <div className="video-under-badge">
+            <span className="video-under-badge-text">{video.badge}</span>
           </div>
         </div>
       )}
@@ -289,7 +302,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
       aria-modal="true"
       aria-labelledby="modal-project-title"
     >
-      <div className="project-viewer-container" ref={dialogRef} tabIndex={-1}>
+      <div className={`project-viewer-container project-viewer-${project.id}`} ref={dialogRef} tabIndex={-1}>
         {/* Top Header Row with Title, Nav and Close */}
         <div className="project-viewer-header">
           <div className="project-viewer-title-wrap">
@@ -333,7 +346,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
         </div>
 
         {/* Black Section with Seamless Video Columns */}
-        <div className="story-reels-dark-section project-viewer-dark-section">
+        <div className={`story-reels-dark-section project-viewer-dark-section project-dark-${project.id}`}>
           {/* Seamless Video Mosaic: sticked together with white outer border */}
           <div
             className={`story-reels-mosaic project-showcase-mosaic mosaic-count-${showcaseVideos.length} ${
@@ -354,34 +367,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
             ))}
           </div>
 
-          {/* Text Labels Right Below Videos (prevents covering subtitles) */}
-          {showcaseVideos.some((v) => Boolean(v.badge)) && (
-            <div
-              className={`showcase-labels-row mosaic-count-${showcaseVideos.length} ${
-                hasMixedRatios ? 'mosaic-mixed-ratios' : ''
-              } ${isSingleVertical ? 'mosaic-single-vertical' : ''} ${
-                isAllVertical ? 'mosaic-all-vertical' : ''
-              }`}
-            >
-              {showcaseVideos.map((video, vIdx) => {
-                const isVertical = video.aspectRatio === '9:16';
-                return (
-                  <div
-                    key={video.id || vIdx}
-                    className={`showcase-label-col ${
-                      isVertical ? 'aspect-vertical' : 'aspect-widescreen'
-                    } count-${showcaseVideos.length}`}
-                  >
-                    {Boolean(video.badge) && (
-                      <div className="video-under-badge">
-                        <span className="video-under-badge-text">{video.badge}</span>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          )}
+
 
           {/* Clean Pink Note Section Below Videos without icon */}
           {(project.ticketNote || project.shortDescription || project.description) && (

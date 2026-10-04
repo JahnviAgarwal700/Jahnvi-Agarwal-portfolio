@@ -2000,50 +2000,54 @@ h1, h2, h3, h4, h5, h6 {
 .about-clean-page {
   display: flex;
   flex-direction: column;
-  gap: 0 !important;
-}
-
-.about-canva-img {
-  aspect-ratio: 738 / 554;
-}
-
-.about-photo-placeholder {
-  width: 100%;
-  height: 100%;
-  min-height: clamp(208px, 25vw, 348px);
-  border: 2px dashed rgba(17, 17, 17, 0.18);
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 12px;
-  background-color: rgba(255, 255, 255, 0.6);
-  color: var(--black-muted);
-  transition: border-color 0.25s ease, background-color 0.25s ease;
+  gap: 0 !important;
+  max-width: 640px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.about-clean-page .story-clean-title {
+  margin-bottom: clamp(16px, 2vw, 24px);
+  text-align: center;
+  width: 100%;
+}
+
+.about-photo-block {
+  max-width: 620px;
+  width: 100%;
+  border: 3px solid #FFFFFF;
+  background-color: #FFFFFF;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.16);
+  padding: 0 !important;
+  border-radius: 0 !important;
+  overflow: hidden;
   box-sizing: border-box;
+  margin: 0 auto clamp(16px, 2vw, 24px) auto;
+  display: block;
+  cursor: pointer;
+  position: relative;
 }
 
-.about-photo-placeholder:hover {
-  border-color: rgba(17, 17, 17, 0.35);
-  background-color: rgba(255, 255, 255, 0.9);
+.about-photo-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 738 / 554;
+  object-fit: cover;
+  border-radius: 0 !important;
+  display: block;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
 }
 
-.photo-placeholder-icon {
-  opacity: 0.45;
-}
-
-.photo-placeholder-label {
-  font-family: var(--font-body);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  opacity: 0.55;
-  text-transform: uppercase;
+.about-photo-block:hover .about-photo-img {
+  transform: scale(1.04);
 }
 
 .about-text-box {
-  margin-top: clamp(7px, 1vw, 9px) !important;
+  max-width: 620px;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 auto !important;
 }
 
 /* ==========================================================================
@@ -4811,75 +4815,87 @@ h1, h2, h3, h4, h5, h6 {
   flex-wrap: nowrap;
   gap: 0;
   margin: 0 auto;
-  border: 3px solid #FFFFFF;
-  background-color: #FFFFFF;
-  box-shadow: none; /* No cheap glow */
   box-sizing: border-box;
-  overflow: visible;
   position: relative;
 }
 
-/* Individual Seamless Column */
+/* Video Unit wrapping each video and its direct name/badge below it */
+.showcase-video-unit {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Individual Video Column */
 .project-mosaic-col {
   position: relative;
   overflow: hidden;
-  border: 1.5px solid #FFFFFF;
+  border: 2px solid #FFFFFF;
   background-color: #0B0B0B;
   box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  width: 100%;
   transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), z-index 0.01s;
 }
 
 .project-mosaic-col:hover {
-  transform: scale(1.03);
+  transform: scale(1.02);
   z-index: 30;
-  box-shadow: none; /* No cheap glow */
 }
 
-/* Column Ratios for 1 Video (Edge-to-edge frame, eliminates side white pillars) */
+/* Column Ratios for 1 Video */
 .project-showcase-mosaic.mosaic-count-1 {
   max-width: 960px;
-  background-color: #0B0B0B;
 }
 
 .project-showcase-mosaic.mosaic-count-1.mosaic-single-vertical {
   max-width: 440px;
 }
 
-.project-mosaic-col.count-1 {
+.showcase-video-unit.count-1 {
   flex: 0 0 100%;
   width: 100%;
-  max-width: 100%;
-  margin: 0;
-  border: none;
 }
-.project-mosaic-col.count-1.aspect-widescreen {
+
+.project-mosaic-col.aspect-widescreen {
   aspect-ratio: 16 / 9;
 }
-.project-mosaic-col.count-1.aspect-vertical {
+
+.project-mosaic-col.aspect-vertical {
   aspect-ratio: 9 / 16;
 }
 
 /* Column Ratios for 2 Videos */
-.project-mosaic-col.count-2 {
+.showcase-video-unit.count-2 {
   flex: 0 0 50%;
   width: 50%;
 }
-.project-mosaic-col.count-2.aspect-widescreen {
-  aspect-ratio: 16 / 9;
+
+/* Seamless connection when side-by-side in 2-video mosaics */
+.project-showcase-mosaic:not(.mosaic-single-vertical) .showcase-video-unit + .showcase-video-unit .project-mosaic-col {
+  border-left: 1px solid #FFFFFF;
 }
-.project-mosaic-col.count-2.aspect-vertical {
-  aspect-ratio: 9 / 16;
+.project-showcase-mosaic:not(.mosaic-single-vertical) .showcase-video-unit:first-child .project-mosaic-col {
+  border-right: 1px solid #FFFFFF;
 }
 
-.project-showcase-mosaic.mosaic-count-2.mosaic-all-vertical,
-.showcase-labels-row.mosaic-count-2.mosaic-all-vertical {
+/* All Vertical Shorts (e.g. Shorts section) */
+.project-showcase-mosaic.mosaic-all-vertical {
   max-width: 560px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.project-showcase-mosaic.mosaic-all-vertical.mosaic-count-3 {
+  max-width: 780px;
+}
+
+.project-showcase-mosaic.mosaic-all-vertical.mosaic-count-4 {
+  max-width: 1020px;
 }
 
 /* Mixed Aspect Ratios for 2 Videos (16:9 Long-Form on left + 9:16 Short-Form on right) */
@@ -4887,45 +4903,69 @@ h1, h2, h3, h4, h5, h6 {
   align-items: stretch;
   max-width: 980px;
 }
-.project-showcase-mosaic.mosaic-count-2.mosaic-mixed-ratios .project-mosaic-col.aspect-widescreen {
+.project-showcase-mosaic.mosaic-count-2.mosaic-mixed-ratios .showcase-video-unit.aspect-widescreen {
   flex: 0 0 76%;
   width: 76%;
-  aspect-ratio: 16 / 9;
 }
-.project-showcase-mosaic.mosaic-count-2.mosaic-mixed-ratios .project-mosaic-col.aspect-vertical {
+.project-showcase-mosaic.mosaic-count-2.mosaic-mixed-ratios .showcase-video-unit.aspect-vertical {
   flex: 0 0 24%;
   width: 24%;
-  aspect-ratio: 9 / 16;
 }
 
-/* Column Ratios for 3 Videos (e.g. Talking Head: 16:9 + 16:9 + 9:16) */
-.project-showcase-mosaic.mosaic-count-3 {
-  align-items: stretch;
-  min-height: clamp(260px, 34vw, 380px);
-}
-.project-mosaic-col.count-3.aspect-widescreen {
+/* Column Ratios for 3 Videos */
+.showcase-video-unit.count-3.aspect-widescreen {
   flex: 1 1 38%;
   width: 38%;
-  aspect-ratio: 16 / 9;
 }
-.project-mosaic-col.count-3.aspect-vertical {
+.showcase-video-unit.count-3.aspect-vertical {
   flex: 0 0 24%;
   width: 24%;
-  aspect-ratio: 9 / 16;
 }
 
-/* Column Ratios for 4 Videos (Geeky Gamer highlight reels) */
-.project-mosaic-col.count-4 {
+/* Column Ratios for 4 Videos */
+.showcase-video-unit.count-4 {
   flex: 0 0 25%;
   width: 25%;
-  aspect-ratio: 9 / 16;
 }
 
-/* Column Ratios for 5 Videos (5 Shorts) */
-.project-mosaic-col.count-5 {
+/* Column Ratios for 5 Videos */
+.showcase-video-unit.count-5 {
   flex: 0 0 20%;
   width: 20%;
-  aspect-ratio: 9 / 16;
+}
+
+/* Video Badge / Name directly below this video */
+.showcase-item-badge-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.video-under-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  padding: 6px 14px;
+  box-sizing: border-box;
+  max-width: 95%;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.video-under-badge-text {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.92);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Project Viewer Footer: Clean Editorial Description on White Background */
@@ -4965,24 +5005,130 @@ h1, h2, h3, h4, h5, h6 {
     padding: 20px 12px;
   }
 
-  /* Seamless wrap on mobile devices */
+  /* Default mobile layout for multi-video projects:
+     Stack each video with its own title/badge directly underneath! */
   .project-showcase-mosaic {
-    flex-wrap: wrap;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    gap: 18px !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
 
-  .project-mosaic-col.count-5,
-  .project-mosaic-col.count-4 {
-    flex: 0 0 50%;
-    width: 50%;
+  .showcase-video-unit {
+    width: 100% !important;
+    flex: 0 0 100% !important;
   }
 
-  .project-mosaic-col.count-2,
-  .project-mosaic-col.count-3.aspect-widescreen,
-  .project-mosaic-col.count-3.aspect-vertical {
-    flex: 0 0 100%;
-    width: 100%;
-    aspect-ratio: auto;
-    min-height: 240px;
+  .showcase-video-unit .project-mosaic-col {
+    width: 100% !important;
+    border: 2px solid #FFFFFF !important;
+  }
+
+  .showcase-video-unit.aspect-widescreen .project-mosaic-col {
+    aspect-ratio: 16 / 9 !important;
+    min-height: unset !important;
+  }
+
+  .showcase-video-unit.aspect-vertical .project-mosaic-col {
+    aspect-ratio: 9 / 16 !important;
+    min-height: unset !important;
+  }
+
+  /* ──────────────────────────────────────────────────────────────────────────
+     SPECIAL CASE 1: TALKING HEAD VIDEOS ON MOBILE
+     Keep 16:9 on left (76%) and 9:16 on right (24%) side-by-side in one row,
+     with each badge placed directly below its corresponding video!
+     ────────────────────────────────────────────────────────────────────────── */
+  .project-showcase-mosaic.mosaic-mixed-ratios {
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    gap: 3px !important;
+    width: 100% !important;
+    max-width: 980px !important;
+  }
+
+  .project-showcase-mosaic.mosaic-mixed-ratios .showcase-video-unit.aspect-widescreen {
+    flex: 0 0 calc(76% - 2px) !important;
+    width: calc(76% - 2px) !important;
+  }
+
+  .project-showcase-mosaic.mosaic-mixed-ratios .showcase-video-unit.aspect-vertical {
+    flex: 0 0 calc(24% - 1px) !important;
+    width: calc(24% - 1px) !important;
+  }
+
+  .project-showcase-mosaic.mosaic-mixed-ratios .showcase-video-unit.aspect-widescreen .project-mosaic-col {
+    aspect-ratio: 16 / 9 !important;
+    width: 100% !important;
+  }
+
+  .project-showcase-mosaic.mosaic-mixed-ratios .showcase-video-unit.aspect-vertical .project-mosaic-col {
+    aspect-ratio: 9 / 16 !important;
+    width: 100% !important;
+  }
+
+  .project-showcase-mosaic.mosaic-mixed-ratios .showcase-video-unit.aspect-vertical .showcase-item-badge-wrap {
+    margin-top: 6px !important;
+  }
+
+  .project-showcase-mosaic.mosaic-mixed-ratios .showcase-video-unit.aspect-vertical .video-under-badge {
+    padding: 4px 6px !important;
+    border-radius: 6px !important;
+    max-width: 100% !important;
+  }
+
+  .project-showcase-mosaic.mosaic-mixed-ratios .showcase-video-unit.aspect-vertical .video-under-badge-text {
+    font-size: 9.5px !important;
+    line-height: 1.2 !important;
+    white-space: normal !important;
+    text-align: center !important;
+    display: block !important;
+  }
+
+  /* ──────────────────────────────────────────────────────────────────────────
+     SPECIAL CASE 2: SHORTS IN RECENT WORK ON MOBILE
+     Keep all shorts side-by-side in one row like in PC,
+     with each badge directly below its short!
+     ────────────────────────────────────────────────────────────────────────── */
+  .project-showcase-mosaic.mosaic-all-vertical,
+  .project-viewer-shorts .project-showcase-mosaic {
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    gap: 4px !important;
+    width: 100% !important;
+    max-width: 560px !important;
+    margin: 0 auto !important;
+  }
+
+  .project-showcase-mosaic.mosaic-all-vertical .showcase-video-unit.count-2,
+  .project-viewer-shorts .showcase-video-unit.count-2 {
+    flex: 0 0 calc(50% - 2px) !important;
+    width: calc(50% - 2px) !important;
+  }
+
+  .project-showcase-mosaic.mosaic-all-vertical .showcase-video-unit.count-3,
+  .project-viewer-shorts .showcase-video-unit.count-3 {
+    flex: 0 0 calc(33.333% - 3px) !important;
+    width: calc(33.333% - 3px) !important;
+  }
+
+  .project-showcase-mosaic.mosaic-all-vertical .showcase-video-unit.count-4,
+  .project-viewer-shorts .showcase-video-unit.count-4 {
+    flex: 0 0 calc(25% - 3px) !important;
+    width: calc(25% - 3px) !important;
+  }
+
+  .project-showcase-mosaic.mosaic-all-vertical .showcase-video-unit.count-5,
+  .project-viewer-shorts .showcase-video-unit.count-5 {
+    flex: 0 0 calc(20% - 3px) !important;
+    width: calc(20% - 3px) !important;
+  }
+
+  .project-showcase-mosaic.mosaic-all-vertical .project-mosaic-col,
+  .project-viewer-shorts .project-mosaic-col {
+    aspect-ratio: 9 / 16 !important;
+    width: 100% !important;
   }
 
   .reels-ticket-note {
@@ -4990,30 +5136,34 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 13px;
   }
 
-  .showcase-labels-row {
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 10px;
-  }
-
-  .showcase-labels-row.mosaic-count-5 .showcase-label-col,
-  .showcase-labels-row.mosaic-count-4 .showcase-label-col {
-    flex: 0 0 50%;
-    width: 50%;
-  }
-
-  .showcase-labels-row.mosaic-count-2 .showcase-label-col,
-  .showcase-labels-row.mosaic-count-2.mosaic-mixed-ratios .showcase-label-col.aspect-widescreen,
-  .showcase-labels-row.mosaic-count-2.mosaic-mixed-ratios .showcase-label-col.aspect-vertical {
-    flex: 0 0 100%;
-    width: 100%;
-  }
-
   .video-under-badge {
-    padding: 5px 12px;
+    padding: 5px 10px;
+    max-width: 95%;
   }
 
   .video-under-badge-text {
     font-size: 11px;
+  }
+
+  .project-showcase-mosaic.mosaic-all-vertical .showcase-video-unit.count-4 .showcase-item-badge-wrap,
+  .project-viewer-shorts .showcase-video-unit.count-4 .showcase-item-badge-wrap {
+    margin-top: 6px !important;
+  }
+
+  .project-showcase-mosaic.mosaic-all-vertical .showcase-video-unit.count-4 .video-under-badge,
+  .project-viewer-shorts .showcase-video-unit.count-4 .video-under-badge {
+    padding: 3px 4px !important;
+    border-radius: 5px !important;
+    max-width: 100% !important;
+  }
+
+  .project-showcase-mosaic.mosaic-all-vertical .showcase-video-unit.count-4 .video-under-badge-text,
+  .project-viewer-shorts .showcase-video-unit.count-4 .video-under-badge-text {
+    font-size: 8.5px !important;
+    line-height: 1.15 !important;
+    letter-spacing: -0.2px !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    text-align: center !important;
   }
 }
