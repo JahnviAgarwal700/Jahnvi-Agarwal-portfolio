@@ -445,13 +445,13 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
             </div>
           )}
 
-          {/* Seamless Video Mosaic: sticked together with white outer border */}
+          {/* Seamless Video Mosaic: 2 on top, 2 below on mobile */}
           <div
             className={`project-showcase-mosaic mosaic-count-${showcaseVideos.length} ${
               hasMixedRatios ? 'mosaic-mixed-ratios' : ''
             } ${isSingleVertical ? 'mosaic-single-vertical' : ''} ${
               isAllVertical ? 'mosaic-all-vertical' : ''
-            }`}
+            } ${isMobile && project.id === 'shorts' ? 'mosaic-shorts-mobile-2x2' : ''}`}
           >
             {showcaseVideos.map((video, vIdx) => (
               <ShowcaseVideoCard

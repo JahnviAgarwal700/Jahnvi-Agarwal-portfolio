@@ -5177,12 +5177,14 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   /* ──────────────────────────────────────────────────────────────────────────
-     SPECIAL CASE 2: SHORTS IN RECENT WORK ON MOBILE (2x2 GRID LIKE USER SPECIFIED)
+     SPECIAL CASE 2: SHORTS 2x2 GRID ON MOBILE (2 ON TOP, 2 BELOW)
      Row 1: Tech (left) + Voiceover (right)
      Row 2: Podcast (left) + Typography Style (right)
-     Clean white borders, black background, clearly visible badges below each reel!
+     Comfortable ~50% width per reel, sharp white borders, full readable badges!
      ────────────────────────────────────────────────────────────────────────── */
-  .project-viewer-shorts .project-showcase-mosaic {
+  .mosaic-shorts-mobile-2x2,
+  .project-viewer-shorts .project-showcase-mosaic,
+  .project-showcase-mosaic.mosaic-all-vertical.mosaic-count-4 {
     display: flex !important;
     flex-direction: row !important;
     flex-wrap: wrap !important;
@@ -5199,12 +5201,15 @@ h1, h2, h3, h4, h5, h6 {
     overflow: visible !important;
   }
 
+  .mosaic-shorts-mobile-2x2 .showcase-video-unit,
   .project-viewer-shorts .showcase-video-unit,
   .project-viewer-shorts .project-showcase-mosaic .showcase-video-unit,
-  .project-viewer-shorts .showcase-video-unit.count-4 {
-    flex: 0 0 calc(50% - 5px) !important;
-    width: calc(50% - 5px) !important;
-    max-width: calc(50% - 5px) !important;
+  .project-viewer-shorts .showcase-video-unit.count-4,
+  .project-showcase-mosaic.mosaic-all-vertical .showcase-video-unit.count-4,
+  .project-showcase-mosaic.mosaic-all-vertical.mosaic-count-4 .showcase-video-unit {
+    flex: 0 0 calc(50% - 6px) !important;
+    width: calc(50% - 6px) !important;
+    max-width: calc(50% - 6px) !important;
     margin: 0 !important;
     padding: 0 !important;
     box-sizing: border-box !important;
@@ -5213,10 +5218,12 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center !important;
   }
 
+  .mosaic-shorts-mobile-2x2 .showcase-video-unit .project-mosaic-col,
   .project-viewer-shorts .showcase-video-unit .project-mosaic-col,
   .project-viewer-shorts .showcase-video-unit:first-child .project-mosaic-col,
   .project-viewer-shorts .showcase-video-unit:last-child .project-mosaic-col,
-  .project-viewer-shorts .showcase-video-unit:not(:first-child):not(:last-child) .project-mosaic-col {
+  .project-viewer-shorts .showcase-video-unit:not(:first-child):not(:last-child) .project-mosaic-col,
+  .project-showcase-mosaic.mosaic-all-vertical.mosaic-count-4 .project-mosaic-col {
     aspect-ratio: 9 / 16 !important;
     width: 100% !important;
     border: 2px solid #FFFFFF !important;
@@ -5227,6 +5234,7 @@ h1, h2, h3, h4, h5, h6 {
     overflow: hidden !important;
   }
 
+  .mosaic-shorts-mobile-2x2 .showcase-video-unit .showcase-item-badge-wrap,
   .project-viewer-shorts .showcase-video-unit .showcase-item-badge-wrap {
     margin-top: 10px !important;
     display: flex !important;
@@ -5235,6 +5243,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 100% !important;
   }
 
+  .mosaic-shorts-mobile-2x2 .showcase-video-unit .video-under-badge,
   .project-viewer-shorts .showcase-video-unit .video-under-badge {
     padding: 5px 12px !important;
     border-radius: 999px !important;
@@ -5248,6 +5257,7 @@ h1, h2, h3, h4, h5, h6 {
     box-sizing: border-box !important;
   }
 
+  .mosaic-shorts-mobile-2x2 .showcase-video-unit .video-under-badge-text,
   .project-viewer-shorts .showcase-video-unit .video-under-badge-text {
     font-size: 11px !important;
     font-weight: 600 !important;
@@ -5261,7 +5271,7 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.2 !important;
   }
 
-  .project-showcase-mosaic.mosaic-all-vertical {
+  .project-showcase-mosaic.mosaic-all-vertical:not(.mosaic-count-4) {
     flex-direction: row !important;
     flex-wrap: nowrap !important;
     gap: 4px !important;
@@ -5270,22 +5280,17 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0 auto !important;
   }
 
-  .project-showcase-mosaic.mosaic-all-vertical .showcase-video-unit.count-2 {
+  .project-showcase-mosaic.mosaic-all-vertical:not(.mosaic-count-4) .showcase-video-unit.count-2 {
     flex: 0 0 calc(50% - 2px) !important;
     width: calc(50% - 2px) !important;
   }
 
-  .project-showcase-mosaic.mosaic-all-vertical .showcase-video-unit.count-3 {
+  .project-showcase-mosaic.mosaic-all-vertical:not(.mosaic-count-4) .showcase-video-unit.count-3 {
     flex: 0 0 calc(33.333% - 3px) !important;
     width: calc(33.333% - 3px) !important;
   }
 
-  .project-showcase-mosaic.mosaic-all-vertical .showcase-video-unit.count-4 {
-    flex: 0 0 calc(25% - 3px) !important;
-    width: calc(25% - 3px) !important;
-  }
-
-  .project-showcase-mosaic.mosaic-all-vertical .project-mosaic-col {
+  .project-showcase-mosaic.mosaic-all-vertical:not(.mosaic-count-4) .project-mosaic-col {
     aspect-ratio: 9 / 16 !important;
     width: 100% !important;
   }
