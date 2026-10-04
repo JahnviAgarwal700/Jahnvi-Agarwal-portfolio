@@ -5177,66 +5177,88 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   /* ──────────────────────────────────────────────────────────────────────────
-     SPECIAL CASE 2: SHORTS IN RECENT WORK ON MOBILE (EXACT 900K ARCHIVE STYLE)
-     4 reels seamlessly attached with 3px solid white border, zero gap,
-     1.5px border per item, and pink note on top!
+     SPECIAL CASE 2: SHORTS IN RECENT WORK ON MOBILE (2x2 GRID LIKE USER SPECIFIED)
+     Row 1: Tech (left) + Voiceover (right)
+     Row 2: Podcast (left) + Typography Style (right)
+     Clean white borders, black background, clearly visible badges below each reel!
      ────────────────────────────────────────────────────────────────────────── */
   .project-viewer-shorts .project-showcase-mosaic {
+    display: flex !important;
     flex-direction: row !important;
-    flex-wrap: nowrap !important;
-    gap: 0 !important;
+    flex-wrap: wrap !important;
+    justify-content: space-between !important;
+    align-items: flex-start !important;
+    gap: 16px 10px !important;
     width: 100% !important;
-    max-width: 100% !important;
+    max-width: 480px !important;
     margin: 0 auto !important;
-    border: 3px solid #FFFFFF !important;
-    background-color: #FFFFFF !important;
+    border: none !important;
+    background: transparent !important;
+    background-color: transparent !important;
     box-sizing: border-box !important;
-    overflow: hidden !important;
+    overflow: visible !important;
   }
 
-  .project-viewer-shorts .showcase-video-unit {
-    flex: 0 0 25% !important;
-    width: 25% !important;
+  .project-viewer-shorts .showcase-video-unit,
+  .project-viewer-shorts .project-showcase-mosaic .showcase-video-unit,
+  .project-viewer-shorts .showcase-video-unit.count-4 {
+    flex: 0 0 calc(50% - 5px) !important;
+    width: calc(50% - 5px) !important;
+    max-width: calc(50% - 5px) !important;
     margin: 0 !important;
     padding: 0 !important;
     box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
   }
 
-  .project-viewer-shorts .showcase-video-unit .project-mosaic-col {
+  .project-viewer-shorts .showcase-video-unit .project-mosaic-col,
+  .project-viewer-shorts .showcase-video-unit:first-child .project-mosaic-col,
+  .project-viewer-shorts .showcase-video-unit:last-child .project-mosaic-col,
+  .project-viewer-shorts .showcase-video-unit:not(:first-child):not(:last-child) .project-mosaic-col {
     aspect-ratio: 9 / 16 !important;
     width: 100% !important;
-    border: 1.5px solid #FFFFFF !important;
-    background-color: #111111 !important;
+    border: 2px solid #FFFFFF !important;
+    background-color: #0B0B0B !important;
     box-sizing: border-box !important;
     border-radius: 0 !important;
+    position: relative !important;
+    overflow: hidden !important;
   }
 
   .project-viewer-shorts .showcase-video-unit .showcase-item-badge-wrap {
-    margin-top: 8px !important;
+    margin-top: 10px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
   }
 
   .project-viewer-shorts .showcase-video-unit .video-under-badge {
-    padding: 4px 6px !important;
+    padding: 5px 12px !important;
     border-radius: 999px !important;
-    background: rgba(255, 255, 255, 0.15) !important;
+    background: rgba(255, 255, 255, 0.14) !important;
     border: 1px solid rgba(255, 255, 255, 0.3) !important;
     max-width: 100% !important;
-    min-height: 24px !important;
-    display: flex !important;
+    min-height: 28px !important;
+    display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
+    box-sizing: border-box !important;
   }
 
   .project-viewer-shorts .showcase-video-unit .video-under-badge-text {
-    font-size: 8.5px !important;
+    font-size: 11px !important;
     font-weight: 600 !important;
     color: #FFFFFF !important;
-    letter-spacing: 0.2px !important;
+    letter-spacing: 0.4px !important;
     text-transform: uppercase !important;
     white-space: nowrap !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
     text-align: center !important;
+    line-height: 1.2 !important;
   }
 
   .project-showcase-mosaic.mosaic-all-vertical {
