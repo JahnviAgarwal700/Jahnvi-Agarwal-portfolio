@@ -341,12 +341,12 @@ const RAW_PROJECTS: Project[] = [
     category: "Brand Films",
     aspectRatio: "16:9",
     duration: "2 Videos",
-    thumbnail: "/images/vidssave-thumb.png",
+    thumbnail: "/images/heroes-brand-films.png",
     videoUrl: "videos/3360.mp4",
     ticketNote: "High-Energy Brand Advertising",
     showcaseVideos: [
-      { id: "super-squad", title: "Back Up Launch Film", badge: "01 · Back Up Launch Film", videoUrl: "videos/3360.mp4", poster: "images/vidssave-thumb.png", aspectRatio: "16:9" },
-      { id: "vidssave", title: "Brand Campaign", badge: "02 · Brand Campaign", videoUrl: "videos/vidssave.mp4", poster: "images/work-commercial.png", aspectRatio: "16:9" }
+      { id: "super-squad", title: "Back Up Launch Film", badge: "01 · Back Up Launch Film", videoUrl: "videos/3360.mp4", poster: "images/heroes-brand-films.png", aspectRatio: "16:9" },
+      { id: "vidssave", title: "Brand Campaign", badge: "02 · Brand Campaign", videoUrl: "videos/vidssave.mp4", poster: "images/vidssave-thumb.png", aspectRatio: "16:9" }
     ],
     shortDescription: "Back Up Launch Film & Brand Campaign · High-energy brand advertising.",
     description: "I edited this commercial for Super Squad, combining dynamic visuals, fast-paced editing, sound design, music, and motion-driven storytelling to create an engaging brand advertisement designed to capture attention and communicate the brand with impact.",
@@ -359,7 +359,7 @@ const RAW_PROJECTS: Project[] = [
         title: "Back Up Launch Film",
         subtitle: "High-Energy Commercial Cut",
         videoUrl: "./videos/3360.mp4",
-        thumbnail: "/images/vidssave-thumb.png",
+        thumbnail: "/images/heroes-brand-films.png",
         badge: "01 · Back Up Launch Film",
         duration: "00:37",
         description: "I edited this commercial for Super Squad, combining dynamic visuals, fast-paced editing, sound design, music, and motion-driven storytelling to create an engaging brand advertisement designed to capture attention and communicate the brand with impact."
@@ -369,7 +369,7 @@ const RAW_PROJECTS: Project[] = [
         title: "Brand Campaign",
         subtitle: "Brand Commercial Master Edit",
         videoUrl: "./videos/vidssave.mp4",
-        thumbnail: "/images/work-commercial.png",
+        thumbnail: "/images/vidssave-thumb.png",
         badge: "02 · Brand Campaign",
         duration: "00:27",
         description: "Commercial advertisement focused on stopping the scroll, clear product value proposition, and clean kinetic typography."
