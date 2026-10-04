@@ -24,6 +24,7 @@ const ShowcaseVideoCard: React.FC<ShowcaseVideoCardProps> = ({
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
   const [progress, setProgress] = useState(0);
 
   const handleTimeUpdate = () => {
@@ -42,12 +43,22 @@ const ShowcaseVideoCard: React.FC<ShowcaseVideoCardProps> = ({
     videoRef.current.currentTime = fraction * videoRef.current.duration;
     setProgress(fraction * 100);
     if (videoRef.current.paused) {
+      videoRef.current.muted = false;
+      setIsMuted(false);
       videoRef.current
         .play()
         .then(() => setIsPlaying(true))
         .catch(() => {});
       setActivePlayingId(video.id);
     }
+  };
+
+  const toggleMute = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!videoRef.current) return;
+    const nextMuted = !videoRef.current.muted;
+    videoRef.current.muted = nextMuted;
+    setIsMuted(nextMuted);
   };
 
   // Automatic playback when this video is activePlayingId; pause when inactive
@@ -57,6 +68,7 @@ const ShowcaseVideoCard: React.FC<ShowcaseVideoCardProps> = ({
     if (activePlayingId === video.id) {
       // First attempt unmuted playback; if browser blocks unmuted autoplay, fall back to muted
       videoRef.current.muted = false;
+      setIsMuted(false);
       const playPromise = videoRef.current.play();
       if (playPromise !== undefined) {
         playPromise
@@ -66,6 +78,7 @@ const ShowcaseVideoCard: React.FC<ShowcaseVideoCardProps> = ({
           .catch(() => {
             if (videoRef.current) {
               videoRef.current.muted = true;
+              setIsMuted(true);
               videoRef.current
                 .play()
                 .then(() => setIsPlaying(true))
@@ -84,6 +97,8 @@ const ShowcaseVideoCard: React.FC<ShowcaseVideoCardProps> = ({
   const togglePlay = () => {
     if (!videoRef.current || !video.videoUrl) return;
     if (videoRef.current.paused) {
+      videoRef.current.muted = false;
+      setIsMuted(false);
       setActivePlayingId(video.id);
     } else {
       videoRef.current.pause();
@@ -141,11 +156,34 @@ const ShowcaseVideoCard: React.FC<ShowcaseVideoCardProps> = ({
               className="story-reel-video"
               onPlay={() => setIsPlaying(true)}
               onPause={() => setIsPlaying(false)}
+              onVolumeChange={() => setIsMuted(videoRef.current?.muted ?? false)}
               onTimeUpdate={handleTimeUpdate}
               onLoadedMetadata={handleTimeUpdate}
               onSeeked={handleTimeUpdate}
               onEnded={() => setProgress(100)}
             />
+
+            {/* Sound / Mute Toggle Button in Top Right */}
+            <button
+              type="button"
+              className={`story-reel-sound-btn ${isMuted ? 'is-muted' : 'is-unmuted'}`}
+              onClick={toggleMute}
+              aria-label={isMuted ? "Unmute audio" : "Mute audio"}
+              title={isMuted ? "Click to unmute" : "Click to mute"}
+            >
+              {isMuted ? (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                  <line x1="23" y1="9" x2="17" y2="15" />
+                  <line x1="17" y1="9" x2="23" y2="15" />
+                </svg>
+              ) : (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
+                </svg>
+              )}
+            </button>
 
             {/* Center Play/Pause Overlay Icon (visible only when paused) */}
             {!isPlaying && (
