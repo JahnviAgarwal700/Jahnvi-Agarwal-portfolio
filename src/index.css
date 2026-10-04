@@ -4950,6 +4950,10 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 1020px;
 }
 
+.project-showcase-mosaic.mosaic-all-vertical.mosaic-count-5 {
+  max-width: 1240px;
+}
+
 /* Mixed Aspect Ratios for 2 Videos (16:9 Long-Form on left + 9:16 Short-Form on right) */
 .project-showcase-mosaic.mosaic-count-2.mosaic-mixed-ratios {
   align-items: stretch;
@@ -5209,7 +5213,9 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .project-showcase-mosaic.mosaic-all-vertical .showcase-video-unit.count-4 .showcase-item-badge-wrap,
-  .project-viewer-shorts .showcase-video-unit.count-4 .showcase-item-badge-wrap {
+  .project-viewer-shorts .showcase-video-unit.count-4 .showcase-item-badge-wrap,
+  .project-showcase-mosaic.mosaic-all-vertical .showcase-video-unit.count-5 .showcase-item-badge-wrap,
+  .project-viewer-shorts .showcase-video-unit.count-5 .showcase-item-badge-wrap {
     margin-top: 6px !important;
   }
 
@@ -5222,6 +5228,19 @@ h1, h2, h3, h4, h5, h6 {
     max-width: 100% !important;
   }
 
+  .project-showcase-mosaic.mosaic-all-vertical .showcase-video-unit.count-5 .video-under-badge,
+  .project-viewer-shorts .showcase-video-unit.count-5 .video-under-badge {
+    padding: 3px 4px !important;
+    border-radius: 999px !important;
+    background: rgba(255, 255, 255, 0.14) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    max-width: 100% !important;
+    min-height: 26px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
   .project-showcase-mosaic.mosaic-all-vertical .showcase-video-unit.count-4 .video-under-badge-text,
   .project-viewer-shorts .showcase-video-unit.count-4 .video-under-badge-text {
     font-size: 10px !important;
@@ -5231,6 +5250,18 @@ h1, h2, h3, h4, h5, h6 {
     letter-spacing: 0.3px !important;
     text-transform: uppercase !important;
     white-space: nowrap !important;
+    text-align: center !important;
+  }
+
+  .project-showcase-mosaic.mosaic-all-vertical .showcase-video-unit.count-5 .video-under-badge-text,
+  .project-viewer-shorts .showcase-video-unit.count-5 .video-under-badge-text {
+    font-size: 8px !important;
+    font-weight: 600 !important;
+    color: #FFFFFF !important;
+    line-height: 1.15 !important;
+    letter-spacing: 0.1px !important;
+    text-transform: uppercase !important;
+    white-space: normal !important;
     text-align: center !important;
   }
 }

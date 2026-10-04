@@ -222,24 +222,25 @@ const RAW_PROJECTS: Project[] = [
     featured: true
   },
 
-  // ─── 02. Shorts (4 Shorts Slot) ───────────────────────────────────────────
+  // ─── 02. Short Form Content (5 Shorts Slot) ────────────────────────────────
   {
     id: "shorts",
-    title: "Shorts",
-    heading: "Short Form",
+    title: "Short Form Content",
+    heading: "Short Form Content",
     category: "Short Form",
     aspectRatio: "9:16",
-    duration: "4 Shorts",
+    duration: "5 Shorts",
     thumbnail: "/images/work-short-form.svg",
     videoUrl: "videos/cursor-buddy.mp4",
-    ticketNote: "These short-form reels are engineered for high hook rate, rapid narrative pacing, and maximum retention",
+    ticketNote: "Reel editing for TikTok, YT Shorts or Instagram",
     showcaseVideos: [
       { id: "short-tech", title: "I'm building a buddy for your computer cursor", badge: "Tech", videoUrl: "videos/cursor-buddy.mp4", poster: "images/cursor-buddy-short-poster.jpg", aspectRatio: "9:16" },
       { id: "short-godfather", title: "Godfather of Silicon Valley's Indian Mafia", badge: "Voiceover", videoUrl: "videos/godfather-silicon-valley.mp4", poster: "images/godfather-short-poster.jpg", aspectRatio: "9:16" },
       { id: "short-focus", title: "Your Phone Is the Enemy of Focus", badge: "Podcast", videoUrl: "videos/phone-is-the-enemy-of-focus.mp4", poster: "images/phone-focus-short-poster.jpg", aspectRatio: "9:16" },
+      { id: "short-typography", title: "Are You Struggling to Post Video Content", badge: "Typography Style", videoUrl: "videos/typography-style.mp4", poster: "images/typography-style-short-poster.jpg", aspectRatio: "9:16" },
       { id: "short-gaming", title: "Gaming Shorts", badge: "Gaming", videoUrl: "videos/2.mp4", poster: "images/gaming-short-poster.jpg", aspectRatio: "9:16" }
     ],
-    shortDescription: "Tech, Voiceover, Podcast & Gaming Shorts · High-retention vertical edits.",
+    shortDescription: "Reel editing for TikTok, YT Shorts or Instagram · Tech, Voiceover, Podcast, Typography & Gaming.",
     description: "High-retention vertical short-form video editing for Instagram Reels, YouTube Shorts, and TikTok. Engineered with kinetic pacing, animated text, sound design, and pattern interrupts.",
     role: "Short-Form Video Editor",
     software: "Adobe Premiere Pro & After Effects",
