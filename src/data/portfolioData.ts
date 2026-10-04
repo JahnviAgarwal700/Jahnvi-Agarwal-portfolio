@@ -212,15 +212,6 @@ const RAW_PROJECTS: Project[] = [
       caseStudyTitle: "FROM ONE VIDEO → MULTIPLE FORMATS",
       caseStudyDescription: "I edited the full-length video and then adapted the same content into a short-form version, adjusting pacing, framing, captions and visual emphasis for short-form viewing."
     },
-    extraVideo: {
-      title: "16 Things Every Woman Should Know How To Do ALONE",
-      subtitle: "Long Form Talking Head & Lifestyle Narrative",
-      duration: "24:13",
-      badge: "Featured Cut",
-      videoUrl: "./videos/16-things-alone.mp4",
-      thumbnail: "/images/16-things-alone-thumb.svg",
-      description: "Engaging conversational talking head edit focused on pacing, natural sound leveling, and strong viewer retention."
-    },
     description: "I turn your raw talking-head footage into a polished long-form video, then repurpose the best moments into multiple engaging Shorts. This clip was created as an editing sample for Varun Mayya.",
     role: "Lead Video Editor & Pacing Specialist",
     software: "Adobe Premiere Pro",
