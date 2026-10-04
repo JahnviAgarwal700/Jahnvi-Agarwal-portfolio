@@ -352,14 +352,15 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
 
   if (!project) return null;
 
-  const currentIndex = PROJECTS.findIndex((p) => p.id === project.id);
+  const visibleProjects = isMobile ? PROJECTS : PROJECTS.filter((p) => !p.mobileOnly);
+  const currentIndex = visibleProjects.findIndex((p) => p.id === project.id);
   const handlePrev = () => {
-    const prevIndex = (currentIndex - 1 + PROJECTS.length) % PROJECTS.length;
-    onSelectProject(PROJECTS[prevIndex]);
+    const prevIndex = (currentIndex - 1 + visibleProjects.length) % visibleProjects.length;
+    onSelectProject(visibleProjects[prevIndex]);
   };
   const handleNext = () => {
-    const nextIndex = (currentIndex + 1) % PROJECTS.length;
-    onSelectProject(PROJECTS[nextIndex]);
+    const nextIndex = (currentIndex + 1) % visibleProjects.length;
+    onSelectProject(visibleProjects[nextIndex]);
   };
 
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {

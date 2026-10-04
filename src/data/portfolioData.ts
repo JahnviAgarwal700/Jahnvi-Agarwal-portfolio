@@ -504,6 +504,35 @@ const RAW_PROJECTS: Project[] = [
         description: "A tranquil cinematic real estate showcase capturing the serene landscape, traditional heritage architecture, and natural light of Nakshatra Mana."
       }
     ]
+  },
+
+  // ─── 10. Wedding films (Mobile Only) ──────────────────────────────────────────
+  {
+    id: "wedding-films",
+    title: "Wedding films",
+    heading: "Wedding films",
+    category: "Wedding",
+    aspectRatio: "16:9",
+    duration: "03:16",
+    thumbnail: "/images/wedding-films-thumb.jpg",
+    videoUrl: "videos/wedding-films.mp4",
+    ticketNote: "Cinematic Wedding Highlights & Emotional Storytelling",
+    showcaseVideos: [
+      {
+        id: "wedding-film-main",
+        title: "Wedding films",
+        badge: "Wedding Highlights",
+        videoUrl: "videos/wedding-films.mp4",
+        poster: "images/wedding-films-thumb.jpg",
+        aspectRatio: "16:9"
+      }
+    ],
+    shortDescription: "Cinematic Wedding Highlights · Emotional storytelling, heartfelt moments, and cinematic color grading.",
+    description: "Cinematic wedding film edit featuring emotional pacing, natural dialogue, vows, and timeless color grading.",
+    role: "Lead Video Editor & Colorist",
+    software: "Adobe Premiere Pro",
+    year: "2024",
+    mobileOnly: true
   }
 ];
 
