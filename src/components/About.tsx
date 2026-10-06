@@ -32,10 +32,12 @@ export const About: React.FC = () => {
           >
             <div className="about-photo-frame">
               <img
-                src={getAssetUrl('images/about-childhood-portrait.jpg')}
+                src={getAssetUrl('images/about-childhood-portrait.webp')}
+                onError={(e) => { e.currentTarget.src = getAssetUrl('images/about-childhood-portrait.jpg'); }}
                 alt="Jahnvi Agarwal — Childhood photo"
                 className="about-photo-asset"
                 loading="lazy"
+                decoding="async"
               />
               <div className="about-photo-caption">
                 Jahnvi Agarwal · Video Editor

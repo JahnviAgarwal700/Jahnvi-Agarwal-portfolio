@@ -31,6 +31,11 @@ const ShowcaseVideoCard: React.FC<ShowcaseVideoCardProps> = ({
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [isVideoFrameReady, setIsVideoFrameReady] = useState(false);
+
+  useEffect(() => {
+    setIsVideoFrameReady(false);
+  }, [video.id, video.videoUrl]);
 
   const handleTimeUpdate = () => {
     if (videoRef.current && videoRef.current.duration) {
@@ -162,20 +167,44 @@ const ShowcaseVideoCard: React.FC<ShowcaseVideoCardProps> = ({
           <>
             <video
               ref={videoRef}
-              src={`${video.videoUrl}#t=0.001`}
+              src={video.videoUrl}
               poster={video.poster}
               playsInline
               loop
-              preload="metadata"
+              preload={activePlayingId === video.id || index === 0 ? 'auto' : 'metadata'}
               className="story-reel-video"
               onPlay={() => setIsPlaying(true)}
+              onPlaying={() => setIsVideoFrameReady(true)}
               onPause={() => setIsPlaying(false)}
               onVolumeChange={() => setIsMuted(videoRef.current?.muted ?? false)}
-              onTimeUpdate={handleTimeUpdate}
+              onTimeUpdate={() => {
+                if (videoRef.current && videoRef.current.currentTime > 0) {
+                  setIsVideoFrameReady(true);
+                }
+                handleTimeUpdate();
+              }}
+              onLoadedData={() => {
+                if (videoRef.current && videoRef.current.currentTime > 0) {
+                  setIsVideoFrameReady(true);
+                }
+              }}
               onLoadedMetadata={handleTimeUpdate}
               onSeeked={handleTimeUpdate}
               onEnded={() => setProgress(100)}
             />
+
+            {/* Instant Poster Layer: Displays immediately (0ms) so visitors never see an empty black frame while video buffers */}
+            {video.poster && (
+              <img
+                src={video.poster}
+                alt=""
+                aria-hidden="true"
+                loading="eager"
+                decoding="async"
+                fetchPriority="high"
+                className={`showcase-video-instant-poster ${isVideoFrameReady && isPlaying ? 'is-faded' : ''}`}
+              />
+            )}
 
             {/* Sound / Mute Toggle Button in Top Right */}
             <button

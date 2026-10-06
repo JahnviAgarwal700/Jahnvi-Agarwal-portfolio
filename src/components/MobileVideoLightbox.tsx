@@ -28,8 +28,13 @@ export const MobileVideoLightbox: React.FC<MobileVideoLightboxProps> = ({
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [isVideoReady, setIsVideoReady] = useState(false);
 
   const touchStartX = useRef<number>(0);
+
+  useEffect(() => {
+    setIsVideoReady(false);
+  }, [currentVideo?.id]);
 
   // Prevent background scroll
   useEffect(() => {
@@ -214,17 +219,35 @@ export const MobileVideoLightbox: React.FC<MobileVideoLightboxProps> = ({
         >
           <video
             ref={videoRef}
-            src={`${getAssetUrl(currentVideo.videoUrl)}#t=0.001`}
+            src={getAssetUrl(currentVideo.videoUrl)}
             poster={currentVideo.poster ? getAssetUrl(currentVideo.poster) : undefined}
             playsInline
             loop
             preload="auto"
             className="mobile-lightbox-video"
             onPlay={() => setIsPlaying(true)}
+            onPlaying={() => setIsVideoReady(true)}
             onPause={() => setIsPlaying(false)}
-            onTimeUpdate={handleTimeUpdate}
+            onTimeUpdate={() => {
+              if (videoRef.current && videoRef.current.currentTime > 0) {
+                setIsVideoReady(true);
+              }
+              handleTimeUpdate();
+            }}
             onEnded={() => setProgress(100)}
           />
+
+          {currentVideo.poster && (
+            <img
+              src={getAssetUrl(currentVideo.poster)}
+              alt=""
+              aria-hidden="true"
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
+              className={`showcase-video-instant-poster ${isVideoReady && isPlaying ? 'is-faded' : ''}`}
+            />
+          )}
 
           {/* Center Play Button Overlay when Paused */}
           {!isPlaying && (

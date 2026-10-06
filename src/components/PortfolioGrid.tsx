@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Project, PROJECTS } from '../data/portfolioData';
 import { ProjectCard } from './ProjectCard';
 
@@ -7,6 +7,37 @@ interface PortfolioGridProps {
 }
 
 export const PortfolioGrid: React.FC<PortfolioGridProps> = ({ onSelectProject }) => {
+  useEffect(() => {
+    let timer: any = null;
+    const preloadAllShowcasePosters = () => {
+      PROJECTS.forEach((p) => {
+        if (p.showcaseVideos) {
+          p.showcaseVideos.forEach((v) => {
+            if (v.poster) {
+              const img = new Image();
+              img.decoding = 'async';
+              img.src = v.poster;
+            }
+          });
+        }
+      });
+    };
+
+    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+      timer = (window as any).requestIdleCallback(preloadAllShowcasePosters, { timeout: 2000 });
+    } else {
+      timer = setTimeout(preloadAllShowcasePosters, 600);
+    }
+
+    return () => {
+      if (typeof window !== 'undefined' && 'cancelIdleCallback' in window && timer) {
+        (window as any).cancelIdleCallback(timer);
+      } else if (timer) {
+        clearTimeout(timer);
+      }
+    };
+  }, []);
+
   return (
     <section id="work" className="section-selected-work" aria-label="My Recent Work">
       <div className="site-container">

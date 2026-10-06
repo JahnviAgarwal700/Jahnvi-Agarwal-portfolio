@@ -1,6 +1,28 @@
 import React from 'react';
 import { Project } from '../data/portfolioData';
 
+const prewarmedVideos = new Set<string>();
+
+export const prewarmProjectMedia = (project: Project) => {
+  if (project.showcaseVideos) {
+    project.showcaseVideos.forEach((v) => {
+      if (v.poster) {
+        const img = new Image();
+        img.decoding = 'async';
+        img.src = v.poster;
+      }
+    });
+  }
+
+  const mainVideoUrl = project.showcaseVideos?.[0]?.videoUrl || project.videoUrl;
+  if (mainVideoUrl && !prewarmedVideos.has(mainVideoUrl) && typeof document !== 'undefined') {
+    prewarmedVideos.add(mainVideoUrl);
+    const v = document.createElement('video');
+    v.preload = 'auto';
+    v.src = mainVideoUrl;
+  }
+};
+
 interface ProjectCardProps {
   project: Project;
   index?: number;
@@ -19,6 +41,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       tabIndex={0}
       role="button"
       data-cursor-open="true"
+      onMouseEnter={() => prewarmProjectMedia(project)}
+      onTouchStart={() => prewarmProjectMedia(project)}
+      onFocus={() => prewarmProjectMedia(project)}
       onClick={() => onSelect(project)}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {

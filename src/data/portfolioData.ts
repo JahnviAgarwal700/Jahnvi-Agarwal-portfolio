@@ -98,7 +98,7 @@ export const PROFILE_DATA = {
   about: {
     heading: "More About Me",
     paragraphs: [
-      "I am 21. Outside of editing, I’m naturally curious about technology, AI, and anything that lets me create or build something new. I like experimenting, learning by doing, and figuring out how things work. I’m always exploring new tools and ideas that can make the creative process faster, smarter, or simply more interesting. I’m based in India, proficient in English and Hindi and absolutely love what I do :)."
+      "I am 21. Outside of editing, I’m naturally curious about technology, AI, and anything that lets me create or build something new. I like experimenting, learning by doing, and figuring out how things work. I’m always exploring new tools and ideas that can make the creative process faster, smarter, or simply more interesting. I’m dedicated to improving my craft and take my work seriously. I’m based in India, proficient in English and Hindi, and absolutely love what I do :)."
     ]
   },
   behindTheEdit: {
@@ -527,14 +527,20 @@ const RAW_PROJECTS: Project[] = [
   }
 ];
 
+const toWebpUrl = (path: string): string => {
+  if (!path) return '';
+  const webpPath = path.replace(/\.(png|jpg|jpeg)$/i, '.webp');
+  return getAssetUrl(webpPath);
+};
+
 export const PROJECTS: Project[] = RAW_PROJECTS.map((p) => ({
   ...p,
-  thumbnail: getAssetUrl(p.thumbnail),
+  thumbnail: toWebpUrl(p.thumbnail),
   videoUrl: p.videoUrl ? getAssetUrl(p.videoUrl) : '',
   showcaseVideos: p.showcaseVideos?.map((s) => ({
     ...s,
     videoUrl: s.videoUrl ? getAssetUrl(s.videoUrl) : '',
-    poster: s.poster ? getAssetUrl(s.poster) : undefined
+    poster: s.poster ? toWebpUrl(s.poster) : undefined
   })),
   dualVideos: p.dualVideos
     ? {
@@ -542,12 +548,12 @@ export const PROJECTS: Project[] = RAW_PROJECTS.map((p) => ({
         fullLength: {
           ...p.dualVideos.fullLength,
           videoUrl: p.dualVideos.fullLength.videoUrl ? getAssetUrl(p.dualVideos.fullLength.videoUrl) : '',
-          poster: p.dualVideos.fullLength.poster ? getAssetUrl(p.dualVideos.fullLength.poster) : ''
+          poster: p.dualVideos.fullLength.poster ? toWebpUrl(p.dualVideos.fullLength.poster) : ''
         },
         shortForm: {
           ...p.dualVideos.shortForm,
           videoUrl: p.dualVideos.shortForm.videoUrl ? getAssetUrl(p.dualVideos.shortForm.videoUrl) : '',
-          poster: p.dualVideos.shortForm.poster ? getAssetUrl(p.dualVideos.shortForm.poster) : ''
+          poster: p.dualVideos.shortForm.poster ? toWebpUrl(p.dualVideos.shortForm.poster) : ''
         }
       }
     : undefined,
@@ -555,14 +561,14 @@ export const PROJECTS: Project[] = RAW_PROJECTS.map((p) => ({
     ? {
         ...p.extraVideo,
         videoUrl: p.extraVideo.videoUrl ? getAssetUrl(p.extraVideo.videoUrl) : '',
-        thumbnail: p.extraVideo.thumbnail ? getAssetUrl(p.extraVideo.thumbnail) : ''
+        thumbnail: p.extraVideo.thumbnail ? toWebpUrl(p.extraVideo.thumbnail) : ''
       }
     : undefined,
   playlist: p.playlist
     ? p.playlist.map((item) => ({
         ...item,
         videoUrl: item.videoUrl ? getAssetUrl(item.videoUrl) : '',
-        thumbnail: item.thumbnail ? getAssetUrl(item.thumbnail) : ''
+        thumbnail: item.thumbnail ? toWebpUrl(item.thumbnail) : ''
       }))
     : undefined
 }));

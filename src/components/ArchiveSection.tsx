@@ -230,25 +230,29 @@ export const YOUTUBE_900K_REELS: ReelItem[] = [
     id: 'reel-1',
     title: 'Short Reel 01',
     badge: 'Reel 1',
-    videoUrl: 'videos/1.mp4'
+    videoUrl: 'videos/1.mp4',
+    poster: 'images/archive-reel-1-poster.webp'
   },
   {
     id: 'reel-5',
     title: 'Short Reel 02',
     badge: 'Reel 2',
-    videoUrl: 'videos/5.mp4'
+    videoUrl: 'videos/5.mp4',
+    poster: 'images/archive-reel-5-poster.webp'
   },
   {
     id: 'reel-2',
     title: 'Short Reel 03',
     badge: 'Reel 3',
-    videoUrl: 'videos/2.mp4'
+    videoUrl: 'videos/2.mp4',
+    poster: 'images/archive-reel-2-poster.webp'
   },
   {
     id: 'reel-21',
     title: 'Short Reel 04',
     badge: 'Reel 4',
-    videoUrl: 'videos/21.mp4'
+    videoUrl: 'videos/21.mp4',
+    poster: 'images/archive-reel-21-poster.webp'
   }
 ];
 
@@ -262,6 +266,7 @@ const StoryReelCard: React.FC<{
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [isReelFrameReady, setIsReelFrameReady] = useState(false);
   const manuallyPausedRef = useRef(false);
 
   const isFirstReel = index === 0;
@@ -481,19 +486,42 @@ const StoryReelCard: React.FC<{
         <>
           <video
             ref={videoRef}
-            src={`${getAssetUrl(reel.videoUrl)}#t=0.001`}
+            src={getAssetUrl(reel.videoUrl)}
             poster={reel.poster ? getAssetUrl(reel.poster) : undefined}
             playsInline
             loop
             preload={isFirstReel ? 'auto' : 'metadata'}
             className="story-reel-video"
             onPlay={() => setIsPlaying(true)}
+            onPlaying={() => setIsReelFrameReady(true)}
             onPause={() => setIsPlaying(false)}
-            onTimeUpdate={handleTimeUpdate}
+            onTimeUpdate={() => {
+              if (videoRef.current && videoRef.current.currentTime > 0) {
+                setIsReelFrameReady(true);
+              }
+              handleTimeUpdate();
+            }}
+            onLoadedData={() => {
+              if (videoRef.current && videoRef.current.currentTime > 0) {
+                setIsReelFrameReady(true);
+              }
+            }}
             onLoadedMetadata={handleTimeUpdate}
             onSeeked={handleTimeUpdate}
             onEnded={() => setProgress(100)}
           />
+
+          {reel.poster && (
+            <img
+              src={getAssetUrl(reel.poster)}
+              alt=""
+              aria-hidden="true"
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
+              className={`showcase-video-instant-poster ${isReelFrameReady && isPlaying ? 'is-faded' : ''}`}
+            />
+          )}
 
           {!isPlaying && (
             <div className="story-reel-play-overlay" aria-hidden="true">
@@ -541,12 +569,125 @@ const StoryReelCard: React.FC<{
   );
 };
 
+const FOLDER_PHOTOS: Record<string, string[]> = {
+  'desk-tour': [
+    'images/workstation-1-angle.webp',
+    'images/workstation-1-front.webp',
+    'images/workstation-2-dell.webp'
+  ],
+  'youtube-900k-story': [
+    'images/story-part1-ultra.webp',
+    'images/story-part2-ultra.webp',
+    'images/story-part3-ultra.webp',
+    'images/story-part4-ultra-cover.webp',
+    'images/story-part5-ultra.webp',
+    'images/archive-reel-1-poster.webp',
+    'images/archive-reel-5-poster.webp',
+    'images/archive-reel-2-poster.webp',
+    'images/archive-reel-21-poster.webp'
+  ],
+  'about-me': [
+    'images/about-childhood.webp'
+  ],
+  'skills-tools': [
+    'images/tools-workstation.webp'
+  ]
+};
+
+const ALL_ARCHIVE_PHOTOS: string[] = [
+  'images/workstation-1-angle.webp',
+  'images/workstation-1-front.webp',
+  'images/workstation-2-dell.webp',
+  'images/story-part1-ultra.webp',
+  'images/story-part2-ultra.webp',
+  'images/story-part3-ultra.webp',
+  'images/story-part4-ultra-cover.webp',
+  'images/story-part5-ultra.webp',
+  'images/archive-reel-1-poster.webp',
+  'images/archive-reel-5-poster.webp',
+  'images/archive-reel-2-poster.webp',
+  'images/archive-reel-21-poster.webp',
+  'images/tools-workstation.webp',
+  'images/about-childhood.webp'
+];
+
+const preloadedUrls = new Set<string>();
+
+const preloadImage = (path: string): void => {
+  const url = getAssetUrl(path);
+  if (!url || preloadedUrls.has(url)) return;
+  preloadedUrls.add(url);
+
+  const img = new Image();
+  img.decoding = 'async';
+  img.src = url;
+};
+
+export const preloadFolderPhotos = (folderId: string): void => {
+  const list = FOLDER_PHOTOS[folderId];
+  if (list) {
+    list.forEach(preloadImage);
+  }
+};
+
+export const preloadAllArchivePhotos = (): void => {
+  ALL_ARCHIVE_PHOTOS.forEach(preloadImage);
+};
+
 export const ArchiveSection: React.FC = () => {
+  const sectionRef = useRef<HTMLElement>(null);
   const [expandedFolderId, setExpandedFolderId] = useState<string | null>(null);
   const [isExiting, setIsExiting] = useState(false);
   const [zoomedPhoto, setZoomedPhoto] = useState<string | null>(null);
   const [activeMobileReelIndex, setActiveMobileReelIndex] = useState<number | null>(null);
   const hasPushedHistoryRef = useRef(false);
+
+  // Proactive background preloading: on idle & on scroll proximity
+  useEffect(() => {
+    let idleTimer: any = null;
+    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+      idleTimer = (window as any).requestIdleCallback(
+        () => {
+          preloadAllArchivePhotos();
+        },
+        { timeout: 1500 }
+      );
+    } else {
+      idleTimer = setTimeout(() => {
+        preloadAllArchivePhotos();
+      }, 500);
+    }
+
+    let observer: IntersectionObserver | null = null;
+    if (sectionRef.current && typeof IntersectionObserver !== 'undefined') {
+      observer = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((e) => e.isIntersecting)) {
+            preloadAllArchivePhotos();
+            observer?.disconnect();
+          }
+        },
+        { rootMargin: '600px 0px' }
+      );
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (typeof window !== 'undefined' && 'cancelIdleCallback' in window && idleTimer) {
+        (window as any).cancelIdleCallback(idleTimer);
+      } else if (idleTimer) {
+        clearTimeout(idleTimer);
+      }
+      observer?.disconnect();
+    };
+  }, []);
+
+  // When any folder is opened, ensure all archive images are cached for instant switching
+  useEffect(() => {
+    if (expandedFolderId) {
+      preloadAllArchivePhotos();
+    }
+  }, [expandedFolderId]);
 
   const [isMobile, setIsMobile] = useState<boolean>(() => {
     if (typeof window !== 'undefined') {
@@ -664,7 +805,7 @@ export const ArchiveSection: React.FC = () => {
   };
 
   return (
-    <section id="archive" className="section-archive" aria-label="Archive Folder Stack">
+    <section ref={sectionRef} id="archive" className="section-archive" aria-label="Archive Folder Stack">
       <div id="about" style={{ position: 'relative', top: '-80px', visibility: 'hidden' }} aria-hidden="true" />
       {/* Physical Stack of Layered Die-Cut Folders covering full page left to right */}
       <div className="archive-physical-stack archive-stack-fullwidth" data-reveal-group>
@@ -673,6 +814,9 @@ export const ArchiveSection: React.FC = () => {
             <article
               key={folder.id}
               className={`archive-physical-folder folder-item-${folder.id}`}
+              onMouseEnter={() => preloadFolderPhotos(folder.id)}
+              onTouchStart={() => preloadFolderPhotos(folder.id)}
+              onFocus={() => preloadFolderPhotos(folder.id)}
               style={{
                 '--folder-index': index,
                 '--folder-bg': folder.bgColor,
@@ -792,26 +936,35 @@ export const ArchiveSection: React.FC = () => {
                     <div className="story-canva-row-top">
                       <div className="story-canva-item story-canva-pb1">
                         <img
-                          src={getAssetUrl('images/story-part1-ultra.jpg')}
+                          src={getAssetUrl('images/story-part1-ultra.webp')}
+                          onError={(e) => { e.currentTarget.src = getAssetUrl('images/story-part1-ultra.jpg'); }}
                           alt="Official YouTube Creator Award Silver Play Button"
                           className="story-canva-img"
                           loading="eager"
+                          decoding="async"
+                          fetchPriority="high"
                         />
                       </div>
                       <div className="story-canva-item story-canva-pb2">
                         <img
-                          src={getAssetUrl('images/story-part2-ultra.jpg')}
+                          src={getAssetUrl('images/story-part2-ultra.webp')}
+                          onError={(e) => { e.currentTarget.src = getAssetUrl('images/story-part2-ultra.jpg'); }}
                           alt="Jahnvi holding YouTube Silver Play Button at workstation"
                           className="story-canva-img"
                           loading="eager"
+                          decoding="async"
+                          fetchPriority="high"
                         />
                       </div>
                       <div className="story-canva-item story-canva-channel">
                         <img
-                          src={getAssetUrl('images/story-part3-ultra.png')}
+                          src={getAssetUrl('images/story-part3-ultra.webp')}
+                          onError={(e) => { e.currentTarget.src = getAssetUrl('images/story-part3-ultra.png'); }}
                           alt="GeekyGamer YouTube Channel proof"
                           className="story-canva-img"
                           loading="eager"
+                          decoding="async"
+                          fetchPriority="high"
                         />
                       </div>
                     </div>
@@ -820,18 +973,24 @@ export const ArchiveSection: React.FC = () => {
                     <div className="story-canva-row-bottom">
                       <div className="story-canva-item story-canva-viral">
                         <img
-                          src={getAssetUrl('images/story-part4-ultra-cover.png')}
+                          src={getAssetUrl('images/story-part4-ultra-cover.webp')}
+                          onError={(e) => { e.currentTarget.src = getAssetUrl('images/story-part4-ultra-cover.png'); }}
                           alt="GeekyGamer Most Popular Videos proof showing 28M views"
                           className="story-canva-img"
                           loading="eager"
+                          decoding="async"
+                          fetchPriority="high"
                         />
                       </div>
                       <div className="story-canva-item story-canva-badge">
                         <img
-                          src={getAssetUrl('images/story-part5-ultra.png')}
+                          src={getAssetUrl('images/story-part5-ultra.webp')}
+                          onError={(e) => { e.currentTarget.src = getAssetUrl('images/story-part5-ultra.png'); }}
                           alt="GeekyGamer verified channel badge and 975K subscribers"
                           className="story-canva-img"
                           loading="eager"
+                          decoding="async"
+                          fetchPriority="high"
                         />
                       </div>
                     </div>
@@ -882,18 +1041,21 @@ export const ArchiveSection: React.FC = () => {
                   <div className="skills-side-by-side-wrap">
                     <div
                       className="skills-photo-canva-box"
-                      onClick={() => setZoomedPhoto(getAssetUrl('images/tools-workstation.png'))}
+                      onClick={() => setZoomedPhoto(getAssetUrl('images/tools-workstation.webp'))}
                       role="button"
                       tabIndex={0}
                       aria-label="View workstation photo full size"
                       title="Click to zoom photo"
-                      onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setZoomedPhoto(getAssetUrl('images/tools-workstation.png'))}
+                      onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setZoomedPhoto(getAssetUrl('images/tools-workstation.webp'))}
                     >
                       <img
-                        src={getAssetUrl('images/tools-workstation.png')}
+                        src={getAssetUrl('images/tools-workstation.webp')}
+                        onError={(e) => { e.currentTarget.src = getAssetUrl('images/tools-workstation.png'); }}
                         alt="Jahnvi Agarwal — Editing at workstation with Premiere Pro"
                         className="skills-canva-img"
                         loading="eager"
+                        decoding="async"
+                        fetchPriority="high"
                       />
                     </div>
 
@@ -916,25 +1078,28 @@ export const ArchiveSection: React.FC = () => {
                   <div
                     className="about-photo-block"
                     aria-label="Photo Block"
-                    onClick={() => setZoomedPhoto(getAssetUrl('images/about-childhood.png'))}
-                    onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setZoomedPhoto(getAssetUrl('images/about-childhood.png'))}
+                    onClick={() => setZoomedPhoto(getAssetUrl('images/about-childhood.webp'))}
+                    onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setZoomedPhoto(getAssetUrl('images/about-childhood.webp'))}
                     role="button"
                     tabIndex={0}
                     style={{ cursor: 'pointer' }}
                     title="Click to zoom photo"
                   >
                     <img
-                      src={getAssetUrl('images/about-childhood.png')}
+                      src={getAssetUrl('images/about-childhood.webp')}
+                      onError={(e) => { e.currentTarget.src = getAssetUrl('images/about-childhood.png'); }}
                       alt="Jahnvi Agarwal — Childhood photo"
                       className="about-photo-img"
                       loading="eager"
+                      decoding="async"
+                      fetchPriority="high"
                     />
                   </div>
 
                   {/* Text in white box */}
                   <div className="story-text-white-box about-text-box">
                     <p className="story-thin-body-text">
-                      I am 21. Outside of editing, I’m naturally curious about technology, AI, and anything that lets me create or build something new. I like experimenting, learning by doing, and figuring out how things work. I’m always exploring new tools and ideas that can make the creative process faster, smarter, or simply more interesting. I’m based in India, proficient in English and Hindi and absolutely love what I do :).
+                      I am 21. Outside of editing, I’m naturally curious about technology, AI, and anything that lets me create or build something new. I like experimenting, learning by doing, and figuring out how things work. I’m always exploring new tools and ideas that can make the creative process faster, smarter, or simply more interesting. I’m dedicated to improving my craft and take my work seriously. I’m based in India, proficient in English and Hindi, and absolutely love what I do :).
                     </p>
                   </div>
                 </div>
@@ -951,33 +1116,39 @@ export const ArchiveSection: React.FC = () => {
                     <div className="desk-mosaic-row desk-mosaic-row-top">
                       <div
                         className="desk-mosaic-item desk-mosaic-half"
-                        onClick={() => setZoomedPhoto(getAssetUrl('images/workstation-1-angle.jpg'))}
+                        onClick={() => setZoomedPhoto(getAssetUrl('images/workstation-1-angle.webp'))}
                         tabIndex={0}
                         role="button"
                         aria-label="View Workstation 1 angle in full size"
-                        onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setZoomedPhoto(getAssetUrl('images/workstation-1-angle.jpg'))}
+                        onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setZoomedPhoto(getAssetUrl('images/workstation-1-angle.webp'))}
                       >
                         <img
-                          src={getAssetUrl('images/workstation-1-angle.jpg')}
+                          src={getAssetUrl('images/workstation-1-angle.webp')}
+                          onError={(e) => { e.currentTarget.src = getAssetUrl('images/workstation-1-angle.jpg'); }}
                           alt="Workstation 1 — 4K Editing Setup with Antec PC and Premiere Pro"
                           className="desk-mosaic-img"
                           loading="eager"
+                          decoding="async"
+                          fetchPriority="high"
                         />
                       </div>
 
                       <div
                         className="desk-mosaic-item desk-mosaic-half"
-                        onClick={() => setZoomedPhoto(getAssetUrl('images/workstation-1-front.jpg'))}
+                        onClick={() => setZoomedPhoto(getAssetUrl('images/workstation-1-front.webp'))}
                         tabIndex={0}
                         role="button"
                         aria-label="View Workstation 1 front view in full size"
-                        onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setZoomedPhoto(getAssetUrl('images/workstation-1-front.jpg'))}
+                        onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setZoomedPhoto(getAssetUrl('images/workstation-1-front.webp'))}
                       >
                         <img
-                          src={getAssetUrl('images/workstation-1-front.jpg')}
+                          src={getAssetUrl('images/workstation-1-front.webp')}
+                          onError={(e) => { e.currentTarget.src = getAssetUrl('images/workstation-1-front.jpg'); }}
                           alt="Workstation 1 — Front Setup with RGB Antec Rig and Timeline Screen"
                           className="desk-mosaic-img"
                           loading="eager"
+                          decoding="async"
+                          fetchPriority="high"
                         />
                       </div>
                     </div>
@@ -986,17 +1157,20 @@ export const ArchiveSection: React.FC = () => {
                     <div className="desk-mosaic-row desk-mosaic-row-bottom">
                       <div
                         className="desk-mosaic-item desk-mosaic-full"
-                        onClick={() => setZoomedPhoto(getAssetUrl('images/workstation-2-dell.jpg'))}
+                        onClick={() => setZoomedPhoto(getAssetUrl('images/workstation-2-dell.webp'))}
                         tabIndex={0}
                         role="button"
                         aria-label="View Workstation 2 in full size"
-                        onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setZoomedPhoto(getAssetUrl('images/workstation-2-dell.jpg'))}
+                        onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setZoomedPhoto(getAssetUrl('images/workstation-2-dell.webp'))}
                       >
                         <img
-                          src={getAssetUrl('images/workstation-2-dell.jpg')}
+                          src={getAssetUrl('images/workstation-2-dell.webp')}
+                          onError={(e) => { e.currentTarget.src = getAssetUrl('images/workstation-2-dell.jpg'); }}
                           alt="Workstation 2 — Dell Display with Dedicated Editing Shortcuts Setup"
                           className="desk-mosaic-img"
                           loading="eager"
+                          decoding="async"
+                          fetchPriority="high"
                         />
                       </div>
                     </div>
@@ -1045,6 +1219,8 @@ export const ArchiveSection: React.FC = () => {
                       type="button"
                       className={`other-folder-btn theme-${other.theme}`}
                       onClick={() => handleOpenFolder(other.id)}
+                      onMouseEnter={() => preloadFolderPhotos(other.id)}
+                      onTouchStart={() => preloadFolderPhotos(other.id)}
                     >
                       <div className="other-icon-wrap" aria-hidden="true">
                         {other.icon}
@@ -1084,6 +1260,7 @@ export const ArchiveSection: React.FC = () => {
               src={zoomedPhoto}
               alt="Workstation setup enlarged"
               className="desk-lightbox-img"
+              decoding="async"
             />
           </div>
         </div>
