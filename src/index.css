@@ -2101,6 +2101,141 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
+   RESUME - CLEAN ARCHIVE DOSSIER PRESENTATION
+   ========================================================================== */
+.resume-clean-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0 !important;
+  max-width: 680px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.resume-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: clamp(16px, 2.2vw, 24px);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.resume-header-row .story-clean-title {
+  margin-bottom: 0 !important;
+}
+
+.resume-download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  background-color: #111111;
+  border: 1.5px solid #111111;
+  padding: 9px 20px;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  white-space: nowrap;
+}
+
+.resume-download-btn:hover {
+  background-color: #FFFFFF;
+  color: #111111;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(17, 17, 17, 0.16);
+}
+
+.resume-download-btn svg {
+  flex-shrink: 0;
+}
+
+.resume-photo-block {
+  max-width: 680px;
+  width: 100%;
+  border: 3px solid #FFFFFF;
+  background-color: #FAF5EA;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.16);
+  padding: 0 !important;
+  border-radius: 0 !important;
+  overflow: hidden;
+  box-sizing: border-box;
+  margin: 0 auto clamp(16px, 2vw, 24px) auto;
+  display: block;
+  cursor: pointer;
+  position: relative;
+}
+
+.resume-photo-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 527 / 572;
+  object-fit: contain;
+  border-radius: 0 !important;
+  display: block;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+
+.resume-photo-block:hover .resume-photo-img {
+  transform: scale(1.025);
+}
+
+.resume-zoom-hint {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: rgba(17, 17, 17, 0.82);
+  color: #FFFFFF;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  pointer-events: none;
+  opacity: 0.85;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.resume-photo-block:hover .resume-zoom-hint {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.resume-text-box {
+  max-width: 680px;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 auto !important;
+}
+
+@media (max-width: 640px) {
+  .resume-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .resume-download-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ==========================================================================
    DESK TOUR - WORKSTATION PHOTO MOSAIC (ZERO GAPS, SHARP CORNERS, LIKE 900K)
    Row 1: 2 Photos side-by-side (Workstation 1 angle 50%, Workstation 1 front 50%)
    Row 2: 1 Photo full-width (Workstation 2 Dell 100%)
