@@ -659,8 +659,8 @@ const FOLDER_PHOTOS: Record<string, string[]> = {
     'images/tools-workstation.webp'
   ],
   'resume': [
-    'images/resume.webp',
-    'images/resume.png'
+    'images/resume-v2.webp',
+    'images/resume-v2.png'
   ]
 };
 
@@ -679,8 +679,8 @@ const ALL_ARCHIVE_PHOTOS: string[] = [
   'images/archive-reel-21-poster.webp',
   'images/tools-workstation.webp',
   'images/about-childhood.webp',
-  'images/resume.webp',
-  'images/resume.png'
+  'images/resume-v2.webp',
+  'images/resume-v2.png'
 ];
 
 const preloadedUrls = new Set<string>();
@@ -838,20 +838,27 @@ export const ArchiveSection: React.FC = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [expandedFolderId, isExiting, zoomedPhoto, handleCloseExpandedFolder]);
 
-  // Open folder if URL has #archive-{id} on load, or scroll to archive
+  // Open folder if URL has #archive-{id} on load, or on hashchange
   useEffect(() => {
-    const hash = window.location.hash;
-    if (hash && hash.startsWith('#archive-')) {
-      const folderId = hash.replace('#archive-', '');
-      if (ARCHIVE_FOLDERS.some(f => f.id === folderId)) {
-        setExpandedFolderId(folderId);
-        hasPushedHistoryRef.current = true;
+    const handleHash = () => {
+      const hash = window.location.hash;
+      if (hash && hash.startsWith('#archive-')) {
+        const folderId = hash.replace('#archive-', '');
+        if (ARCHIVE_FOLDERS.some(f => f.id === folderId)) {
+          setIsExiting(false);
+          setExpandedFolderId(folderId);
+          hasPushedHistoryRef.current = true;
+        }
+      } else if (hash === '#archive' || hash === '#about') {
+        setTimeout(() => {
+          sectionRef.current?.scrollIntoView({ behavior: 'instant', block: 'start' });
+        }, 50);
       }
-    } else if (hash === '#archive' || hash === '#about') {
-      setTimeout(() => {
-        sectionRef.current?.scrollIntoView({ behavior: 'instant', block: 'start' });
-      }, 50);
-    }
+    };
+
+    handleHash();
+    window.addEventListener('hashchange', handleHash);
+    return () => window.removeEventListener('hashchange', handleHash);
   }, []);
 
   const handleOpenFolder = (folderId: string) => {
@@ -1267,7 +1274,7 @@ export const ArchiveSection: React.FC = () => {
                       Resume
                     </h1>
                     <a
-                      href={getAssetUrl('images/resume.png')}
+                      href={getAssetUrl('images/resume-v2.png')}
                       download="Jahnvi-Agarwal-Resume.png"
                       className="resume-download-btn"
                       aria-label="Download Jahnvi Agarwal's Resume"
@@ -1286,16 +1293,16 @@ export const ArchiveSection: React.FC = () => {
                   <div
                     className="resume-photo-block"
                     aria-label="Jahnvi Agarwal — Resume Document"
-                    onClick={() => setZoomedPhoto(getAssetUrl('images/resume.png'))}
-                    onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setZoomedPhoto(getAssetUrl('images/resume.png'))}
+                    onClick={() => setZoomedPhoto(getAssetUrl('images/resume-v2.png'))}
+                    onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setZoomedPhoto(getAssetUrl('images/resume-v2.png'))}
                     role="button"
                     tabIndex={0}
                     style={{ cursor: 'pointer' }}
                     title="Click to zoom resume"
                   >
                     <img
-                      src={getAssetUrl('images/resume.webp')}
-                      onError={(e) => { e.currentTarget.src = getAssetUrl('images/resume.png'); }}
+                      src={getAssetUrl('images/resume-v2.webp')}
+                      onError={(e) => { e.currentTarget.src = getAssetUrl('images/resume-v2.png'); }}
                       alt="Jahnvi Agarwal — Official Resume"
                       className="resume-photo-img"
                       loading="eager"

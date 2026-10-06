@@ -32,6 +32,7 @@ export const Navbar: React.FC = () => {
           <ul className="nav-links">
             <li><a href="#work" className="nav-link">Work</a></li>
             <li><a href="#about" className="nav-link">About</a></li>
+            <li><a href="#archive-resume" className="nav-link">Resume</a></li>
             <li><a href="#contact" className="nav-link">Contact</a></li>
           </ul>
 
@@ -58,6 +59,7 @@ export const Navbar: React.FC = () => {
           <ul className="mobile-nav-links">
             <li><a href="#work" onClick={closeMenu}>Work</a></li>
             <li><a href="#about" onClick={closeMenu}>About</a></li>
+            <li><a href="#archive-resume" onClick={closeMenu}>Resume</a></li>
             <li><a href="#contact" onClick={closeMenu}>Contact</a></li>
           </ul>
 
