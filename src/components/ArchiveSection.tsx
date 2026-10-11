@@ -659,8 +659,8 @@ const FOLDER_PHOTOS: Record<string, string[]> = {
     'images/tools-workstation.webp'
   ],
   'resume': [
-    'images/resume-v3.webp',
-    'images/resume-v3.png'
+    'images/resume-v4.webp',
+    'images/resume-v4.png'
   ]
 };
 
@@ -679,8 +679,8 @@ const ALL_ARCHIVE_PHOTOS: string[] = [
   'images/archive-reel-21-poster.webp',
   'images/tools-workstation.webp',
   'images/about-childhood.webp',
-  'images/resume-v3.webp',
-  'images/resume-v3.png'
+  'images/resume-v4.webp',
+  'images/resume-v4.png'
 ];
 
 const preloadedUrls = new Set<string>();
@@ -1274,7 +1274,7 @@ export const ArchiveSection: React.FC = () => {
                       Resume
                     </h1>
                     <a
-                      href={getAssetUrl('images/resume-v3.png')}
+                      href={getAssetUrl('images/resume-v4.png')}
                       download="Jahnvi-Agarwal-Resume.png"
                       className="resume-download-btn"
                       aria-label="Download Jahnvi Agarwal's Resume"
@@ -1293,16 +1293,16 @@ export const ArchiveSection: React.FC = () => {
                   <div
                     className="resume-photo-block"
                     aria-label="Jahnvi Agarwal — Resume Document"
-                    onClick={() => setZoomedPhoto(getAssetUrl('images/resume-v3.png'))}
-                    onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setZoomedPhoto(getAssetUrl('images/resume-v3.png'))}
+                    onClick={() => setZoomedPhoto(getAssetUrl('images/resume-v4.png'))}
+                    onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setZoomedPhoto(getAssetUrl('images/resume-v4.png'))}
                     role="button"
                     tabIndex={0}
                     style={{ cursor: 'pointer' }}
                     title="Click to zoom resume"
                   >
                     <img
-                      src={getAssetUrl('images/resume-v3.webp')}
-                      onError={(e) => { e.currentTarget.src = getAssetUrl('images/resume-v3.png'); }}
+                      src={getAssetUrl('images/resume-v4.webp')}
+                      onError={(e) => { e.currentTarget.src = getAssetUrl('images/resume-v4.png'); }}
                       alt="Jahnvi Agarwal — Official Resume"
                       className="resume-photo-img"
                       loading="eager"
